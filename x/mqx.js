@@ -121,7 +121,9 @@ function RedisQueue(mq, name) {
         .exec().then(function (results) {
             var result = results[results.length-1];
             if (!result) {
-              console.log('Retry failed: queue=%s, old=%s, mew=%s, result=%s', self.name, old_string, new_string, result);
+                console.log('Retry failed: queue=%s, old=%s, mew=%s, result=%s', self.name, old_string, new_string, result);
+            } else {
+                console.log('Retry message: queue=%s, old=%s, mew=%s', self.name, old_string, new_string);
             }
         });
     };
@@ -175,7 +177,6 @@ function RedisQueue(mq, name) {
         function schedule() {
             var millis = now_millis();
             self.redis.schedule(queue_scheduled, queue, 0, millis).then(function (result){
-                console.log(result);
                 if (result && result.length) console.log('Scheduled messages: %s', result);
                 setTimeout(schedule, 1000);
             });
@@ -277,8 +278,8 @@ function RedisMessage(queue, msg, string) {
         if (this.done) return;
         this.done = true;
         this.msg['retry_count'] += 1;
-        if (!millis) millis = retry_timeout_millis(self.retry_count());
-        var new_string = JSON.stringify(self.msg);
+        if (!millis) millis = retry_timeout_millis(this.retry_count());
+        var new_string = JSON.stringify(this.msg);
         this.queue.retry(this.string, new_string, millis);
     };
     
