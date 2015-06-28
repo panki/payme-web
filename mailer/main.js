@@ -1,19 +1,14 @@
-var config = require('./config')
+
+
+var config = require('./config');
 var Redis = require('ioredis');
 var redis = new Redis(config.redis);
+var mqx = require('../x/mqx');
 
-console.log(config.redis);
+var mq = new mqx.RedisMQ('mq', redis);
+var queue = mq.queue('mail');
 
-redis.get('foo').then(function (result) {
-    console.log('2', result);
-    return redis.set('foo', '1');
-}).then(function (err, result) {
-    console.log(err, result);
-    return redis.get('foo')
-}).then(function (result) {
-    console.log('3', result);
-    console.log('END');
-    process.exit()
-    
+queue.consume(function(msg) {
+    console.log('Message arrived: %s', msg.payload());
+    msg.ack();
 });
-
