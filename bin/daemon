@@ -1,0 +1,126 @@
+#!/bin/bash
+
+
+# Check the required variables
+if [ -z "$NAME" ]; then
+    echo "NAME must be specified";
+    exit 1;
+fi
+
+if [ -z "$EXEC" ]; then
+    echo "EXEC must be specified";
+    exit 1;
+fi
+
+
+# CD into the home directory.
+cd $(dirname $0)/..
+
+
+# Script paths.
+PID="var/run/$NAME.pid"
+OUT="var/log/$NAME.out"
+
+
+function check_status {
+    # Return 0 if the PID process is aliave and 1 otherwise.
+    
+    if [ ! -f $PID ]; then
+        # The pid file does not exist.
+        return 1;
+    fi
+
+    # Load the pid from the file.
+    local pid="$(<$PID)"
+    
+    if [ -e $pid ]; then
+        return 1;
+    fi
+    
+    ps -p $pid | grep $pid > /dev/null
+    if [ $? -eq 0 ]; then
+        # Found the process.
+        return 0;
+    fi
+    
+    return 1;
+}
+
+
+function start {
+    check_status
+    if [ $? -eq 0 ]; then
+        echo "$NAME is already running"
+        return 1;
+    fi
+    
+    nohup $EXEC >> $OUT 2>&1&
+    echo $! > $PID
+    
+    sleep 0.5s
+    check_status
+    if [ $? -eq 0 ]; then
+        echo "$NAME started"
+    else
+        echo "$NAME failed to start"
+        rm $PID
+        return 1;
+    fi
+    
+    return 0;
+}
+
+function stop {
+    check_status
+    if [ ! $? -eq 0 ]; then
+        echo "$NAME is not running"
+        return 0;
+    fi
+    
+    cat $PID | xargs kill
+    if [ $? -eq 0 ]; then
+        if [ -f $PID ]; then
+            rm $PID;
+        fi
+        echo "$NAME stopped"
+    else
+        echo "$NAME refused to stop (it's still running)"
+        return 1;
+    fi
+    
+    return 0;
+}
+
+function main {
+    case "$1" in
+        console)
+            $EXEC
+            ;;
+        start)
+            start
+            exit $?;
+            ;;
+        stop)
+            stop
+            exit $?;
+            ;;
+        restart)
+            stop
+            start
+            exit $?;
+            ;;
+        status)
+            check_status
+
+            if [ $? -eq 0 ]; then
+                echo "$NAME is running"
+            else
+                echo "$NAME is stopped"
+            fi
+            ;;
+        *)
+            echo "Usage: $0 {console|start|stop|restart|status}"
+            exit 1
+            ;;
+    esac
+}
