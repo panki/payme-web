@@ -1,5 +1,6 @@
-var crypto = require('crypto')
-var utils = require('util')
+var debug = require('debug')('payme:mqx');
+var crypto = require('crypto');
+var utils = require('util');
 
 module.exports = {
     now_millis: now_millis,
@@ -32,6 +33,7 @@ function RedisMQ(name, redis, consumer_ttl) {
         self.heartbeat(consumer);
         setInterval(function () { self.heartbeat(consumer) }, 1000);
         console.log('Started a consumer heartbeat, consumer', consumer);
+        debug('Started a consumer heartbeat, consumer', consumer);
     };
     
     this.heartbeat = function(consumer) {
@@ -58,7 +60,7 @@ function RedisQueue(mq, name) {
         var msg = RedisMessage.create(this, value);
         var queue = key_queue(this.mq.name, this.name);
         this.redis.lpush(queue, msg.string).then(function(result) {
-            console.log('Push: queue=%s, msg=%s, result=%s', queue, msg.string, result)
+            debug('Push: queue=%s, msg=%s, result=%s', queue, msg.string, result)
         });
     };
     
@@ -89,9 +91,10 @@ function RedisQueue(mq, name) {
         var redis = this.redis.duplicate();
 
         function consume_message() {
+            debug('Consume message: queue=%s', queue);
             redis.brpoplpush(queue, queue_consumer, timeout || 0)
             .then(function (result) {
-                console.log('Get message: queue=%s, msg=%s', queue, result);
+                debug('Get message: queue=%s, msg=%s', queue, result);
                 if (result) {
                     var msg = RedisMessage.parse(self, result);
                     cb(msg);
@@ -123,7 +126,7 @@ function RedisQueue(mq, name) {
             if (!result) {
                 console.log('Retry failed: queue=%s, old=%s, mew=%s, result=%s', self.name, old_string, new_string, result);
             } else {
-                console.log('Retry message: queue=%s, old=%s, mew=%s', self.name, old_string, new_string);
+                debug('Retry message: queue=%s, old=%s, mew=%s', self.name, old_string, new_string);
             }
         });
     };
@@ -211,7 +214,7 @@ function RedisQueue(mq, name) {
         function get_consumers_list() {
             self.redis.smembers(queue_consumers).then(function (result) {
                 maybe_cleanup_consumers = maybe_cleanup_consumers.concat(result);
-                console.log('Cleanup consumers list: %s', maybe_cleanup_consumers);
+                debug('Cleanup consumers list: %s', maybe_cleanup_consumers);
                 cleanup();
             })
         }
