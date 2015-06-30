@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title Confirm invoice
+  body
+    img(src="mailer/templates/invoice/confirm/logo.jpg")
+    h1 Вы запросили перевод
+    p От: #{invoice.owner.name}
+    p Кому: #{invoice.payer.name}
+    p Сумма: #{invoice.amount}
+    p
+      a(href="") Ввести данные карты
+    
+    p.footer Have a nice day!
+    p.footer email_id=#{id}
