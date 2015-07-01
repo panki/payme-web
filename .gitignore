@@ -1,7 +1,9 @@
 # Project
+/bower_components/
 /mailer/config.js
-/web/config.js
+/public/
 /var/
+/web/config.js
 
 # JetBrains IDEs
 *.iml

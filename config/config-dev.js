@@ -15,5 +15,8 @@ module.exports = {
                 ignoreTLS: true
             }
         }
+    },
+    sentry: {
+        dns: ''
     }
-}
+};
