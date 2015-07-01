@@ -1,5 +1,9 @@
 # Builds everything
-all: var npm
+all: var npm bower gulp
+
+clean:
+	rm -rf node_modules/*
+	rm -rf public/*
 
 # Make var dirs
 var:
@@ -11,3 +15,9 @@ var:
 # Install NPM dependencies
 npm:
 	npm install
+
+bower:
+	bower install
+
+gulp:
+	gulp

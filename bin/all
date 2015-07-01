@@ -1,0 +1,20 @@
+#!/bin/bash
+DIR=$(dirname $0)
+
+SERVICES=(web mailer)
+
+function execute {
+    for service in "${SERVICES[@]}"; do
+        $DIR/$service $1
+    done
+}
+
+case "$1" in
+    start|stop|restart|status)
+        execute $1
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart|status}"
+        exit 1
+        ;;
+esac
