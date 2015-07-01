@@ -13,7 +13,7 @@ var uglify = require('gulp-uglify');
 
 
 gulp.task('clean', function(cb) {
-    del(['public/*.js', 'public/*.css'], cb)
+    del(['public/build/**/*'], cb)
 });
 
 gulp.task('deps:js', function() {
@@ -23,14 +23,11 @@ gulp.task('deps:js', function() {
     
     return gulp.src(files, {base: 'public/deps'})
         .pipe(filter('**/*.js'))
-        .pipe(sourcemaps.init())
-        
         .pipe(concat('deps.js'))
         
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('public'));
+        .pipe(gulp.dest('public/build'));
 });
 
 gulp.task('deps:less', function() {
@@ -40,32 +37,28 @@ gulp.task('deps:less', function() {
     
     return gulp.src(files, {base: 'public/deps'})
         .pipe(filter('**/*.less'))
-        .pipe(sourcemaps.init())
-        
         .pipe(less())
         .pipe(concat('deps.css'))
         
         .pipe(rename({suffix: '.min'}))
         .pipe(minifyCss())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('public'));
+        .pipe(gulp.dest('public/build'));
 });
 
 gulp.task('web:less', function() {
-    return gulp.src('./web/assets/less/main.less')
+    return gulp.src('./public/web/less/main.less')
         .pipe(sourcemaps.init())
-        
         .pipe(less())
         .pipe(concat('web.css'))
         
         .pipe(rename({suffix: '.min'}))
         .pipe(minifyCss())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('public'));
+        .pipe(gulp.dest('public/build'));
 });
 
 gulp.task('web:js', function() {
-    return gulp.src('./web/assets/js/**/*.js')
+    return gulp.src('./public/web/js/**/*.js')
         .pipe(sourcemaps.init())
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'))
@@ -75,7 +68,7 @@ gulp.task('web:js', function() {
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('public'));
+        .pipe(gulp.dest('public/build'));
 });
 
 gulp.task('dev', function() {

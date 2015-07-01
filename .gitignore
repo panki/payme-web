@@ -1,7 +1,8 @@
 # Project
 /bower_components/
 /mailer/config.js
-/public/
+/public/deps/
+/public/build/
 /var/
 /web/config.js
 
