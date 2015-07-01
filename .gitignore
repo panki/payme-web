@@ -2,3 +2,4 @@
 node_modules
 var
 config.js
+npm-debug.log
