@@ -2,17 +2,70 @@ doctype html
 html
   head
     title Pay invoice
+    link(href='#{config.baseUrl}/emails/styles/style.css', rel='stylesheet')
   body
-    img(src="mailer/templates/invoice/confirm/logo.jpg")
-    h1 Вам пришел счет
-    p От: #{invoice.owner.name}
-    p Сумма: #{invoice.amount}
-    if invoice.text
-      p Описание: #{invoice.text}
-    p
-      a(href="") Оплатить
-    p
-      a(href="") Отказаться
-    
-    p.footer Have a nice day!
-    p.footer email_id=#{id}
+    table(width="100%", cellspacing="0", cellpadding="0", border="0")
+      tbody
+        tr
+          td(height="20")
+            img(src="#{config.baseUrl}/emails/images/pixel.gif", height="20")
+        tr
+          td(align="center")
+            table.container(align="center", cellspacing="0", cellpadding="0", border="0", bgcolor="#0366cb", width="290")
+              tbody
+                tr
+                  td(width="290", height="200", align="center")
+                    img(src="#{config.baseUrl}/emails/images/logo.jpg")
+                tr
+                  td(align="center")
+                    table(align="center", cellspacing="0", cellpadding="0", border="0", width="220")
+                      tbody
+                        tr
+                          td.title(align="center") Вам пришел счет
+                        tr
+                          td(height="15")
+                            img(src="#{config.baseUrl}/emails/images/pixel.gif", height="15")
+                        tr
+                          td.amount(align="center", valign="middle")
+                            div.amount #{email.invoice.amount} &#8381;
+                        tr
+                          td.desc(valign="middle")
+                            p От: #{email.invoice.owner.name}
+                            p= email.invoice.text
+                        tr
+                          td(height="15")
+                            img(src="#{config.baseUrl}/emails/images/pixel.gif", height="15")
+                        tr
+                          td.button(height="50", align="center", valign="middle", bgcolor="#0480ff")
+                            a.button(href=email.actionUrl) Оплатить
+                        tr
+                          td(height="15")
+                            img(src="#{config.baseUrl}/emails/images/pixel.gif", height="15")
+                        tr
+                          td.button-secondary(align="center", valign="middle")
+                            a.button-secondary(href=email.refuseUrl) Отказаться от оплаты
+                        tr
+                          td(height="15")
+                            img(src="#{config.baseUrl}/emails/images/pixel.gif", height="15")
+        tr
+          td(align="center")
+            table(align="center", cellspacing="0", cellpadding="0", border="0", width="290")
+              tbody
+                tr
+                  td(height="20")
+                    img(src="#{config.baseUrl}/emails/images/pixel.gif", height="20")
+                tr
+                  td.terms(align="center")
+                    span.terms
+                      | Используя наш сервис, вы соглашаетесь с 
+                      a(href=email.termsUrl) условиями обслуживания
+                      | .
+                tr
+                  td(height="20")
+                    img(src="#{config.baseUrl}/emails/images/pixel.gif", height="20")
+                tr
+                  td.copyright(align="center")
+                    span.copyright 2015 © Payme &nbsp;|&nbsp; <a href="#{config.baseUrl}/">Сайт</a> &nbsp;|&nbsp; <a href="#{config.baseUrl}/security">Безопасность</a>
+        tr
+          td(height="50")
+            img(src="#{config.baseUrl}/emails/images/pixel.gif", height="50")

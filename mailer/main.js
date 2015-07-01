@@ -4,12 +4,13 @@ var he = require('he');
 var crypto = require('crypto');
 var Redis = require('ioredis');
 
+
 var config = require('./config');
 var transport = require('./transport');
 var render = require('./templates')('mailer/templates');
 var mqx = require('../x/mqx');
-var Client = require('../client/client');
-var client = new Client(config.apiUrl);
+var Client = require('../client');
+var client = new Client(config, config.apiUrl);
 
 
 var redis = new Redis(config.redis);
@@ -29,7 +30,7 @@ mq.queue('emails').consume(function(msg) {
             client.emails.sent(email.id).then(function() { msg.ack(); });
         }).catch(function(e) {
             debug('Failed to send message %s error=%s', email.id, e);
-            if (msg.retry_count < 3) {
+            if (msg.retry_count() < 3) {
                 msg.retry();
             } else {
                 client.emails.fail(email.id, e.message);
@@ -39,7 +40,7 @@ mq.queue('emails').consume(function(msg) {
     });
 });
 
-//setTimeout(function() { mq.queue('emails').put('EMAIL_ID');}, 1000);
+//setTimeout(function() { mq.queue('emails').put('da8bc188-de80-4053-b280-6ec3e348fa31');}, 1000);
 
 /**
  * Send email.
@@ -49,10 +50,10 @@ mq.queue('emails').consume(function(msg) {
  */
 
 function send_email(email) {
-    return render(email.type, email).then(function(content) {
+    return render(email.template, { email: email, config: config }).then(function(content) {
         return {
             from: config.mailer.from,
-            to: locals.email,
+            to: email.address,
             subject: content.subject,
             text: content.body.text,
             html: content.body.html
@@ -76,17 +77,21 @@ function send_email(email) {
 
 function embed_images(mail_options) {
     mail_options.attachments = [];
+    var _cache = {};
     mail_options.html = mail_options.html.replace(/<img[^>]*>/gi, function(imgTag) {
             return imgTag.replace(/\b(src\s*=\s*(?:['"]?))([^'"> ]+)/i, function(src, prefix, url) {
                 var cid;
                 url = he.decode(url || "").trim();
                 prefix = prefix || "";
-                cid = crypto.randomBytes(20).toString("hex");
-                mail_options.attachments.push({
-                    path: url,
-                    cid: cid
-                });
-                url = "cid:" + cid;
+                if (!_cache[url]) {
+                    cid = crypto.randomBytes(20).toString("hex");
+                    mail_options.attachments.push({
+                        path: url,
+                        cid: cid
+                    });
+                    _cache[url] = cid;    
+                }
+                url = "cid:" + _cache[url];
                 return prefix + url;
             });
         });
