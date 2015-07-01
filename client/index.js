@@ -6,10 +6,10 @@ var request = Promise.promisifyAll(require('request'));
 var Emails = require('./emails');
 
 
-function Client(url, token) {
+function Client(config, url, token) {
     this.apiUrl = url;
     this.token = token;
-
+    this.config = config;
     this.emails = new Emails(this);
 }
 
