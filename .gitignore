@@ -1,2 +1,17 @@
-.idea
+# Project
+/mailer/config.js
+/web/config.js
+/var/
+
+# JetBrains IDEs
+*.iml
+.idea/
+/out/
+
+# Node
+logs
+*.log
+pids
+*.pid
+*.seed
 node_modules
