@@ -1,50 +1,43 @@
 'use strict';
+var raven = require('raven');
+var config = require('./config');
+
 
 module.exports = function(app) {
+    if (config.sentry && config.sentry.dns) {
+        console.log('Sentry enabled, dns=' + config.sentry.dns);
+        app.use(raven.middleware.express(config.sentry.dns));
+    }
 
-    app.all('*', function(req, res, next) {
-        var err = new Error();
+    // catch 404 and forward to error handler
+    app.use(function(req, res, next) {
+        var err = new Error('Not Found');
         err.status = 404;
         next(err);
     });
 
-    app.use(function(error, req, res, next) {
-        var ajax = req.xhr;
-        
-        switch (error.status) {
-            case 401:
-                console.log('Unauthorized error: ' + req.uri);
-                if (ajax) {
-                    res.send({status: 401, error: 'Доступ запрещен'});
-                } else {
-                    res.redirect('/');
-                }
-                break;
-            case 404:
-                if (ajax) {
-                    res.send({status: 404, error: 'Страница не найдена'});
-                } else {
-                    res.status(404);
-                    res.render('error', {error_code: '404', error_name: 'Страница не найдена'});
-                }
-                break;
-            case 422:
-                if (ajax) {
-                    res.send({status: 422, error: error.error});
-                } else {
-                    res.status(422);
-                    res.render('error', {error_code: '422', error_name: error.error});
-                }
-                break;
-            default:
-                console.error(error.stack);
-                if (ajax) {
-                    res.send({status: 500, error: 'Произошла ошибка'});
-                } else {
-                    res.status(500);
-                    res.render('error', {error_code: '500', error_name: 'Произошла ошибка'});
-                }
-                break;
-        }
+    // error handlers
+
+    // development error handler
+    // will print stacktrace
+    if (app.get('env') === 'development') {
+
+        app.use(function(err, req, res, next) {
+            res.status(err.status || 500);
+            res.render('error', {
+                message: err.message,
+                error: err
+            });
+        });
+    }
+
+    // production error handler
+    // no stacktraces leaked to user
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: {}
+        });
     });
 };
