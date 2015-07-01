@@ -1,5 +1,5 @@
 doctype html
-html
+html(ng-app="app")
   head
     title= title
     link(rel='stylesheet', href='/public/build/deps.min.css')
@@ -7,5 +7,7 @@ html
     
     script(type='text/javascript', src='/public/build/deps.min.js')
     script(type='text/javascript', src='/public/build/web.min.js')
+      
+    base(href='/')
   body
     block content
