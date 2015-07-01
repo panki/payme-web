@@ -1,0 +1,48 @@
+- var email_width = 300;
+- var content_width = 220;
+
+mixin tr_space(height)
+  tr
+    td(height="#{height}")
+      img(src="#{config.baseUrl}/public/mailer/images/pixel.gif", height="#{height}")
+      
+mixin email_wrapper()
+  table(width="100%", cellspacing="0", cellpadding="0", border="0")
+    tbody
+      +tr_space(20)
+      tr
+        td(align="center")
+          table.container(align="center", cellspacing="0", cellpadding="0", border="0", bgcolor="#0366cb", width="#{email_width}")
+            tbody
+              tr
+                td(width="#{email_width}", height="200", align="center")
+                  img(src="#{config.baseUrl}/public/mailer/images/logo.jpg")
+              tr
+                td(align="center")
+                  if block
+                    block
+      tr
+        td(align="center")
+          table(align="center", cellspacing="0", cellpadding="0", border="0", width="#{email_width}")
+            tbody
+              +tr_space(20)
+              tr
+                td.terms(align="center")
+                  span.terms
+                    | Используя наш сервис, вы соглашаетесь с 
+                    a(href=email.termsUrl) условиями обслуживания
+                    | .
+              +tr_space(20)
+              tr
+                td.copyright(align="center")
+                  span.copyright 2015 © Payme &nbsp;|&nbsp; <a href="#{config.baseUrl}/">Сайт</a> &nbsp;|&nbsp; <a href="#{config.baseUrl}/security">Безопасность</a>
+      +tr_space(50)
+
+doctype html
+html
+  head
+    block title
+    link(href='#{config.baseUrl}/public/mailer/styles/style.css', rel='stylesheet')
+  body
+    +email_wrapper()
+      block email_body

@@ -40,7 +40,7 @@ mq.queue('emails').consume(function(msg) {
     });
 });
 
-//setTimeout(function() { mq.queue('emails').put('da8bc188-de80-4053-b280-6ec3e348fa31');}, 1000);
+setTimeout(function() { mq.queue('emails').put('da8bc188-de80-4053-b280-6ec3e348fa31');}, 1000);
 
 /**
  * Send email.
