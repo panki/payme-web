@@ -74,6 +74,7 @@ gulp.task('web:js', function() {
 gulp.task('dev', function() {
     gulp.watch('web/assets/**/*.less', ['web:less']);
     gulp.watch('web/assets/**/*.js', ['web:js']);
+    gulp.watch('web/*.js');
 
     nodemon({
         script: 'web/main.js',
