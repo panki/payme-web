@@ -46,11 +46,11 @@ gulp.task('deps:less', function() {
         .pipe(gulp.dest('public/build'));
 });
 
-gulp.task('web:less', function() {
-    return gulp.src('./public/web/less/main.less')
+gulp.task('app:less', function() {
+    return gulp.src('./public/app/styles/app.less')
         .pipe(sourcemaps.init())
         .pipe(less())
-        .pipe(concat('web.css'))
+        .pipe(concat('app.css'))
         
         .pipe(rename({suffix: '.min'}))
         .pipe(minifyCss())
@@ -58,13 +58,13 @@ gulp.task('web:less', function() {
         .pipe(gulp.dest('public/build'));
 });
 
-gulp.task('web:js', function() {
-    return gulp.src('./public/web/js/**/*.js')
+gulp.task('app:js', function() {
+    return gulp.src('./public/app/**/*.js')
         .pipe(sourcemaps.init())
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'))
         
-        .pipe(concat('web.js'))
+        .pipe(concat('app.js'))
         
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
@@ -72,21 +72,21 @@ gulp.task('web:js', function() {
         .pipe(gulp.dest('public/build'));
 });
 
-gulp.task('web:templates', function() {
+gulp.task('app:templates', function() {
   var YOUR_LOCALS = {};
-  return gulp.src('./public/web/templates/*.jade')
+  return gulp.src('./public/app/templates/**/*.jade')
     .pipe(jade({
       locals: YOUR_LOCALS
     }))
-    .pipe(gulp.dest('./public/build/templates/'))
+    .pipe(gulp.dest('./public/build/app/'))
 });
 
 gulp.task('dev', function() {
-    gulp.start('web:js', 'web:less', 'web:templates');
+    gulp.start('app:js', 'app:less', 'app:templates');
     
-    gulp.watch('public/web/**/*.less', ['web:less']);
-    gulp.watch('public/web/**/*.js', ['web:js']);
-    gulp.watch('public/web/**/*.jade', ['web:templates']);
+    gulp.watch('public/app/**/*.less', ['app:less']);
+    gulp.watch('public/app/**/*.js', ['app:js']);
+    gulp.watch('public/app/**/*.jade', ['app:templates']);
         
     nodemon({
         script: 'web/main.js',
@@ -96,5 +96,5 @@ gulp.task('dev', function() {
 });
 
 gulp.task('default', function() {
-    gulp.start('deps:js', 'deps:less', 'web:js', 'web:less', 'web:templates');
+    gulp.start('deps:js', 'deps:less', 'app:js', 'app:less', 'app:templates');
 });

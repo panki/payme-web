@@ -9,15 +9,15 @@
     module.config(['$routeProvider', function($routeProvider) {
         $routeProvider
             .when('/invoices', {
-                templateUrl: '/public/build/templates/index.html',
+                templateUrl: '/public/build/app/invoice/index.html',
                 controller: 'InvoiceCtrl'
             })
             .when('/invoices/new', {
-                templateUrl: '/public/build/templates/new.html',
+                templateUrl: '/public/build/app/invoice/new.html',
                 controller: 'InvoiceNewCtrl'
             })
             .when('/invoices/pay', {
-                templateUrl: '/public/build/templates/pay.html',
+                templateUrl: '/public/build/app/invoice/pay.html',
                 controller: 'InvoicePayCtrl'
             });
     }]);
@@ -25,5 +25,6 @@
     module.controller('InvoiceCtrl', ['$scope', function($scope) {
         // ng-init:
         // $scope.title
-    }])
+        console.log($scope);
+    }]);
 })();

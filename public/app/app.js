@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     var app = angular.module('app', [
-        'payme', 
+        'client', 
         'app.invoice']);
 
     app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
