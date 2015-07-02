@@ -11,6 +11,18 @@ var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var jade = require('gulp-jade');
+var b2v = require('buffer-to-vinyl');
+var gulpNgConfig = require('gulp-ng-config');
+var addStream = require('add-stream');
+var web_config = require('./web/config');
+
+
+function makeNgConfig() {
+  var json = JSON.stringify(web_config.ng);
+
+  return b2v.stream(new Buffer(json), 'config.js')
+    .pipe(gulpNgConfig('app', {createModule: false}));
+}
 
 
 gulp.task('clean', function(cb) {
@@ -64,6 +76,7 @@ gulp.task('app:js', function() {
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'))
         
+        .pipe(addStream.obj(makeNgConfig()))
         .pipe(concat('app.js'))
         
         .pipe(rename({suffix: '.min'}))
@@ -87,6 +100,7 @@ gulp.task('dev', function() {
     gulp.watch('public/app/**/*.less', ['app:less']);
     gulp.watch('public/app/**/*.js', ['app:js']);
     gulp.watch('public/app/**/*.jade', ['app:templates']);
+    gulp.watch('web/*.js');
         
     nodemon({
         script: 'web/main.js',

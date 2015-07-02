@@ -15,7 +15,7 @@ block content
           p От: #{email.invoice.payer.name}
           p= email.invoice.text
       +tr_space(15)
-      +tr_secondary_action(email.actionUrl, "Открыть квитанцию")
+      +tr_secondary_action(email.invoiceUrl, "Открыть квитанцию")
       +tr_space(15)
   else
     +table_wrapper("#0366cb")
@@ -28,6 +28,6 @@ block content
           p Кому: #{email.invoice.owner.name}
           p= email.invoice.text
       +tr_space(15)
-      +tr_secondary_action(email.actionUrl, "Открыть квитанцию")
+      +tr_secondary_action(email.invoiceUrl, "Открыть квитанцию")
       +tr_space(15)
     

@@ -1,0 +1,8 @@
+h1 Show
+p {{ title }}
+div(ng-if="invoice")
+  p Invoice {{ invoice.id }}
+  p {{ invoice.created_at | date : 'dd-MM-yyyy HH:mm' : 'UTC' }}
+  p {{ invoice.amount }}
+div(ng-if="error")
+  pre {{ error }}
