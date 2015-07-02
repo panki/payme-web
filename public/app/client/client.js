@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     
-    angular.module('client', []).factory('Client', ['$http', function($http) {
+    angular.module('client', []).factory('Client', ['$http', 'apiUrl', function($http, apiUrl) {
         
         var self = this;
         
@@ -10,7 +10,7 @@
         this._request = function(method, url, session, data) {
             var req = {
                 method: method,
-                url: 'http://127.0.0.1:5000/api' + url,
+                url: apiUrl + url,
                 headers: {
                     'Authorization': 'session ' + session
                 },
