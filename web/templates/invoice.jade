@@ -1,0 +1,12 @@
+extends layout
+block content
+  .container(id='main' ng-controller='MainCtrl')
+    ul
+      li
+        a(href='/') Index
+      li
+        a(href='invoices/new') New
+      li
+        a(href='invoices/pay') Pay
+      
+    div(ng-view)
