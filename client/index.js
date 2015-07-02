@@ -4,6 +4,7 @@ var querystring = require("querystring");
 var request = Promise.promisifyAll(require('request'));
 
 var Emails = require('./emails');
+var Tokens = require('./tokens');
 
 
 function Client(config, url, token) {
@@ -11,6 +12,7 @@ function Client(config, url, token) {
     this.token = token;
     this.config = config;
     this.emails = new Emails(this);
+    this.tokens = new Tokens(this);
 }
 
 Client.prototype.get = function(path, params) {
