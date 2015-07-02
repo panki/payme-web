@@ -12,7 +12,7 @@ block content
       p От: #{email.invoice.payer.name}
       p= email.invoice.text
     +tr_space(15)
-    +tr_primary_action("#0480ff", email.actionUrl, "Ввести данные карты")
+    +tr_primary_action("#0480ff", email.confirmUrl, "Ввести данные карты")
     +tr_space(15)
     +tr_secondary_action(email.cancelUrl, "Отменить запрос")
     +tr_space(15)
