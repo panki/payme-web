@@ -1,0 +1,36 @@
+.container
+  .row
+    .col-xs-12.col-md-6.col-md-offset-3
+      h1 Получить деньги
+  form
+    fieldset(ng-disable="saving")
+      .row
+        .col-xs-12.col-md-6.col-md-offset-3
+          .form-group
+            input.input-lg.form-control(name="amount" ng-model='invoice.amount')
+      .row
+        .col-xs-12.col-md-3.col-md-offset-3
+          .form-group
+            label(for="owner_email") От
+            br
+            input.form-control(id="owner_email" name="owner_email" ng-model='invoice.owner_email'
+            placeholder="Почта")
+          .form-group
+            input.form-control(name="owner" ng-model='invoice.owner' placeholder="Имя")
+        .col-xs-12.col-md-3
+          .form-group
+            label(for="payer_email") Кому
+            br
+            input.form-control(id="payer_email" name="payer_email" ng-model='invoice.payer_email' 
+            placeholder="Почта")
+          .form-group
+            input.form-control(name="payer" ng-model='payer' placeholder="Плательщик")
+      .row
+        .col-xs-12.col-md-3.col-md-offset-3
+          .form-group
+            input.form-control(name="description" ng-model='text' placeholder="Комментарий")
+        .col-xs-12.col-md-3
+          .form-group
+            input.btn.btn-default.btn-block(
+            type="submit" value="Отправить запрос"
+            ng-click='submit()')

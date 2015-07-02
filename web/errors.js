@@ -21,6 +21,11 @@ module.exports = function(app) {
     // production error handler
     // no stacktraces leaked to user
     app.use(function(err, req, res, next) {
+        if (err.status == 404) {
+            res.status(404);
+            res.render('error', {error: {message: 'Страница не найдена'}})
+            return;
+        }
         
         switch (err.code) {
             case 'invalid':

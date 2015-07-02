@@ -1,5 +1,5 @@
 var config = {
-    apiUrl: 'http://127.0.0.1:5000/api',
+    apiUrl: 'http://dev.paymepayme.com/api',
     baseUrl: 'http://127.0.0.1:3000',
     redis: {
         host: '127.0.0.1',

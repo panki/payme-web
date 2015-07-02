@@ -18,10 +18,10 @@ var web_config = require('./web/config');
 
 
 function makeNgConfig() {
-  var json = JSON.stringify(web_config.ng);
+    var json = JSON.stringify(web_config.ng);
 
-  return b2v.stream(new Buffer(json), 'config.js')
-    .pipe(gulpNgConfig('app', {createModule: false}));
+    return b2v.stream(new Buffer(json), 'config.js')
+        .pipe(gulpNgConfig('app', {createModule: false}));
 }
 
 
@@ -33,11 +33,11 @@ gulp.task('deps:js', function() {
     var files = mainBowerFiles({
         checkExistence: true
     });
-    
+
     return gulp.src(files, {base: 'public/deps'})
         .pipe(filter('**/*.js'))
         .pipe(concat('deps.js'))
-        
+
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
         .pipe(gulp.dest('public/build'));
@@ -47,12 +47,12 @@ gulp.task('deps:less', function() {
     var files = mainBowerFiles({
         checkExistence: true
     });
-    
+
     return gulp.src(files, {base: 'public/deps'})
         .pipe(filter('**/*.less'))
         .pipe(less())
         .pipe(concat('deps.css'))
-        
+
         .pipe(rename({suffix: '.min'}))
         .pipe(minifyCss())
         .pipe(gulp.dest('public/build'));
@@ -63,7 +63,7 @@ gulp.task('app:less', function() {
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(concat('app.css'))
-        
+
         .pipe(rename({suffix: '.min'}))
         .pipe(minifyCss())
         .pipe(sourcemaps.write())
@@ -75,10 +75,10 @@ gulp.task('app:js', function() {
         .pipe(sourcemaps.init())
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'))
-        
+
         .pipe(addStream.obj(makeNgConfig()))
         .pipe(concat('app.js'))
-        
+
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
         .pipe(sourcemaps.write())
@@ -86,22 +86,21 @@ gulp.task('app:js', function() {
 });
 
 gulp.task('app:templates', function() {
-  var YOUR_LOCALS = {};
-  return gulp.src('./public/app/templates/**/*.jade')
-    .pipe(jade({
-      locals: YOUR_LOCALS
-    }))
-    .pipe(gulp.dest('./public/build/app/'))
+    var YOUR_LOCALS = {};
+    return gulp.src('./public/app/templates/**/*.jade')
+        .pipe(jade({
+            locals: YOUR_LOCALS
+        }))
+        .pipe(gulp.dest('./public/build/app/'))
 });
 
 gulp.task('dev', function() {
     gulp.start('app:js', 'app:less', 'app:templates');
-    
+
     gulp.watch('public/app/**/*.less', ['app:less']);
     gulp.watch('public/app/**/*.js', ['app:js']);
     gulp.watch('public/app/**/*.jade', ['app:templates']);
-    gulp.watch('web/*.js');
-        
+    
     nodemon({
         script: 'web/main.js',
         ext: 'js',
