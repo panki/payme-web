@@ -6,9 +6,9 @@ block title
 block content
   if email.address == email.invoice.owner.email
     +table_wrapper("#0366cb")
-      +tr_title("Ошибка при оплате счета")
+      +tr_title("Отказ от оплаты")
       +tr_reason
-          p= email.invoice.failure_reason
+          p= email.invoice.refuse_reason
       +tr_space(15)
       +tr_amount(email.invoice.amount)
       +tr_desc
@@ -19,9 +19,10 @@ block content
       +tr_space(15)
   else
     +table_wrapper("#0366cb")
-      +tr_title("Ошибка при оплате счета")
+      +tr_title("Отказ от оплаты")
+      +tr_space(15)
       +tr_reason
-          p= email.invoice.failure_reason
+          p= email.invoice.refuse_reason
       +tr_space(15)
       +tr_amount(email.invoice.amount)
       +tr_desc

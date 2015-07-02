@@ -15,6 +15,12 @@ mixin tr_desc
     td.desc(valign="middle")
       if block
         block
+        
+mixin tr_reason
+  tr
+    td.desc(valign="middle", align="center")
+      if block
+        block
 
 mixin tr_primary_action(color, url, text)
   tr
