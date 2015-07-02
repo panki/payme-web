@@ -1,0 +1,5 @@
+<% if (email.address = email.invoice.owner.email) { %>
+✘ Добрый день, вы отменили счет для <%= email.invoice.payer.name %> на сумму <%= email.invoice.amount %> руб.
+<% } else { %>
+✘ Добрый день, <%= email.invoice.owner.name %> отменил счет на сумму <%= email.invoice.amount %> руб.
+<% } %>

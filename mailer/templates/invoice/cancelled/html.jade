@@ -1,0 +1,29 @@
+extends ../../layout
+
+block title
+  title Invoice failed
+  
+block content
+  if email.address == email.invoice.owner.email
+    +table_wrapper("#0366cb")
+      +tr_title("Счет отменен")
+      +tr_space(15)
+      +tr_amount(email.invoice.amount)
+      +tr_desc
+          p От: #{email.invoice.payer.name}
+          p= email.invoice.text
+      +tr_space(15)
+      +tr_secondary_action(email.actionUrl, "Открыть квитанцию")
+      +tr_space(15)
+  else
+    +table_wrapper("#0366cb")
+      +tr_title("Счет отменен")
+      +tr_space(15)
+      +tr_amount(email.invoice.amount)
+      +tr_desc
+          p Кому: #{email.invoice.owner.name}
+          p= email.invoice.text
+      +tr_space(15)
+      +tr_secondary_action(email.actionUrl, "Открыть квитанцию")
+      +tr_space(15)
+    
