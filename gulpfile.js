@@ -87,6 +87,7 @@ gulp.task('dev', function() {
     gulp.watch('public/app/**/*.less', ['app:less']);
     gulp.watch('public/app/**/*.js', ['app:js']);
     gulp.watch('public/app/**/*.jade', ['app:templates']);
+    gulp.watch('web/*.js');
         
     nodemon({
         script: 'web/main.js',
