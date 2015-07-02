@@ -1,9 +1,9 @@
 extends layout
 block content
-  .container(id='main' ng-controller='MainCtrl')
+  .container(ng-controller='InvoiceCtrl', ng-init='title="Hello, world"')
     ul
       li
-        a(href='/') Index
+        a(href='invoices/') Index
       li
         a(href='invoices/new') New
       li
