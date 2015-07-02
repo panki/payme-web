@@ -2,8 +2,7 @@
     'use strict';
     var module = angular.module('app.invoice.pay', []);
     
-    module.controller('InvoicePayCtrl', ['$scope', 'Invoices', function($scope, Invoices) {
-        console.log(Invoices);
+    module.controller('InvoicePayCtrl', ['$scope', function($scope) {
         $scope.title = 'Pay controller';
     }]);
 })();
