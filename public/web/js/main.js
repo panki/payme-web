@@ -9,15 +9,15 @@
         
         $routeProvider
             .when('/', {
-                templateUrl: '/public/web/templates/index.html',
+                templateUrl: '/public/build/templates/index.html',
                 controller: 'IndexCtrl'
             })
             .when('/invoices/new', {
-                templateUrl: '/public/web/templates/new.html',
+                templateUrl: '/public/build/templates/new.html',
                 controller: 'NewCtrl'
             })
             .when('/invoices/pay', {
-                templateUrl: '/public/web/templates/pay.html',
+                templateUrl: '/public/build/templates/pay.html',
                 controller: 'PayCtrl'
             });
     }]);

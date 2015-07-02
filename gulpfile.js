@@ -10,6 +10,7 @@ var nodemon = require('gulp-nodemon');
 var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
+var jade = require('gulp-jade');
 
 
 gulp.task('clean', function(cb) {
@@ -71,11 +72,21 @@ gulp.task('web:js', function() {
         .pipe(gulp.dest('public/build'));
 });
 
+gulp.task('web:templates', function() {
+  var YOUR_LOCALS = {};
+  return gulp.src('./public/web/templates/*.jade')
+    .pipe(jade({
+      locals: YOUR_LOCALS
+    }))
+    .pipe(gulp.dest('./public/build/templates/'))
+});
+
 gulp.task('dev', function() {
-    gulp.start('web:js', 'web:less');
+    gulp.start('web:js', 'web:less', 'web:templates');
     
     gulp.watch('public/web/**/*.less', ['web:less']);
     gulp.watch('public/web/**/*.js', ['web:js']);
+    gulp.watch('public/web/**/*.jade', ['web:templates']);
         
     nodemon({
         script: 'web/main.js',
@@ -85,5 +96,5 @@ gulp.task('dev', function() {
 });
 
 gulp.task('default', function() {
-    gulp.start('deps:js', 'deps:less', 'web:js', 'web:less');
+    gulp.start('deps:js', 'deps:less', 'web:js', 'web:less', 'web:templates');
 });
