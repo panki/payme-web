@@ -1,4 +1,5 @@
 extends layout
+
 block content
   .container(ng-controller='InvoiceCtrl', ng-init='title="Hello, world"')
     ul
@@ -8,5 +9,4 @@ block content
         a(href='invoices/new') New
       li
         a(href='invoices/pay') Pay
-      
     div(ng-view)

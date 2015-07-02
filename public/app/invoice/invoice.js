@@ -22,9 +22,7 @@
             });
     }]);
     
-    module.controller('InvoiceCtrl', ['$scope', function($scope) {
-        // ng-init:
-        // $scope.title
+    module.controller('InvoiceCtrl', ['$scope', '$location', function($scope) {
         console.log($scope);
     }]);
 })();
