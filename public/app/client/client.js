@@ -12,7 +12,7 @@
                 method: method,
                 url: apiUrl + url,
                 headers: {
-                    'Authorization': 'session ' + session
+                    'Authorization': 'session ' + session.id
                 },
                 data: data
             };
