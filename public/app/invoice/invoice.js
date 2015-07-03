@@ -21,7 +21,7 @@
                 templateUrl: '/public/build/app/invoice/new.html',
                 controller: 'InvoiceNewCtrl'
             })
-            .when('/invoices/pay', {
+            .when('/invoices/:invoice_id/pay', {
                 templateUrl: '/public/build/app/invoice/pay.html',
                 controller: 'InvoicePayCtrl'
             });

@@ -49,6 +49,9 @@
         this.invoices = {
             'get': function (invoice_id, session) {
                 return self._get('/invoices/'+invoice_id, session);
+            },
+            'pay': function (invoice_id, session, data) {
+                return self._post('/invoices/pay/'+invoice_id, session, data);
             }
         };
         
