@@ -2,12 +2,14 @@ doctype html
 html(ng-app="app")
   head
     title= title
-    link(rel='stylesheet', href='/public/build/deps.min.css')
-    link(rel='stylesheet', href='/public/build/app.min.css')
-    
-    script(type='text/javascript', src='/public/build/deps.min.js')
-    script(type='text/javascript', src='/public/build/app.min.js')
-      
-    base(href='/')
+    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+
+    link(rel='stylesheet' href='/public/build/deps.min.css')
+    link(rel='stylesheet' href='/public/build/app.min.css')
+
+    script(type='text/javascript' src='/public/build/deps.js')
+    script(type='text/javascript' src='/public/build/app.min.js')
+
+  base(href='/')
   body
     block content
