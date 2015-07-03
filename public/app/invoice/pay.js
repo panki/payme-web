@@ -2,25 +2,45 @@
     'use strict';
     var module = angular.module('app.invoice.pay', []);
     
-    module.controller('InvoicePayCtrl', ['$scope', '$routeParams', 'Client', function($scope, $routeParams, client) {
-        // session comes from ng-init
-        $scope.title = 'Pay controller';
-        $scope.invoice_id = $routeParams.invoice_id;
-        $scope.card = { 'sender_card_number': '1234567890123456', 'sender_card_exp_year': 2015, 'sender_card_exp_month': '06', 'sender_card_cvv': 765};
-        $scope.form_error = '123';
+    module.controller('InvoicePayCtrl', ['$scope', '$routeParams', '$sce', 'Client', 'config', function($scope, $routeParams, $sce, client, config) {
+        
+        $scope.invoiceId = $routeParams.invoice_id;
+        $scope.invoice = null;
+        $scope.form_error = null;
+        $scope.processing = false;
+        $scope.card = {};
+        
+        // Get invoice
+        
+        client.invoices.get($scope.invoiceId).then(function(invoice) {
+            $scope.invoice = invoice;
+        }).catch(function (error) {
+            $scope.error = error.message;
+        });
         
         $scope.submit = function() {
-            $scope.form_error = '345';
             if ($scope.form.$valid) {
-                client.invoices.pay($scope.invoice_id, $scope.session, $scope.card)
-                    .then(function (confirm_3ds) {
-                        $scope.form_error = confirm_3ds;     
-                    })
-                    .catch(function (error) {
-                        $scope.form_error = error.message; 
-                        console.log($scope.form_error);
-                    });
+                $scope.form_error = null;
+                $scope.processing = true;
+                
+                client.invoices.pay($scope.invoiceId, $scope.card)
+                .then(function (transaction) {
+                    // Fill 3ds hidden form and submit it
+                    var form = $('form[name="form_3ds"]');
+                    form.find('input[name="TermUrl"]').val(config.termUrl);
+                    form.find('input[name="PaReq"]').val(transaction.PaReq);
+                    form.find('input[name="MD"]').val(transaction.MD);
+                    form.prop('action', transaction.acsUrl).submit();
+                })
+                .catch(function (error) {
+                    $scope.form_error = error.message;
+                })
+                .finally(function() {
+                    $scope.processing = false;                        
+                });
             }
-        }
+        };
+        
+       
     }]);
 })();
