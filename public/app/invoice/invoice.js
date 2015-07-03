@@ -29,6 +29,6 @@
         $scope.setSession = function (session) {
             $scope.session = session;
             client.sessionId = session.id;
-        }
+        };
     }]);
 })();

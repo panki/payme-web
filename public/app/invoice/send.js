@@ -36,7 +36,7 @@
                     alert(error.message);
                 }).finally(function() {
                     $scope.submitting = false;
-                })
+                });
             };
         }]);
 })();
