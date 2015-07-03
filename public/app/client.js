@@ -1,26 +1,49 @@
 (function() {
     'use strict';
 
-    angular.module('client', []).factory('Client', ['$http', 'apiUrl', function($http, apiUrl) {
-        var self = this;
-        self.sessionId = null;
+    angular.module('client', []).factory('Client', ['$http', '$httpParamSerializer', 'config',
+        function($http, $httpParamSerializer, config) {
+            var self = this;
+            var apiUrl = config.apiUrl;
+            self.sessionId = null;
 
-        // Internal methods
+            function get(url, data) {
+                var req = {
+                    method: 'GET',
+                    url: apiUrl + url,
+                    headers: {}
+                };
+                if (data) {
+                    req.data = data;
+                }
+                if (self.sessionId) {
+                    req.headers.Authorization = 'session ' + self.sessionId;
+                }
 
-        this._request = function(method, url, session, data) {
-            var req = {
-                method: method,
-                url: apiUrl + url,
-                headers: {},
-                data: data
-            };
-            if (self.sessionId) {
-                req.headers.Authorization = 'session ' + session;
+                return $http(req).then(handleResponse).catch(handleError);
             }
 
-            return $http(req).then(function(response) {
+            function post(url, data) {
+                var req = {
+                    method: 'POST',
+                    url: apiUrl + url,
+                    data: $httpParamSerializer(data),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                };
+                if (self.sessionId) {
+                    req.headers.Authorization = 'session ' + self.sessionId;
+                }
+
+                return $http(req).then(handleResponse).catch(handleError);
+            }
+
+            function handleResponse(response) {
                 return response.data;
-            }).catch(function(response) {
+            }
+
+            function handleError(response) {
                 console.log(response);
                 switch (response.status) {
                     case 0:
@@ -34,31 +57,22 @@
                     default:
                         throw new Error('Неизвестная ошибка');
                 }
-            });
-        };
-
-        this._get = function(url, data) {
-            return self._request('GET', url, data);
-        };
-
-        this._post = function(url, session, data) {
-            return self._request('POST', url, data);
-        };
-
-        // Invoices
-
-        this.invoices = {
-            getById: function(invoiceId) {
-                return self._get('/invoices/' + invoiceId);
-            },
-            create: function(newForm) {
-                return self._post('/invoices/new', '', newForm);
-            },
-            send: function(invoiceId, sendForm) {
-                return self._post('/invoices/send/' + invoiceId, sendForm);
             }
-        };
 
-        return this;
-    }]);
+            // Invoices
+
+            this.invoices = {
+                getById: function(invoiceId) {
+                    return get('/invoices/' + invoiceId);
+                },
+                create: function(newForm) {
+                    return post('/invoices/new', newForm);
+                },
+                send: function(invoiceId, sendForm) {
+                    return post('/invoices/send/' + invoiceId, sendForm);
+                }
+            };
+
+            return this;
+        }]);
 })();

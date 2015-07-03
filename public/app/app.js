@@ -2,6 +2,7 @@
     'use strict';
     var app = angular.module('app', [
         'client', 
+        'app.directives',
         'app.invoice',
         'app.invoice_new']);
 

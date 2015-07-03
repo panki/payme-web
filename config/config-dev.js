@@ -17,6 +17,10 @@ var config = {
             }
         }
     },
+    invoices: {
+        minAmount: 100,
+        maxAmount: 75000
+    },
     sentry: {
         dns: ''
     }

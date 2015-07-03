@@ -2,11 +2,13 @@ var express = require('express');
 var logger = require('morgan');
 var path = require('path');
 var app = express();
+var config = require('./config');
 
 
 // Configuration
 app.set('views', path.join(__dirname, 'templates'));
 app.set('view engine', 'jade');
+app.locals.config = config;
 app.use(logger('dev'));
 
 
