@@ -9,24 +9,23 @@
     module.config(['$routeProvider', function($routeProvider) {
         $routeProvider
             .when('/invoice/:invoice_id', {
-                templateUrl: '/public/build/app/invoice/show.html',
-                controller: 'InvoiceShowCtrl'
+                templateUrl: '/public/build/app/invoice/show.html'
             })
             .when('/invoice', {
-                templateUrl: '/public/build/app/invoice/index.html',
-                controller: 'InvoiceCtrl'
+                templateUrl: '/public/build/app/invoice/index.html'
             })
             .when('/invoice/new', {
-                templateUrl: '/public/build/app/invoice/new.html',
-                controller: 'InvoiceNewCtrl'
+                templateUrl: '/public/build/app/invoice/new.html'
             })
             .when('/invoice/:invoice_id/pay', {
-                templateUrl: '/public/build/app/invoice/pay.html',
-                controller: 'InvoicePayCtrl'
+                templateUrl: '/public/build/app/invoice/pay.html'
             });
     }]);
     
-    module.controller('InvoiceCtrl', ['$scope', '$location', function($scope) {
-        console.log($scope);
+    module.controller('InvoiceCtrl', ['$scope', 'Client', function($scope, client) {
+        // Should be called from ng-init
+        $scope.setSession = function (session) {
+            client.sessionId = session.id;
+        }
     }]);
 })();

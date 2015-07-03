@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  .container(ng-controller='InvoiceCtrl', ng-init='session=#{session_json}')
+  .container(ng-controller='InvoiceCtrl', ng-init='setSession(#{session_json})')
     ul
       li
         a(href='invoices/') Index
