@@ -10,11 +10,11 @@ function Emails(client) {
         return this.client.get('/emails/' + emailId).then(function (email) {
             email.template = email.type;
             email.viewUrl = [self.config.baseUrl, 'emails/view', email.id].join('/');
-            email.confirmUrl = [self.config.baseUrl, 'emails/invoice/confirm', email.invoice.id, '?auth_token=' + email.auth_token_id].join('/');
-            email.payUrl = [self.config.baseUrl, 'emails/invoice/pay', email.invoice.id, '?auth_token=' + email.auth_token_id].join('/');
-            email.invoiceUrl = [self.config.baseUrl, 'emails/invoice', email.invoice.id, '?auth_token=' + email.auth_token_id].join('/');
-            email.refuseUrl = [self.config.baseUrl, 'emails/invoice/refuse', email.invoice.id, '?auth_token=' + email.auth_token_idd].join('/');
-            email.cancelUrl = [self.config.baseUrl, 'emails/invoice/cancel', email.invoice.id, '?auth_token=' + email.auth_token_id].join('/');
+            email.confirmUrl = [self.config.baseUrl, 'invoice/confirm', email.invoice.id, '?auth_token=' + email.auth_token_id].join('/');
+            email.payUrl = [self.config.baseUrl, 'invoice/pay', email.invoice.id, '?auth_token=' + email.auth_token_id].join('/');
+            email.invoiceUrl = [self.config.baseUrl, 'invoice', email.invoice.id, '?auth_token=' + email.auth_token_id].join('/');
+            email.refuseUrl = [self.config.baseUrl, 'invoice/refuse', email.invoice.id, '?auth_token=' + email.auth_token_idd].join('/');
+            email.cancelUrl = [self.config.baseUrl, 'invoice/cancel', email.invoice.id, '?auth_token=' + email.auth_token_id].join('/');
             email.termsUrl = [self.config.baseUrl, 'terms'].join('/');
             return email;
         });

@@ -12,15 +12,15 @@
                 templateUrl: '/public/build/app/invoice/show.html',
                 controller: 'InvoiceShowCtrl'
             })
-            .when('/invoices', {
+            .when('/invoice', {
                 templateUrl: '/public/build/app/invoice/index.html',
                 controller: 'InvoiceCtrl'
             })
-            .when('/invoices/new', {
+            .when('/invoice/new', {
                 templateUrl: '/public/build/app/invoice/new.html',
                 controller: 'InvoiceNewCtrl'
             })
-            .when('/invoices/:invoice_id/pay', {
+            .when('/invoice/:invoice_id/pay', {
                 templateUrl: '/public/build/app/invoice/pay.html',
                 controller: 'InvoicePayCtrl'
             });

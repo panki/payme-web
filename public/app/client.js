@@ -70,6 +70,9 @@
                 },
                 send: function(invoiceId, sendForm) {
                     return post('/invoices/send/' + invoiceId, sendForm);
+                },
+                pay: function(invoiceId, sendForm) {
+                    return post('/invoices/pay/' + invoiceId, sendForm);
                 }
             };
 
