@@ -2,8 +2,8 @@
     'use strict';
     var module = angular.module('app.invoice.send', []);
 
-    module.controller('InvoiceSendCtrl', ['$scope', '$routeParams', 'Client',
-        function($scope, $routeParams, client) {
+    module.controller('InvoiceSendCtrl', ['$scope', '$routeParams', '$location', 'Client',
+        function($scope, $routeParams, $location, client) {
             $scope.invoiceId = $routeParams.invoice_id;
             $scope.loading = true;
             $scope.submitting = false;
@@ -31,7 +31,7 @@
                 
                 $scope.submitting = true;
                 client.invoices.send($scope.invoiceId, $scope.formData).then(function(invoice) {
-                    console.log(invoice);
+                    $location.path('invoice/' + $scope.invoiceId + '/send/success');
                 }).catch(function(error) {
                     alert(error.message);
                 }).finally(function() {

@@ -4,7 +4,9 @@
     var module = angular.module('app.invoice', [
         'ngRoute',
         'app.invoice.pay',
-        'app.invoice.show']);
+        'app.invoice.show',
+        'app.invoice.send',
+        'app.invoice.send-success']);
 
     module.config(['$routeProvider', function($routeProvider) {
         $routeProvider
@@ -13,6 +15,9 @@
             })
             .when('/invoice/:invoice_id/send', {
                 templateUrl: '/public/build/app/invoice/send.html'
+            })
+            .when('/invoice/:invoice_id/send/success', {
+                templateUrl: '/public/build/app/invoice/send-success.html'
             })
             .when('/invoice/:invoice_id/pay', {
                 templateUrl: '/public/build/app/invoice/pay.html'
