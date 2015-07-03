@@ -29,6 +29,7 @@
             $scope.submitting = false;
             
             $scope.submit = function(valid) {
+                console.log(valid);
                 if (!valid) {
                     return;
                 }
@@ -38,7 +39,6 @@
                 }
                 
                 $scope.submitting = true;
-                console.log($scope.invoice);
                 client.invoices.create($scope.invoice).then(function(invoice) {
                     console.log(invoice);
                     $location.path('invoice_new/success');
