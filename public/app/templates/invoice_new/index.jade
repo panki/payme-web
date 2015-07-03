@@ -2,69 +2,69 @@
   form(name="invoiceForm"
   ng-submit='submit(invoiceForm.$valid)'
   novalidate).container
+  .row
+    .col-xs-12.col-md-6.col-md-offset-3
+      h1 Получить деньги
+      
+  fieldset(ng-disabled="submitting")
     .row
       .col-xs-12.col-md-6.col-md-offset-3
-        h1 Получить деньги
+        .form-group(
+        ng-class="{'has-error': invoiceForm.amount.$invalid && !invoiceForm.amount.$pristine}")
+          input.input-lg.form-control(type="number" name="amount" ng-model='invoice.amount'
+          required
+          min=config.invoices.minAmount
+          max=config.invoices.maxAmount
+          only-digits)
+          br
+          .alert.alert-warning(
+          ng-show="invoiceForm.amount.$invalid && !invoiceForm.amount.$pristine").
+            Сумма должна быть от #{config.invoices.minAmount} до #{config.invoices.maxAmount}
+            рублей.
 
-    fieldset(ng-disabled="submitting")
-      .row
-        .col-xs-12.col-md-6.col-md-offset-3
-          .form-group(
-          ng-class="{'has-error': invoiceForm.amount.$invalid && !invoiceForm.amount.$pristine}")
-            input.input-lg.form-control(type="number" name="amount" ng-model='invoice.amount'
-            required
-            min=config.invoices.minAmount
-            max=config.invoices.maxAmount
-            only-digits)
-            br
-            .alert.alert-warning(
-            ng-show="invoiceForm.amount.$invalid && !invoiceForm.amount.$pristine").
-              Сумма должна быть от #{config.invoices.minAmount} до #{config.invoices.maxAmount}
-              рублей.
+    .row
+      .col-xs-12.col-md-3.col-md-offset-3
+        .form-group(
+        ng-class="{'has-error': invoiceForm.owner_email.$invalid && !invoiceForm.owner_email.$pristine}")
+          label(for="owner_email") От
+          br
+          input.form-control(id="owner_email" type="email" name="owner_email" placeholder="Почта"
+          ng-model='invoice.owner_email'
+          required)
+          
+        .form-group(
+        ng-class="{'has-error': invoiceForm.owner.$invalid && !invoiceForm.owner.$pristine}")
+          input.form-control(name="owner" placeholder="Имя"
+          ng-model='invoice.owner'
+          required)
 
-      .row
-        .col-xs-12.col-md-3.col-md-offset-3
-          .form-group(
-          ng-class="{'has-error': invoiceForm.owner_email.$invalid && !invoiceForm.owner_email.$pristine}")
-            label(for="owner_email") От
-            br
-            input.form-control(id="owner_email" type="email" name="owner_email" placeholder="Почта"
-            ng-model='invoice.owner_email'
-            required)
+      .col-xs-12.col-md-3
+        .form-group(
+        ng-class="{'has-error': invoiceForm.payer_email.$invalid && !invoiceForm.payer_email.$pristine}")
+          label(for="payer_email") Кому
+          br
+          input.form-control(id="payer_email" type="email" name="payer_email" placeholder="Почта"
+          ng-model='invoice.payer_email'
+          required)
 
-          .form-group(
-          ng-class="{'has-error': invoiceForm.owner.$invalid && !invoiceForm.owner.$pristine}")
-            input.form-control(name="owner" placeholder="Имя"
-            ng-model='invoice.owner'
-            required)
+        .form-group(
+        ng-class="{'has-error': invoiceForm.payer.$invalid && !invoiceForm.payer.$pristine}")
+          input.form-control(name="payer" placeholder="Плательщик"
+          ng-model='invoice.payer'
+          required)
 
-        .col-xs-12.col-md-3
-          .form-group(
-          ng-class="{'has-error': invoiceForm.payer_email.$invalid && !invoiceForm.payer_email.$pristine}")
-            label(for="payer_email") Кому
-            br
-            input.form-control(id="payer_email" type="email" name="payer_email" placeholder="Почта"
-            ng-model='invoice.payer_email'
-            required)
+    .row
+      .col-xs-12.col-md-3.col-md-offset-3
+        .form-group(
+        ng-class="{'has-error': invoiceForm.text.$invalid}")
+          input.form-control(name="text" placeholder="Комментарий"
+          ng-model='invoice.text'
+          maxlength=32)
+          p(ng-show="invoiceForm.text.$invalid") Комментарий слишком длинный
 
-          .form-group(
-          ng-class="{'has-error': invoiceForm.payer.$invalid && !invoiceForm.payer.$pristine}")
-            input.form-control(name="payer" placeholder="Плательщик"
-            ng-model='invoice.payer'
-            required)
-
-      .row
-        .col-xs-12.col-md-3.col-md-offset-3
-          .form-group(
-          ng-class="{'has-error': invoiceForm.text.$invalid}")
-            input.form-control(name="text" placeholder="Комментарий"
-            ng-model='invoice.text'
-            maxlength=32)
-            p(ng-show="invoiceForm.text.$invalid") Комментарий слишком длинный
-
-        .col-xs-12.col-md-3
-          .form-group(ng-hide="submitting")
-            button.btn.btn-default.btn-block(type="submit"
-            ng-disabled="invoiceForm.$invalid") Отправить запрос
-          .alert.alert-warning(ng-show="submitting").
-            Работаем...
+      .col-xs-12.col-md-3
+        .form-group(ng-hide="submitting")
+          button.btn.btn-default.btn-block(type="submit"
+          ng-disabled="invoiceForm.$invalid") Отправить запрос
+        .alert.alert-warning(ng-show="submitting").
+          Работаем...

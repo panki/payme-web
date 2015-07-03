@@ -1,0 +1,61 @@
+.container(ng-controller='InvoiceSendCtrl')
+  .row(ng-show="loading")
+    .col-xs-12 Loading...
+
+  form(name='form'
+  ng-show='!loading'
+  ng-submit='submit(form.$valid)'
+  novalidate).row
+    fieldset(ng-disabled="submitting")
+      .col-xs-12.col-md-6.col-md-offset-3
+        h1 Куда перевести деньги?
+        
+      .col-xs-12.col-md-3.col-md-offset-3
+        .form-group
+          label От
+          br
+          input.form-control(ng-model='invoice.owner.email' readonly)
+          
+        .form-group
+          label Кому
+          br
+          input.form-control(ng-model='invoice.payer.email' readonly)
+        
+        .form-group
+          label Сумма
+          br
+          input.form-control(ng-model='invoice.amount' readonly)
+          
+        .form-group
+          label(for='owner_card_number') Карта, на которую перевести деньги
+          input.form-control(type="text", id="owner_card_number", name="owner_card_number", 
+          ui-mask="9999 9999 9999 9999", 
+          ng-model="formData.owner_card_number", 
+          required)
+          
+          .alert.alert-warning(
+          ng-show="form.sender_card_number.$invalid && !form.sender_card_number.$pristine").
+            Укажите корректный номер карты
+      
+      .col-xs-12.col-md-3
+        .form-group
+          .checkbox
+            label
+              input(type='checkbox'
+              ng-model="formData.remind")
+              = "Ежедневно напоминать об оплате."
+  
+        .form-group
+          .checkbox
+            label
+              input(type='checkbox' 
+              ng-model="formData.owner_terms_accept" 
+              required)
+              = "Я согласен(-на) на обработку персональных данных и с правилами работы сервиса."
+  
+        .form-group
+          button.btn.btn-default.btn-block(type="submit"
+          ng-disabled="form.$invalid") Отправить
+
+      .col-xs-12.col-md-6.col-md-offset-3(ng-show="submitting")
+        .alert.alert-warning Работаем...

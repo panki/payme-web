@@ -4,6 +4,7 @@
         'client', 
         'app.directives',
         'app.invoice',
+        'app.invoice.send',
         'app.invoice_new']);
 
     app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {

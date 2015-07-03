@@ -62,7 +62,7 @@
             // Invoices
 
             this.invoices = {
-                getById: function(invoiceId) {
+                get: function(invoiceId) {
                     return get('/invoices/' + invoiceId);
                 },
                 create: function(newForm) {

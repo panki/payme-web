@@ -6,11 +6,14 @@
         // session comes from ng-init
         $scope.invoice_id = $routeParams.invoice_id;
         $scope.title = 'Show controller';
+        $scope.loading = true;
         
-        client.invoices.get($scope.invoice_id, $scope.session).then(function(invoice) {
+        client.invoices.get($scope.invoice_id).then(function(invoice) {
             $scope.invoice = invoice;
         }).catch(function (error) {
-            $scope.error = error.message;
+            alert(error.message);
+        }).finally(function() {
+            $scope.loading = false;
         });
     }]);
 })();
