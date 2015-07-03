@@ -5,6 +5,7 @@ var request = Promise.promisifyAll(require('request'));
 
 var Emails = require('./emails');
 var Tokens = require('./tokens');
+var Alfabank = require('./alfabank');
 
 
 function Client(config, url, token) {
@@ -13,6 +14,7 @@ function Client(config, url, token) {
     this.config = config;
     this.emails = new Emails(this);
     this.tokens = new Tokens(this);
+    this.alfabank = new Alfabank(this);
 }
 
 Client.prototype.get = function(path, params) {
@@ -75,14 +77,20 @@ Client.prototype.post = function(path, params) {
 Client.prototype.parseResponse = function(response) {
     var status = response.statusCode;
     var body = response.body;
+    var error;
+    
     
     switch (status) {
         case 200:
             return JSON.parse(body);
         case 204:
             return null;
+        case 422:
+            error = new Error(JSON.parse(body).message);
+            error.status = status;
+            throw error;
         default:
-            var error = new Error(body);
+            error = new Error(body);
             error.status = status;
             error.error = body;
             throw error;

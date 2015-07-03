@@ -1,5 +1,5 @@
 var config = {
-    apiUrl: 'http://dev.paymepayme.com/api',
+    apiUrl: 'http://127.0.0.1:5000/api',
     baseUrl: 'http://127.0.0.1:3000',
     redis: {
         host: '127.0.0.1',
@@ -29,7 +29,8 @@ var config = {
 // Angular app config
 
 config.ng = {
-    apiUrl: config.apiUrl
+    apiUrl: config.apiUrl,
+    termUrl: config.baseUrl + '/transaction/confirmed/'
 };
     
 module.exports = config;
