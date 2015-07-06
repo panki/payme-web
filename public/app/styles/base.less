@@ -1,7 +1,66 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@bgDefault: #0066ca;
+
+html {
+  position: relative;
+  min-height: 100%;
 }
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  /* Margin top by navbar height */
+  margin-top: 120px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: @bgDefault;
+  color: white;
+}
+
+body > .container {
+  padding: 60px 15px 0;
+}
+
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+  text-align: center;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #ffffff;
+}
+
 a {
   color: #00B7FF;
+}
+
+.navbar-fixed-top {
+  min-height: 130px;
+}
+
+ul.navbar-nav li a {
+  line-height: 100px;
+  font-size: 130%;
+  margin: 0px 20px;
+}
+
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
+h1 {
+  margin-bottom: 40px;
+  text-align: center;
 }
