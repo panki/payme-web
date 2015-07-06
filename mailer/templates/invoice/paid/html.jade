@@ -4,7 +4,7 @@ block title
   title Invoice paid
   
 block content
-  if email.address = email.invoice.owner.email
+  if email.address == email.invoice.owner.email
     +table_wrapper("#0366cb")
       +tr_title("Счет оплачен")
       +tr_space(15)
