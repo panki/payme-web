@@ -1,0 +1,18 @@
+.modal-header
+  h3 Укажите причину отказа
+.modal-body
+  form
+    .form-group
+      label
+        input.form-control(type="radio", ng-model="reason", ng-value="'Уже оплатил ранее'")
+        = "Уже оплатил ранее"
+    .form-group  
+      input.form-control(type="radio", ng-model="reason", ng-value="'Не знаю кто этот человек'")
+    .form-group
+      input.form-control(type="radio", ng-model="reason", ng-value="'Другое'")
+    .form-group
+      textarea.form-control(ng-model="reason")
+.modal-footer
+  buttob.btn.btn-default(ng-click="cancel()") Я передумал
+  buttob.btn.btn-primary(ng-click="refuse()") Все верно
+  
