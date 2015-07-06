@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('client', []).factory('Client', ['$http', '$httpParamSerializer', 'config',
+    angular.module('app.client', []).factory('Client', ['$http', '$httpParamSerializer', 'config',
         function($http, $httpParamSerializer, config) {
             var self = this;
             var apiUrl = config.apiUrl;
@@ -42,7 +42,7 @@
             function handleResponse(response) {
                 return response.data;
             }
-
+            
             function handleError(response) {
                 switch (response.status) {
                     case 0:

@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var module = angular.module('app.invoice.send-success', []);
+    var module = angular.module('app.invoice.sent-success', []);
     
     module.controller('InvoiceSendSuccessCtrl', ['$scope', '$routeParams',
         function($scope, $routeParams) {

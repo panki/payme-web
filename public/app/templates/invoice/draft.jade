@@ -1,11 +1,5 @@
-.container(ng-controller='InvoiceSendCtrl')
-  .row(ng-show="loading")
-    .col-xs-12 Loading...
-
-  form(name='form'
-  ng-show='!loading'
-  ng-submit='submit(form.$valid)'
-  novalidate).row
+.container(ng-controller='InvoiceDraftCtrl')
+  form(name='form' ng-submit='submit(form.$valid)' novalidate).row
     fieldset(ng-disabled="submitting")
       .col-xs-12.col-md-6.col-md-offset-3
         h1 Куда перевести деньги?

@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var module = angular.module('app.invoice.pay', []);
+    var module = angular.module('app.invoice.sent-payer', []);
     
     module.controller('InvoicePayCtrl', ['$scope', '$routeParams', '$modal', '$location', 'Client', 'config', function($scope, $routeParams, $modal, $location, client, config) {
         $scope.invoiceId = $routeParams.invoice_id;
