@@ -75,6 +75,9 @@
                 },
                 calc_fee: function(invoiceId, sender_card_number) {
                     return post('/invoices/calc_fee/' + invoiceId, {sender_card_number: sender_card_number});
+                },
+                refuse: function(invoiceId, reason) {
+                    return post('/invoices/refuse/' + invoiceId, {reason: reason});
                 }
             };
 

@@ -2,8 +2,7 @@
     'use strict';
     var module = angular.module('app.invoice.pay', []);
     
-    module.controller('InvoicePayCtrl', ['$scope', '$routeParams', '$modal', 'Client', 'config', function($scope, $routeParams, $modal, client, config) {
-        
+    module.controller('InvoicePayCtrl', ['$scope', '$routeParams', '$modal', '$location', 'Client', 'config', function($scope, $routeParams, $modal, $location, client, config) {
         $scope.invoiceId = $routeParams.invoice_id;
         $scope.invoice = null;
         $scope.form_error = null;
@@ -57,11 +56,15 @@
                 templateUrl: '/public/build/app/invoice/modals/refuse.html',
                 controller: 'InvoiceRefuseCtrl',
                 size: null,
-                resolve: {}
+                resolve: {
+                    invoiceId: function () { return $scope.invoiceId }
+                }
             });
-
-            modalInstance.result.then(function (refuse_reason) {
-                //$scope.selected = selectedItem;
+            
+            modalInstance.result.then(function (refused) {
+                if (refused) {
+                    $location.path('invoice/' + $scope.invoiceId + '/refuse/success');
+                }
             });
         };
         
@@ -100,9 +103,18 @@
        
     }]);
     
-    module.controller('InvoiceRefuseCtrl', ['$scope', '$modalInstance', function($scope, $modalInstance) {
+    module.controller('InvoiceRefuseCtrl', ['$scope', '$modalInstance', 'Client', 'invoiceId', function($scope, $modalInstance, client, invoiceId) {
+        $scope.reason = null;
+        $scope.other_reason = null;
         $scope.refuse = function () {
-            $modalInstance.close($scope.reason);
+            if ($scope.refuse_form.$valid) {
+                var reason = $scope.reason == 'other' ? $scope.other_reason : $scope.reason;
+                client.invoices.refuse(invoiceId, reason).then(function (invoice) {
+                    $modalInstance.close(true);
+                }).catch(function (error) {
+                    alert(error.message);
+                });
+            }
         };
         
         $scope.cancel = function () {
