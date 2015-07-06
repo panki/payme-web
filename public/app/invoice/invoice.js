@@ -7,7 +7,8 @@
         'app.invoice.show',
         'app.invoice.send',
         'app.invoice.send-success',
-        'app.invoice.refuse-success']);
+        'app.invoice.refuse-success',
+        'app.invoice.cancel-success']);
 
     module.config(['$routeProvider', function($routeProvider) {
         $routeProvider
@@ -22,6 +23,9 @@
             })
             .when('/invoice/:invoice_id/refuse/success', {
                 templateUrl: '/public/build/app/invoice/refuse-success.html'
+            })
+            .when('/invoice/:invoice_id/cancel/success', {
+                templateUrl: '/public/build/app/invoice/cancel-success.html'
             })
             .when('/invoice/:invoice_id/pay', {
                 templateUrl: '/public/build/app/invoice/pay.html'

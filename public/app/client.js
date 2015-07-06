@@ -78,6 +78,9 @@
                 },
                 refuse: function(invoiceId, reason) {
                     return post('/invoices/refuse/' + invoiceId, {reason: reason});
+                },
+                cancel: function(invoiceId) {
+                    return post('/invoices/cancel/' + invoiceId);
                 }
             };
 

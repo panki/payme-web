@@ -1,9 +1,25 @@
 .container(ng-controller='InvoiceShowCtrl')
-  h1 Show
-  p {{ title }}
-  div(ng-if="invoice")
-    p Invoice {{ invoice.id }}
-    p {{ invoice.created_at | date : 'dd-MM-yyyy HH:mm' : 'UTC' }}
-    p {{ invoice.amount }}
-  div(ng-if="error")
-    pre {{ error }}
+  .row(ng-show="loading")
+    .col-xs-12 Loading...
+  
+  .div(ng-show="invoice")    
+    .col-xs-12.col-md-6.col-md-offset-3
+      h1 Состояние счета
+    .col-xs-12.col-md-6.col-md-offset-3
+      .form-group
+        label Статус
+        .form-control-static {{ invoice.state }}
+      .form-group
+        label Кому
+        .form-control-static {{ invoice.owner_name }}
+      .form-group
+        label Сумма
+        .form-control-static {{ invoice.amount | currency }}
+      .form-group
+        label Дата
+        .form-control-static {{ invoice.created_at | date }}
+      .form-group
+        label Описание
+        .form-control-static {{ invoice.text }}
+      .form-group(ng-show='invoice.state=="refused"')
+        button.btn.btn-default(ng-click="openCancelDialog()") Отменить счет
