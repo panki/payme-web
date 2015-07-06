@@ -1,6 +1,6 @@
 var config = {
-    apiUrl: 'http://127.0.0.1:5000/api',
-    baseUrl: 'http://127.0.0.1:3000',
+    apiUrl: 'http://dev.paymepayme.com/api',    // No trailing slash.
+    baseUrl: 'http://dev.paymepayme.com',       // No trailing slash.
     redis: {
         host: '127.0.0.1',
         port: 6379,
@@ -11,7 +11,7 @@ var config = {
         transport: {
             smtp: {
                 host: 'localhost',
-                port: 22225,
+                port: 25,
                 secure: false,
                 ignoreTLS: true
             }
