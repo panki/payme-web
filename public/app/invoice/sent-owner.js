@@ -24,7 +24,7 @@
                     $parent.reloadChild();
                 }).catch(function(error) {
                     $parent.onError(error);
-                })
+                });
             });
         };
     }]);

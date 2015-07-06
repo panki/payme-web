@@ -2,7 +2,7 @@
   .row(ng-show="loading")
     .col-xs-12 Loading...
       
-  form(name="form", ng-submit="submit()", novalidatem, ng-show="invoice")
+  form(name="form", ng-submit="submit()", novalidate, ng-show="invoice")
     fieldset(ng-disabled="submitting")
       .col-xs-12.col-md-6.col-md-offset-3
         h1 Оплата счета
@@ -47,7 +47,7 @@
       .col-xs-12.col-md-6.col-md-offset-3(ng-show="submitting")
         .alert.alert-warning Работаем...
       
-  form(name="form_3ds", method="POST", ng-hide="true")
+  form(name="form_3ds", method="POST", ng-hide="true" novalidate)
     input(type="hidden", name="PaReq")
     input(type="hidden", name="MD")
     input(type="hidden", name="TermUrl")

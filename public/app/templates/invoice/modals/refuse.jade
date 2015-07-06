@@ -1,7 +1,7 @@
 .modal-header
   h3 Укажите причину отказа
 .modal-body
-  form(name="refuse_form")
+  form(name="refuse_form" novalidate)
     fieldset
       .radio.form-group
         label
@@ -21,4 +21,4 @@
 .modal-footer
   buttob.btn.btn-default(ng-click="cancel()") Я передумал
   buttob.btn.btn-primary(ng-click="refuse()", ng-disabled="refuse_form.$invalid") Все верно
-  
+

@@ -2,11 +2,11 @@
     'use strict';
     var module = angular.module('app.invoice.sent-payer', []);
     
-    module.controller('InvoicePayCtrl', ['$scope', '$routeParams', '$modal', '$location', 'Client', 'config', function($scope, $routeParams, $modal, $location, client, config) {
-        $scope.invoiceId = $routeParams.invoice_id;
-        $scope.invoice = null;
+    module.controller('InvoicePayCtrl', ['$scope', '$modal', 'config', 'Client', function($scope, $modal, config, client) {
+        var $parent = $scope.$parent;
+        $scope.invoice = angular.copy($parent.invoice);
+        
         $scope.form_error = null;
-        $scope.loading = true;
         $scope.submitting = false;
         $scope.card = {};
         $scope.fee = {
@@ -14,17 +14,6 @@
             calculated: false,
             value: null
         };
-        
-        // Get invoice
-        
-        client.invoices.get($scope.invoiceId).then(function(invoice) {
-            $scope.invoice = invoice;
-        }).catch(function (error) {
-            alert(error.message);
-        }).finally(function() {
-            $scope.loading = false;
-        });
-        
         
         // Calculate fee
         
@@ -61,10 +50,12 @@
                 }
             });
             
-            modalInstance.result.then(function (refused) {
-                if (refused) {
-                    $location.path('invoice/' + $scope.invoiceId + '/refuse/success');
-                }
+            modalInstance.result.then(function(reason) {
+                $parent.refuseInvoice(reason).then(function() {
+                    $parent.reloadChild();
+                }).catch(function(error) {
+                    $parent.onError(error);
+                });
             });
         };
         
@@ -77,7 +68,7 @@
                 
                 $scope.submitting = true;
                 
-                client.invoices.pay($scope.invoiceId, {
+                $parent.payInvoice({
                     sender_card_number: $scope.card.number,
                     sender_card_cvv: $scope.card.cvv,
                     sender_card_exp_month: $scope.card.exp_date.substring(0,2),
@@ -92,7 +83,7 @@
                     form.prop('action', transaction.acsUrl).submit();
                 })
                 .catch(function (error) {
-                    alert(error.message);
+                    $parent.onError(error);
                 })
                 .finally(function() {
                     $scope.submitting = false;                        
@@ -103,17 +94,13 @@
        
     }]);
     
-    module.controller('InvoiceRefuseCtrl', ['$scope', '$modalInstance', 'Client', 'invoiceId', function($scope, $modalInstance, client, invoiceId) {
+    module.controller('InvoiceRefuseCtrl', ['$scope', '$modalInstance', function($scope, $modalInstance) {
         $scope.reason = null;
         $scope.other_reason = null;
         $scope.refuse = function () {
             if ($scope.refuse_form.$valid) {
                 var reason = $scope.reason === 'other' ? $scope.other_reason : $scope.reason;
-                client.invoices.refuse(invoiceId, reason).then(function (invoice) {
-                    $modalInstance.close(true);
-                }).catch(function (error) {
-                    alert(error.message);
-                });
+                $modalInstance.close(reason);
             }
         };
         

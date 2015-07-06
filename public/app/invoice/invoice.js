@@ -3,11 +3,10 @@
 
     var module = angular.module('app.invoice', [
         'ngRoute',
+        'app.invoice.done',
         'app.invoice.draft',
         'app.invoice.sent-owner',
-        'app.invoice.sent-payer',
-        'app.invoice.sent-success',
-        'app.invoice.refuse-success']);
+        'app.invoice.sent-payer']);
 
     module.controller('InvoiceCtrl', ['$scope', '$compile', '$templateRequest', 'Client',
         function($scope, $compile, $templateRequest, client) {
@@ -57,8 +56,22 @@
                 });
             };
             
-            $scope.cancelInvoice = function(form) {
+            $scope.cancelInvoice = function() {
                 return client.invoices.cancel($scope.invoiceId).then(function(invoice) {
+                    $scope.invoice = angular.copy(invoice);
+                    return invoice;
+                });
+            };
+            
+            $scope.refuseInvoice = function(reason) {
+                return client.invoices.refuse($scope.invoiceId, reason).then(function(invoice) {
+                    $scope.invoice = angular.copy(invoice);
+                    return invoice;
+                });
+            };
+            
+            $scope.payInvoice = function(form) {
+                return client.invoices.pay($scope.invoiceId, form).then(function(invoice) {
                     $scope.invoice = angular.copy(invoice);
                     return invoice;
                 });
@@ -92,7 +105,11 @@
                     case 'expired':
                     case 'refused':
                     case 'cancelled':
-                        $scope.showChild('/public/build/app/invoice/done.html');
+                        if (isOwner) {
+                            $scope.showChild('/public/build/app/invoice/done-owner.html');
+                        } else {
+                            $scope.showChild('/public/build/app/invoice/done-payer.html');
+                        }
                         break;
                 }
             };
