@@ -56,6 +56,13 @@
                     return invoice;
                 });
             };
+            
+            $scope.cancelInvoice = function(form) {
+                return client.invoices.cancel($scope.invoiceId).then(function(invoice) {
+                    $scope.invoice = angular.copy(invoice);
+                    return invoice;
+                });
+            };
 
             $scope.reloadChild = function() {
                 var invoice = $scope.invoice;

@@ -73,11 +73,14 @@
                 pay: function(invoiceId, sendForm) {
                     return post('/invoices/pay/' + invoiceId, sendForm);
                 },
-                calc_fee: function(invoiceId, sender_card_number) {
-                    return post('/invoices/calc_fee/' + invoiceId, {sender_card_number: sender_card_number});
+                calcFee: function(invoiceId, senderCardNumber) {
+                    return post('/invoices/calc_fee/' + invoiceId, {sender_card_number: senderCardNumber});
                 },
                 refuse: function(invoiceId, reason) {
                     return post('/invoices/refuse/' + invoiceId, {reason: reason});
+                },
+                cancel: function(invoiceId) {
+                    return post('/invoices/cancel/' + invoiceId);
                 }
             };
 

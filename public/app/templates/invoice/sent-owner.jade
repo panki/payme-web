@@ -29,4 +29,4 @@
         br
         input.form-control(ng-model='invoice.owner_card_number' readonly)
       .form-group
-        button.btn.btn-default.btn-block Отменить
+        button.btn.btn-default(ng-click="openCancelDialog()") Отменить счет

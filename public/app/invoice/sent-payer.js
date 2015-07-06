@@ -29,15 +29,15 @@
         // Calculate fee
         
         $scope.$watch('card.number', function() {
-            $scope.calc_fee();
+            $scope.calcFee();
         }, true);
         
-        $scope.calc_fee = function () {
+        $scope.calcFee = function () {
             $scope.fee.calculated = false;
             $scope.fee.value = null;
             if ($scope.card.number) {
                 $scope.fee.loading = true;
-                client.invoices.calc_fee($scope.invoiceId, $scope.card.number).then(function (result) {
+                client.invoices.calcFee($scope.invoiceId, $scope.card.number).then(function (result) {
                     $scope.fee.value = result.fee;
                     $scope.fee.calculated = true;
                 }).catch(function (error) {
@@ -50,14 +50,14 @@
         
         // Refuse modal dialog
         
-        $scope.open_refuse_dialog = function () {
+        $scope.openRefuseDialog = function () {
             var modalInstance = $modal.open({
                 animation: true,
                 templateUrl: '/public/build/app/invoice/modals/refuse.html',
                 controller: 'InvoiceRefuseCtrl',
                 size: null,
                 resolve: {
-                    invoiceId: function () { return $scope.invoiceId }
+                    invoiceId: function () { return $scope.invoiceId; }
                 }
             });
             
@@ -72,7 +72,7 @@
             if ($scope.form.$valid) {
                 
                 if (!$scope.fee.calculated) {
-                    return $scope.calc_fee();
+                    return $scope.calcFee();
                 }
                 
                 $scope.submitting = true;
@@ -108,7 +108,7 @@
         $scope.other_reason = null;
         $scope.refuse = function () {
             if ($scope.refuse_form.$valid) {
-                var reason = $scope.reason == 'other' ? $scope.other_reason : $scope.reason;
+                var reason = $scope.reason === 'other' ? $scope.other_reason : $scope.reason;
                 client.invoices.refuse(invoiceId, reason).then(function (invoice) {
                     $modalInstance.close(true);
                 }).catch(function (error) {
