@@ -1,4 +1,4 @@
-<% if (email.address = email.invoice.owner.email) { %>
+<% if (email.address == email.invoice.owner.email) { %>
 ⚠ Добрый день, <%= email.invoice.payer.name %> не смог оплатить счет на сумму <%= email.invoice.amount %> руб.
 <% } else { %>
 ⚠ Добрый день, произошла ошибка при оплате счета от <%= email.invoice.owner.name %> на сумму <%= email.invoice.amount %> руб.
