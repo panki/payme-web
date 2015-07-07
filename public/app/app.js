@@ -1,6 +1,7 @@
 (function() {
     'use strict';
     var app = angular.module('app', ['ui.mask', 'ui.bootstrap',
+        'app.index',
         'app.client', 
         'app.directives',
         'app.invoice',
