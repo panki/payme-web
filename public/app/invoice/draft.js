@@ -28,7 +28,7 @@
                 console.log('Submitting ', formData);
                 $scope.submitting = true;
                 
-                $parent.sendInvoice($scope.formData).then(function() {
+                $parent.sendInvoice(formData).then(function() {
                     $parent.reloadChild();
                 }).catch(function(error) {
                     $parent.onError(error);
