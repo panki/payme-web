@@ -18,13 +18,14 @@
 
     module.controller('InvoiceNewCtrl', ['$scope', '$location', 'Client',
         function($scope, $location, client) {
+            var email = $location.search().email || '';
             $scope.invoice = {
-                amount: 1000,
-                owner: 'Ivan',
-                owner_email: 'ivan.korobkov@gmail.com',
-                payer: 'panki',
-                payer_email: 'god@panki.ru',
-                text: 'Hello, world'
+                amount: 100,
+                //owner: 'Ivan',
+                //owner_email: 'ivan.korobkov@gmail.com',
+                //payer: 'panki',
+                payer_email: email
+                //text: 'Hello, world'
             };
             $scope.submitting = false;
             
