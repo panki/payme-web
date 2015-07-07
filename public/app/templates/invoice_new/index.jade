@@ -35,8 +35,7 @@
           ng-class="{'has-error': invoiceForm.owner.$invalid && !invoiceForm.owner.$pristine}")
             label(for="owner") Ваше имя (необязательно)
             input.form-control(name="owner" placeholder="Имя"
-            ng-model='invoice.owner'
-            required)
+            ng-model='invoice.owner')
 
         .col-xs-12.col-md-3
           .form-group(

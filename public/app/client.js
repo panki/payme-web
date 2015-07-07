@@ -44,15 +44,30 @@
             }
             
             function handleError(response) {
+                var e = null;
                 switch (response.status) {
                     case 0:
-                        throw new Error('Ошибка безопасности');
+                        throw new Error('Сетевая ошибка');
                     case 404:
-                        throw new Error('Ресурс не найден');
+                        e = new Error('Ресурс не найден');
+                        e.status = 404;
+                        throw e;
                     case 422:
-                        throw new Error(response.data.message);
+                        var msg = response.data.message;
+                        console.log(response.data);
+                        if (response.data.errors) {
+                            angular.forEach(response.data.errors, function(value) {
+                                msg += '. ';
+                                msg += value;
+                            });
+                        }
+                        e = new Error(msg);
+                        e.status = 422;
+                        throw e;
                     case 500:
-                        throw new Error('Внутренняя ошибка');
+                        e = new Error('Внутренняя ошибка');
+                        e.status = 500;
+                        throw e;
                     default:
                         throw new Error('Неизвестная ошибка');
                 }
