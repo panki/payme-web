@@ -31,8 +31,13 @@
             };
 
             $scope.onError = function(error) {
-                $scope.state = 'failed';
-                $scope.error = error;
+                if (error.status == 404) {
+                    $scope.state = 'failed';
+                    $scope.error = error;
+                    return;
+                }
+                
+                alert(error.message);
             };
 
             $scope.loadInvoice = function() {
