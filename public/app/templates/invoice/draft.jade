@@ -22,8 +22,9 @@
           
         .form-group
           label(for='owner_card_number') Карта, на которую перевести деньги
-          input.form-control(type="text", id="owner_card_number", name="owner_card_number", 
-          ui-mask="9999 9999 9999 9999", 
+          input.form-control(type="text", id="owner_card_number", name="owner_card_number",
+          jmask,
+          mask="9999 9999 9999 9999", 
           ng-model="formData.owner_card_number", 
           required)
           

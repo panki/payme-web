@@ -26,11 +26,11 @@
             $scope.fee.value = null;
             if ($scope.card.number) {
                 $scope.fee.loading = true;
-                client.invoices.calcFee($scope.invoiceId, $scope.card.number).then(function (result) {
+                client.invoices.calcFee($scope.invoiceId, $scope.card.number.replace(/ /g, '')).then(function (result) {
                     $scope.fee.value = result.fee;
                     $scope.fee.calculated = true;
                 }).catch(function (error) {
-                    alert(error.message);
+                    comsole.log(error.message);
                 }).finally(function() {
                     $scope.fee.loading = false;                        
                 });
@@ -69,10 +69,10 @@
                 $scope.submitting = true;
                 
                 $parent.payInvoice({
-                    sender_card_number: $scope.card.number,
+                    sender_card_number: $scope.card.number.replace(/ /g, ''),
                     sender_card_cvv: $scope.card.cvv,
-                    sender_card_exp_month: $scope.card.exp_date.substring(0,2),
-                    sender_card_exp_year: '20' + $scope.card.exp_date.substring(2,4)
+                    sender_card_exp_month: $scope.card.exp_date.split('/')[0],
+                    sender_card_exp_year: $scope.card.exp_date.split('/')[1]
                 })
                 .then(function (transaction) {
                     // Fill 3ds hidden form and submit it

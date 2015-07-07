@@ -23,7 +23,9 @@
                     return;
                 }
                 
-                console.log('Submitting ', $scope.formData);
+                var formData = angular.copy($scope.formData);
+                formData.owner_card_number = formData.owner_card_number.replace(/ /g, '') 
+                console.log('Submitting ', formData);
                 $scope.submitting = true;
                 
                 $parent.sendInvoice($scope.formData).then(function() {

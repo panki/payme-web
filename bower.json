@@ -16,17 +16,12 @@
     "angular": "~1.4.1",
     "angular-route": "~1.4.1",
     "angular-bootstrap": "~0.13.0",
-    "angular-ui-utils": "~2.0.0",
-    "angular-i18n": "~1.4.1"
+    "angular-i18n": "~1.4.1",
+    "jquery-maskedinput": "~1.4.1"
   },
   "overrides": {
     "angular-i18n": {
       "main": "angular-locale_ru-ru.js"
-    },
-    "angular-ui-utils": {
-      "main": [
-        "./modules/mask/mask.js"
-      ]
     }
   }
 }
