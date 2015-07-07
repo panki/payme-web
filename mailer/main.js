@@ -47,10 +47,14 @@ mq.queue('emails').consume(function(msg) {
  */
 
 function send_email(email) {
+    var emailId = email.id;
+    var emailType = email.type;
+    var emailAddress = email.address;
+    
     return render(email.template, { email: email, config: config }).then(function(content) {
         return {
             from: config.mailer.from,
-            to: email.address,
+            to: emailAddress,
             subject: content.subject,
             text: content.body.text,
             html: content.body.html
@@ -60,6 +64,11 @@ function send_email(email) {
         return embed_images(mail_options);
     })
     .then(function(mail_options) {
+        var mo = mail_options;
+        console.log(
+            'Sending, email: id=%s, type=%s, address=%s; ' 
+            + 'data: from=%s, to=%s, subject=%s, text=%s, html=%s',
+            emailId, emailType, emailAddress, mo.from, mo.to, mo.subject, mo.text, mo.html);
         return transport.send(mail_options);
     })
 }
