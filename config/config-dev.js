@@ -1,13 +1,13 @@
 var config = {
-    apiUrl: 'http://dev.paymepayme.com/api',    // No trailing slash.
-    baseUrl: 'http://dev.paymepayme.com',       // No trailing slash.
+    apiUrl: 'http://dev.payme4.ru/api',    // No trailing slash.
+    baseUrl: 'http://dev.payme4.ru',       // No trailing slash.
     redis: {
         host: '127.0.0.1',
         port: 6379,
         db: 0
     },
     mailer: {
-        from: 'Payme robot <robot@paymepayme.com>',
+        from: 'Dev payme robot <robot@dev.payme4.ru>',
         transport: {
             smtp: {
                 host: 'localhost',
