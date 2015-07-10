@@ -3,7 +3,8 @@ all: var npm bower gulp
 
 clean:
 	rm -rf node_modules/*
-	rm -rf public/*
+	rm -rf public/build
+	rm -rf public/deps
 
 # Make var dirs
 var:
