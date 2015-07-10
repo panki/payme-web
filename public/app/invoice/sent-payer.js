@@ -30,7 +30,6 @@
                     $scope.fee.value = result.fee;
                     $scope.fee.calculated = true;
                 }).catch(function (error) {
-                    comsole.log(error.message);
                 }).finally(function() {
                     $scope.fee.loading = false;                        
                 });

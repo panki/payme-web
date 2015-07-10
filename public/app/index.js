@@ -22,11 +22,7 @@
 
     module.controller('IndexCtrl', ['$scope', '$location',
         function($scope, $location) {
-            $scope.newInvoice = function () {
-                if ($scope.email) {
-                    $location.path('/invoice_new').search({email: $scope.email});
-                } 
-            }
+            
         }
     ]);
 })();

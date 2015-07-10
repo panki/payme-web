@@ -4,53 +4,64 @@
       .col-xs-12.col-md-6.col-md-offset-3
         h1 Куда перевести деньги?
         
-      .col-xs-12.col-md-3.col-md-offset-3
-        .form-group
-          label От
-          br
-          input.form-control(ng-model='invoice.owner.email' readonly)
-          
-        .form-group
-          label Кому
-          br
-          input.form-control(ng-model='invoice.payer.email' readonly)
+        .alert.alert-warning(
+            ng-show="form.sender_card_number.$invalid && !form.sender_card_number.$pristine").
+              Укажите корректный номер карты
         
-        .form-group
-          label Сумма
-          br
-          input.form-control(ng-model='invoice.amount' readonly)
-          
-        .form-group
-          label(for='owner_card_number') Карта, на которую перевести деньги
-          input.form-control(type="text", id="owner_card_number", name="owner_card_number",
-          jmask,
-          mask="9999 9999 9999 9999", 
-          ng-model="formData.owner_card_number", 
-          required)
-          
-          .alert.alert-warning(
-          ng-show="form.sender_card_number.$invalid && !form.sender_card_number.$pristine").
-            Укажите корректный номер карты
+      .row
+        .col-xs-12.col-md-3.col-md-offset-3
+          .form-group
+            label(for="owner") Кому {{ invoice.owner.email }}
+            input.form-control(type="text", id="owner", name="owner", ng-model="formData.owner", placeholder="Имя (необязательно)")
+              
+        .col-xs-12.col-md-3
+          .form-group
+            label(for="payer") От {{ invoice.payer.email }}
+            input.form-control(type="text", id="payer", name="payer", ng-model="formData.payer", placeholder="Имя (необязательно)")
+            
+      .row
+        .col-xs-12.col-md-3.col-md-offset-3
+          .form-group
+            label(for="amount") Сумма
+            input.form-control(type="text", id="amount", name="amount", ng-model='formData.amount')
+            
+        .col-xs-12.col-md-3
+          .form-group
+            label(for='owner_card_number') Номер карты
+            input.form-control(type="text", id="owner_card_number", name="owner_card_number",
+            jmask,
+            mask="9999 9999 9999 9999",
+            ng-model="formData.owner_card_number",
+            required)
       
-      .col-xs-12.col-md-3
-        .form-group
-          .checkbox
-            label
-              input(type='checkbox'
-              ng-model="formData.remind")
-              = "Ежедневно напоминать об оплате."
+      .row
+        .col-xs-12.col-md-6.col-md-offset-3
+          .form-group
+            label(for='text') Описание
+            input.form-control(type="text", id="text", name="text", ng-model="formData.text", placeholder="Необязательно")
+        
+      .row
+        .col-xs-12.col-md-6.col-md-offset-3
+          .form-group
+            .checkbox
+              label
+                input(type='checkbox'
+                ng-model="formData.remind")
+                = "Ежедневно напоминать об оплате."
+    
+          .form-group
+            .checkbox
+              label
+                input(type='checkbox' 
+                ng-model="formData.owner_terms_accept" 
+                required)
+                = "Я согласен(-на) на обработку персональных данных и с правилами работы сервиса."
+    
+      .row
+        .col-xs-12.col-md-6.col-md-offset-3
+          .form-group
+            button.btn.btn-primary.btn-block(type="submit"
+            ng-disabled="form.$invalid") Отправить
   
-        .form-group
-          .checkbox
-            label
-              input(type='checkbox' 
-              ng-model="formData.owner_terms_accept" 
-              required)
-              = "Я согласен(-на) на обработку персональных данных и с правилами работы сервиса."
-  
-        .form-group
-          button.btn.btn-default.btn-block(type="submit"
-          ng-disabled="form.$invalid") Отправить
-
-      .col-xs-12.col-md-6.col-md-offset-3(ng-show="submitting")
-        .alert.alert-warning Работаем...
+        .col-xs-12.col-md-6.col-md-offset-3(ng-show="submitting")
+          .alert.alert-warning Работаем...

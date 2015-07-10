@@ -10,7 +10,8 @@
             $scope.submitting = false;
             
             $scope.formData = {
-                expire_at: '2016-01-01'
+                expire_at: '2016-01-01',
+                amount: $scope.invoice.amount
             };
             
             $scope.submit = function(valid) {
@@ -24,17 +25,21 @@
                 }
                 
                 var formData = angular.copy($scope.formData);
-                formData.owner_card_number = formData.owner_card_number.replace(/ /g, '') 
+                formData.owner_card_number = formData.owner_card_number.replace(/ /g, '') ;
                 console.log('Submitting ', formData);
                 $scope.submitting = true;
                 
                 $parent.sendInvoice(formData).then(function() {
-                    $parent.reloadChild();
+                    $parent.sendSuccess();
                 }).catch(function(error) {
                     $parent.onError(error);
                 }).finally(function() {
                     $scope.submitting = false;
                 });
             };
+            
+            $scope.showInvoice = function() {
+                $scope.reloadChild();
+            }
         }]);
 })();

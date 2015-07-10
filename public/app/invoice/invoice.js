@@ -81,6 +81,10 @@
                     return invoice;
                 });
             };
+            
+            $scope.sendSuccess = function () {
+                $scope.showChild('/public/build/app/invoice/send_success.html');    
+            };
 
             $scope.reloadChild = function() {
                 var invoice = $scope.invoice;
