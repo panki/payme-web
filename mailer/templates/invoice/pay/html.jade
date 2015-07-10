@@ -9,7 +9,7 @@ block content
     +tr_space(15)
     +tr_amount(email.invoice.amount)
     +tr_desc
-        p От: #{email.invoice.owner.name}
+        p От: #{email.invoice.owner.name} #{email.invoice.owner.email}
         p= email.invoice.text
     +tr_space(15)
     +tr_primary_action("#0480ff", email.payUrl, "Оплатить")
