@@ -9,6 +9,7 @@ var transport = require('./transport');
 var render = require('./templates')('mailer/templates');
 var mqx = require('../x/mqx');
 var Client = require('../client');
+var mandrill = require('./mandrill');
 var client = new Client(config, config.apiUrl);
 
 
@@ -26,15 +27,10 @@ mq.queue('emails').consume(function(msg) {
     client.emails.get(emailId).then(function(email) {
         send_email(email).then(function(mail_info) {
             console.log('Message %s sent %s', email.id, mail_info.response);
-            client.emails.sent(email.id).then(function() { msg.ack(); });
+            client.emails.sent(email.id, Date.now()).then(function() { msg.ack(); });
         }).catch(function(e) {
             console.log('Failed to send message %s error=%s', email.id, e);
-            if (msg.retry_count() < 3) {
-                msg.retry();
-            } else {
-                client.emails.fail(email.id, e.message);
-                msg.ack();
-            }
+            msg.retry();
         });        
     });
 });
@@ -57,7 +53,8 @@ function send_email(email) {
             to: emailAddress,
             subject: content.subject,
             text: content.body.text,
-            html: content.body.html
+            html: content.body.html,
+            headers: mandrill.makeHeaders(email)
         };
     })
     .then(function(mail_options) {

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var config = require('./config')
+var config = require('./config');
 
 router.get('/emails/view/:email_id', function (req, res, next) {
     var email_id = req.params.email_id;

@@ -21,12 +21,20 @@ function Emails(client) {
         });
     };
     
-    this.fail = function(emailId, reason) {
-        return this.client.post('/emails/' + emailId + '/fail', {reason: reason});
+    this.fail = function(emailId, reason, timestamp) {
+        return this.client.post('/emails/' + emailId + '/failed', {reason: reason, timestamp: timestamp});
     };
     
-    this.sent = function(emailId) {
-        return this.client.post('/emails/' + emailId + '/sent');
+    this.sent = function(emailId, timestamp) {
+        return this.client.post('/emails/' + emailId + '/sent', {timestamp: timestamp});
+    };
+    
+    this.opened = function(emailId, timestamp) {
+        return this.client.post('/emails/' + emailId + '/opened', {timestamp: timestamp});
+    };
+    
+    this.delivered = function(emailId, timestamp) {
+        return this.client.post('/emails/' + emailId + '/delivered', {timestamp: timestamp});
     };
 }
 

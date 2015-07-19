@@ -21,6 +21,7 @@ app.use(require('./middleware.js'));
 app.use(require('./index'));
 app.use(require('./invoices'));
 app.use(require('./emails'));
+app.use(require('./mandrill'));
 require('./errors')(app);
 
 
