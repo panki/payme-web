@@ -26,8 +26,9 @@ mq.queue('emails').consume(function(msg) {
     console.log('Message arrived: %s', emailId);
     client.emails.get(emailId).then(function(email) {
         send_email(email).then(function(mail_info) {
+            var timestamp = Math.round(Date.now()/1000);
             console.log('Message %s sent %s', email.id, mail_info.response);
-            client.emails.sent(email.id, Date.now()).then(function() { msg.ack(); });
+            client.emails.sent(email.id, timestamp).then(function() { msg.ack(); });
         }).catch(function(e) {
             console.log('Failed to send message %s error=%s', email.id, e);
             msg.retry();
