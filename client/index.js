@@ -6,6 +6,7 @@ var request = Promise.promisifyAll(require('request'));
 var Emails = require('./emails');
 var Tokens = require('./tokens');
 var Alfabank = require('./alfabank');
+var Invoices = require('./invoices');
 
 
 function Client(config, url, token) {
@@ -15,6 +16,7 @@ function Client(config, url, token) {
     this.emails = new Emails(this);
     this.tokens = new Tokens(this);
     this.alfabank = new Alfabank(this);
+    this.invoices = new Invoices(this);
 }
 
 Client.prototype.get = function(path, params) {

@@ -36,8 +36,20 @@ config.ng = {
 // Mandrill config
 
 config.mandrill = {
-    webHookKey: 'gER36Q6g9EF5gruFuMgFXA',
-    webHookUrl: config.baseUrl + '/mandrill/webhook'
+    hooks: {
+        events: {
+            url: config.baseUrl + '/mandrill/events',
+            key: 'gER36Q6g9EF5gruFuMgFXA'
+        },
+        inbound: {
+            url: config.baseUrl + '/mandrill/inbound',
+            key: 'F9XKW_CnFPSaJAVWqaDuZQ',
+            relays: {
+                'admin@payme4.ru': 'admin@norvik.eu',
+                'support@payme4.ru': 'payme-support@norvik.eu'
+            }
+        }
+    }
 };
     
 module.exports = config;
