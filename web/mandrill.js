@@ -13,9 +13,11 @@ router.post('/mandrill/webhook', function (req, res, next) {
                 case 'open':
                     return req.client.emails.opened(emailId, event.ts);
                 case 'hard_bounce':
-                    return req.client.emails.fail(emailId, event.msg.bounce_description + ' : ' + event.diag, event.event.ts);
+                    var hard_bounce_error = event.msg.bounce_description + ' : ' + event.diag;
+                    return req.client.emails.fail(emailId, hard_bounce_error, event.ts);
                 case 'soft_bounce':
-                    return req.client.emails.fail(emailId, event.msg.bounce_description + ' : ' + event.diag, event.event.ts);
+                    var soft_bounce_error = event.msg.bounce_description + ' : ' + event.diag;
+                    return req.client.emails.fail(emailId, soft_bounce_error, event.ts);
                 default:
                     console.log('Unexpected email event (unknown event type)', event);
             }
