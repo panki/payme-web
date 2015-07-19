@@ -4,6 +4,11 @@ var Promise = require('bluebird');
 var crypto = require('crypto');
 var config = require('./config');
 
+router.head('/mandrill/webhook', function (req, res, next) {
+    // Mandrill uses HEAD request to check url state
+    res.end();
+});
+
 router.post('/mandrill/webhook', function (req, res, next) {
     
     // Check request signature
@@ -32,7 +37,7 @@ router.post('/mandrill/webhook', function (req, res, next) {
         var emailId = event.msg.metadata.email_id;
         if (emailId) {
             switch (event.event) {
-                case 'sent':
+                case 'send':
                     return req.client.emails.delivered(emailId, event.ts);
                 case 'open':
                     return req.client.emails.opened(emailId, event.ts);
@@ -42,6 +47,8 @@ router.post('/mandrill/webhook', function (req, res, next) {
                 case 'soft_bounce':
                     var soft_bounce_error = event.msg.bounce_description + ' : ' + event.diag;
                     return req.client.emails.fail(emailId, soft_bounce_error, event.ts);
+                case 'reject':
+                    return req.client.emails.fail(emailId, 'rejected', event.ts);
                 default:
                     console.log('Unexpected email event (unknown event type)', event);
             }
