@@ -32,5 +32,12 @@ config.ng = {
     apiUrl: config.apiUrl,
     termUrl: config.baseUrl + '/transaction/confirmed/'
 };
+
+// Mandrill config
+
+config.mandrill = {
+    webHookKey: 'gER36Q6g9EF5gruFuMgFXA',
+    webHookUrl: config.baseUrl + '/mandrill/webhook'
+};
     
 module.exports = config;
