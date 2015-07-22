@@ -1,6 +1,7 @@
 'use strict';
 var Promise = require('bluebird');
-var querystring = require("querystring");
+var extend = require('util')._extend;
+var querystring = require('querystring');
 var request = Promise.promisifyAll(require('request'));
 
 var Emails = require('./emails');
@@ -9,24 +10,41 @@ var Alfabank = require('./alfabank');
 var Invoices = require('./invoices');
 
 
-function Client(config, url, token) {
+/**
+ * Creates a new client.
+ * @param url       API URL.
+ * @param token     Optional auth token.
+ * @param options   {device: {id: uuid, userAgent: ''}}.
+ */
+function Client(url, token, options) {
     this.apiUrl = url;
     this.token = token;
-    this.config = config;
+    this.options = options;
+    
     this.emails = new Emails(this);
     this.tokens = new Tokens(this);
     this.alfabank = new Alfabank(this);
     this.invoices = new Invoices(this);
+
+    this.headers = {'Content-Type': 'application/x-www-form-urlencoded'};
+    if (token) {
+        this.headers['Authorization'] = 'token ' + self.token;
+    }
+    if (options && options.device) {
+        this.headers['Cookie'] = 'device=' + options.device.id;
+        this.headers['User-Agent'] = options.device.userAgent;
+    }
 }
+
+Client.prototype.makeHeaders = function(token) {
+    
+};
 
 Client.prototype.get = function(path, params) {
     var self = this;
     var t0 = new Date().getTime();
     var url = self.apiUrl + path;
-    var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
-    if (self.token) {
-        headers['Authorization'] = 'token ' + self.token;
-    }
+    var headers = self.headers;
 
     return request.getAsync({
         url: url,
@@ -52,10 +70,7 @@ Client.prototype.post = function(path, params) {
     var self = this;
     var t0 = new Date().getTime();
     var url = self.apiUrl + path;
-    var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
-    if (self.token) {
-        headers['Authorization'] = 'token ' + self.token;
-    }
+    var headers = self.headers;
 
     return request.postAsync({
         url: url,

@@ -3,16 +3,14 @@ var he = require('he');
 var crypto = require('crypto');
 var Redis = require('ioredis');
 
-
 var config = require('./config');
 var transport = require('./transport');
 var render = require('./templates')('mailer/templates');
 var mqx = require('../x/mqx');
-var Client = require('../client');
 var mandrill = require('./mandrill');
-var client = new Client(config, config.apiUrl);
+var Client = require('../client');
 
-
+var client = new Client(config.apiUrl, null, {device: config.mailer.device});
 var redis = new Redis(config.redis);
 var mq = new mqx.RedisMQ('mq', redis);
 
