@@ -1,9 +1,8 @@
 url = require('url');
 
-function Emails(client) {
-    
+function Emails(client, config) {
     this.client = client;
-    this.config = client.config;
+    this.config = config;
     var self = this;
 
     this.get = function(emailId) {

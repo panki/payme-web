@@ -2,9 +2,10 @@
     'use strict';
     var module = angular.module('app.invoice_new', ['ngRoute']);
 
-    module.config(['$routeProvider', '$locationProvider',
-        function($routeProvider, $locationProvider) {
+    module.config(['$routeProvider', '$locationProvider', '$httpProvider',
+        function($routeProvider, $locationProvider, $httpProvider) {
             $locationProvider.html5Mode(true);
+            $httpProvider.defaults.withCredentials = true;
 
             $routeProvider
                 .when('/invoice_new', {

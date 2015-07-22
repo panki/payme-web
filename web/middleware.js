@@ -8,7 +8,28 @@ var Client = require('../client');
 
 function initClient(req, res, next) {
     req.client = new Client(config, config.apiUrl, req.cookies.token || req.query.token);
+    req.client.setUserAgent(req.get('User-Agent'));
     next();
+}
+
+
+function initDevice(req, res, next) {
+    var deviceId = req.cookies.device;
+    if (deviceId) {
+        req.client.setDeviceId(deviceId);
+        next();
+        return;
+    }
+    
+    req.client.devices.current().then(function(device) {
+        var expires = new Date(Date.now() + config.auth.deviceTtlMs);
+        req.client.setDeviceId(device.id);
+        res.cookie('device', device.id, {expires: expires});
+        
+        next();
+    }).catch(function (error) {
+        next(error);
+    });
 }
 
 
@@ -39,6 +60,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(cookieParser());
 router.use(initClient);
+router.use(initDevice);
 router.use(authToken);
 
 module.exports = router;

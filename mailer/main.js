@@ -8,11 +8,14 @@ var transport = require('./transport');
 var render = require('./templates')('mailer/templates');
 var mqx = require('../x/mqx');
 var mandrill = require('./mandrill');
-var Client = require('../client');
 
-var client = new Client(config.apiUrl, null, {device: config.mailer.device});
 var redis = new Redis(config.redis);
 var mq = new mqx.RedisMQ('mq', redis);
+
+var Client = require('../client');
+var client = new Client(config.apiUrl, null);
+client.setDeviceId(config.mailer.device.id);
+client.setUserAgent(config.mailer.device.userAgent);
 
 
 /**
