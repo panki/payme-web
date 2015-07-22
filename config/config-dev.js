@@ -6,6 +6,9 @@ var config = {
         port: 6379,
         db: 0
     },
+    auth: {
+        deviceTtlMs: 10 * 365 * 24 * 3600 * 1000    // 10 years.
+    },
     mailer: {
         from: 'Dev payme robot <robot@dev.payme4.ru>',
         transport: {
