@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    
+
     angular.module('app.directives', []).
         directive('onlyDigits', function() {
             return {
@@ -21,12 +21,13 @@
                 }
             };
         })
-        .directive('jmask', function () {
+        .directive('jmask', function() {
             return {
                 restrict: 'A',
-                link: function (scope, elem, attr, ctrl) {
-                    if (attr.mask)
-                        elem.mask(attr.mask, { placeholder: attr.placeholder });
+                link: function(scope, elem, attr) {
+                    if (attr.mask) {
+                        elem.mask(attr.mask, {placeholder: attr.placeholder});
+                    }
                 }
             };
         });

@@ -31,7 +31,7 @@
             };
 
             $scope.onError = function(error) {
-                if (error.status == 404) {
+                if (error.status === 404) {
                     $scope.state = 'failed';
                     $scope.error = error;
                     return;

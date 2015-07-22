@@ -90,7 +90,7 @@
   // Custom Globals
   // additional predefined global variables
   "globals"       : {
+    "$": true,
     "angular": true
   }
 }
-

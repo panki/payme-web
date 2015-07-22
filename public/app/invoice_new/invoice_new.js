@@ -45,7 +45,7 @@
             };
         }]);
 
-    module.controller('InvoiceNewSuccessCtrl', ['$scope', function($scope) {
+    module.controller('InvoiceNewSuccessCtrl', ['$scope', function() {
         console.log('Success');
     }]);
 })();

@@ -30,6 +30,7 @@
                     $scope.fee.value = result.fee;
                     $scope.fee.calculated = true;
                 }).catch(function (error) {
+                    alert(error);
                 }).finally(function() {
                     $scope.fee.loading = false;                        
                 });

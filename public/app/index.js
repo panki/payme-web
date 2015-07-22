@@ -3,26 +3,23 @@
     var module = angular.module('app.index', ['ngRoute']);
 
     module.config(['$routeProvider', '$locationProvider',
-        function($routeProvider, $locationProvider) {
+        function($routeProvider) {
             $routeProvider
-            .when('/', {
-                templateUrl: '/public/build/app/index.html'
-            })
-            .when('/howto', {
-                templateUrl: '/public/build/app/howto.html'
-            })
-            .when('/support', {
-                templateUrl: '/public/build/app/support.html'
-            })
-            .when('/advantages', {
-                templateUrl: '/public/build/app/advantages.html'
-            });
+                .when('/', {
+                    templateUrl: '/public/build/app/index.html'
+                })
+                .when('/howto', {
+                    templateUrl: '/public/build/app/howto.html'
+                })
+                .when('/support', {
+                    templateUrl: '/public/build/app/support.html'
+                })
+                .when('/advantages', {
+                    templateUrl: '/public/build/app/advantages.html'
+                });
         }
     ]);
 
-    module.controller('IndexCtrl', ['$scope', '$location',
-        function($scope, $location) {
-            
-        }
-    ]);
+    module.controller('IndexCtrl', [function() {
+    }]);
 })();

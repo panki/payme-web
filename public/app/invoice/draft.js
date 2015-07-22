@@ -40,6 +40,6 @@
             
             $scope.showInvoice = function() {
                 $scope.reloadChild();
-            }
+            };
         }]);
 })();
