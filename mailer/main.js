@@ -13,7 +13,7 @@ var redis = new Redis(config.redis);
 var mq = new mqx.RedisMQ('mq', redis);
 
 var Client = require('../client');
-var client = new Client(config.apiUrl, null);
+var client = new Client(config, config.apiUrl);
 client.setDeviceId(config.mailer.device.id);
 client.setUserAgent(config.mailer.device.userAgent);
 
