@@ -2,7 +2,12 @@ var express = require('express');
 var router = express.Router();
 var Promise = require('bluebird');
 var crypto = require('crypto');
+var Redis = require('ioredis');
 var config = require('./config');
+var mqx = require('../x/mqx');
+var redis = new Redis(config.redis);
+var mq = new mqx.RedisMQ('mq', redis);
+
 var transport = require('../mailer/transport');
 
 router.head('/mandrill/:hook', function (req, res, next) {
@@ -41,37 +46,10 @@ router.post('/mandrill/:hook', function (req, res, next) {
 });
 
 router.post('/mandrill/events', function (req, res, next) {
-    Promise.map(req.events, function (event) {
-        if (event.msg && event.msg.metadata) {
-            var emailId = event.msg.metadata.email_id;
-            if (emailId) {
-                switch (event.event) {
-                    case 'send':
-                        return req.client.emails.delivered(emailId, event.ts);
-                    case 'open':
-                        return req.client.emails.opened(emailId, event.ts);
-                    case 'hard_bounce':
-                        var hard_bounce_error = event.msg.bounce_description + ' : ' + event.msg.diag;
-                        return req.client.emails.fail(emailId, hard_bounce_error, event.ts);
-                    case 'soft_bounce':
-                        var soft_bounce_error = event.msg.bounce_description + ' : ' + event.msg.diag;
-                        return req.client.emails.fail(emailId, soft_bounce_error, event.ts);
-                    case 'reject':
-                        return req.client.emails.fail(emailId, 'rejected', event.ts);
-                    default:
-                        console.log('Unexpected email event (unknown event type)', event);
-                }
-            } else {
-                console.log('Unexpected email event (empty email_id)', event);
-            }    
-        } else {
-            console.log('Unexpected email event (empty metadata)', event);
-        }
-    }).then(function() {
-        res.end('Ok');
-    }).catch(function(err) {
-        res.status(500).send({error: err.message});
+    req.events.forEach(function (event) {
+        pushEventToWorker(event)
     });
+    res.end('Ok');
 });
 
 router.post('/mandrill/inbound', function (req, res, next) {
@@ -128,6 +106,43 @@ function relayMessage(msg) {
             console.log('Unhandled email', msg);
         }
     });
+}
+    
+function pushEventToWorker(event) {
+    var emailId = event.msg && event.msg.metadata ? event.msg.metadata.email_id : null;
+    if (!emailId) {
+        console.log('Unexpected email event (empty email_id)', event);
+        return;
+    }
+    
+    var msg = {
+        emailId: emailId,
+        event: '',
+        eventReason: '',
+        timestamp: event.ts
+    };
+    
+    switch (event.event) {
+        case 'send': msg.event = 'delivered'; break;
+        case 'open': msg.event = 'opened'; break;
+        case 'hard_bounce':
+            msg.event = 'failed';
+            msg.eventReason = event.msg.bounce_description + ' : ' + event.msg.diag;
+            break;
+        case 'soft_bounce':
+            msg.event = 'failed';
+            msg.eventReason = event.msg.bounce_description + ' : ' + event.msg.diag;
+            break;
+        case 'reject':
+            msg.event = 'failed';
+            msg.eventReason = 'rejected';
+            break;
+        default:
+            console.log('Unexpected email event (unknown event type)', event);
+            return;
+    }
+    
+    mq.queue('emails-events').put(JSON.stringify(msg));
 }
 
 module.exports = router;
