@@ -6,6 +6,7 @@
     "start": "node ./bin/web"
   },
   "dependencies": {
+    "accounting": "^0.4.1",
     "add-stream": "^1.0.0",
     "bluebird": "^2.9.30",
     "body-parser": "~1.12.4",
