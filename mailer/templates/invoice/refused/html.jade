@@ -5,7 +5,7 @@ block title
   
 block content
   if email.address == email.invoice.owner.email
-    +table_wrapper("#0366cb")
+    +table_wrapper("#666666")
       +tr_title("Отказ от оплаты")
       +tr_reason
           p= email.invoice.refuse_reason
@@ -18,7 +18,7 @@ block content
       +tr_secondary_action(email.invoiceUrl, "Открыть квитанцию")
       +tr_space(15)
   else
-    +table_wrapper("#0366cb")
+    +table_wrapper("#666666")
       +tr_title("Отказ от оплаты")
       +tr_space(15)
       +tr_reason
