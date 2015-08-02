@@ -8,8 +8,8 @@
         'app.invoice.sent-owner',
         'app.invoice.sent-payer']);
 
-    module.controller('InvoiceCtrl', ['$scope', '$compile', '$templateRequest', 'Client',
-        function($scope, $compile, $templateRequest, client) {
+    module.controller('InvoiceCtrl', ['$scope', '$compile', '$templateRequest', '$window', '$location', 'Client',
+        function($scope, $compile, $templateRequest, $window, $location, client) {
             $scope.client = client;
             $scope.state = 'loading';
             $scope.error = null;
@@ -80,6 +80,11 @@
                     $scope.invoice = angular.copy(invoice);
                     return invoice;
                 });
+            };
+            
+            $scope.saveReceipt = function() {
+                $window.location.href = '/invoice/' +
+                    $scope.invoice.id + '/receipt.pdf?download&token=' + $location.search().token;
             };
             
             $scope.sendSuccess = function () {

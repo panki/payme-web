@@ -2,7 +2,11 @@ function Invoices(client) {
 
     this.client = client;
     this.config = client.config;
-
+    
+    this.get = function (invoice_id) {
+        return this.client.get('/invoices/' + invoice_id);
+    };
+    
     this.create = function (newForm) {
         return this.client.post('/invoices/new', {
             owner_email: newForm.owner_email,

@@ -16,14 +16,14 @@
     "ejs": "^2.3.1",
     "email-templates": "^2.0.0-beta.1",
     "express": "~4.12.4",
-    "gulp-jade": "^1.0.1",
-    "gulp-ng-config": "^1.2.1",
     "he": "^0.5.0",
     "ioredis": "^1.5.5",
     "jade": "~1.9.2",
+    "moment": "^2.10.6",
     "morgan": "~1.5.3",
     "nodemailer": "^1.4.0",
     "nodemailer-smtp-transport": "^1.0.3",
+    "pdfkit": "^0.7.1",
     "raven": "^0.8.1",
     "request": "^2.58.0",
     "serve-favicon": "~2.2.1"
@@ -42,6 +42,8 @@
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.6",
+    "gulp-jade": "^1.0.1",
+    "gulp-ng-config": "^1.2.1",
     "main-bower-files": "^2.8.2"
   }
 }

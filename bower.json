@@ -22,6 +22,9 @@
   "overrides": {
     "angular-i18n": {
       "main": "angular-locale_ru-ru.js"
+    },
+    "moment": {
+      "main": ["moment.js", "locale/ru.js"]
     }
   }
 }

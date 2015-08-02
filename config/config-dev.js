@@ -30,6 +30,12 @@ var config = {
     },
     sentry: {
         dns: ''
+    },
+    contacts: {
+        support: {
+            email: 'support@payme4.ru',
+            phone: '+371 67041100'
+        }
     }
 };
 
