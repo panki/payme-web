@@ -2,7 +2,7 @@
   form(novalidate).row
     .col-xs-12.col-md-6.col-md-offset-3
       div(ng-switch="invoice.state")
-        h1(ng-switch-when="paid") Счет оплачен
+        h1(ng-switch-when="paid") Ваш счет оплачен
         h1(ng-switch-when="failed") Ошибка оплаты счета
         h1(ng-switch-when="expired") Истекло время оплаты счета
         h1(ng-switch-when="refused") Плательщик отказался от оплаты счета
@@ -10,29 +10,27 @@
 
     .col-xs-12.col-md-3.col-md-offset-3
       .form-group
-        label От
-        br
-        input.form-control(ng-model='invoice.owner.email' readonly)
-      .form-group
-        label Кому
-        br
-        input.form-control(ng-model='invoice.payer.email' readonly)
-      .form-group
-        label Сумма
-        br
-        input.form-control(ng-model='invoice.amount' readonly)
+        label Кем
+        .form-control-static {{ invoice.owner.email }}
       .form-group
         label Комментарий
-        input.form-control(ng-model='invoice.text' readonly)
+        .form-control-static {{ invoice.text }}
       .form-group
         label Оплатить до
-        input.form-control(ng-model='invoice.expire_at' readonly)
+        .form-control-static {{ invoice.expire_at | date }}
 
     .col-xs-12.col-md-3
       .form-group
-        label Куда перевести деньги
-        br
-        input.form-control(ng-model='invoice.owner_card_number' readonly)
+        label Сумма
+        .form-control-static {{ invoice.amount | currency }}
+      
+      .form-group
+        label На карту
+        .form-control-static {{ invoice.owner_card.masked_number }}
+          
+      .form-group
+        label Дата оплаты
+        .form-control-static {{ invoice.updated_at | date }}
 
     .col-xs-12.col-md-6.col-md-offset-3
       .form-group
