@@ -2,8 +2,8 @@
     'use strict';
     var module = angular.module('app.invoice.draft', []);
 
-    module.controller('InvoiceDraftCtrl', ['$scope',
-        function($scope) {
+    module.controller('InvoiceDraftCtrl', ['$scope', 'moment',
+        function($scope, moment) {
             var $parent = $scope.$parent;
             
             $scope.invoice = angular.copy($parent.invoice);
