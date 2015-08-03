@@ -1,0 +1,18 @@
+extends ../../layout
+
+block title
+  title Pay invoice
+  
+block content
+  +table_wrapper("#0366cb")
+    +tr_title("Ожидает оплаты")
+    +tr_space(15)
+    +tr_amount(email.invoice.amount)
+    +tr_desc
+        p От: #{email.invoice.owner.name} #{email.invoice.owner.email}
+        p= email.invoice.text
+    +tr_space(15)
+    +tr_primary_action("#0480ff", email.payUrl, "Оплатить")
+    +tr_space(15)
+    +tr_secondary_action(email.refuseUrl, "Отказаться от оплаты")
+    +tr_space(15)

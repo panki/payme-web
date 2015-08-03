@@ -1,0 +1,5 @@
+<% if (email.address == email.invoice.owner.email) { %>
+⚠ Истек срок оплаты счета для <%= email.invoice.payer.email %> на сумму <%= email.invoice.amount %> руб.
+<% } else { %>
+⚠ Истек срок оплаты счета от <%= email.invoice.owner.email %> на сумму <%= email.invoice.amount %> руб.
+<% } %>
