@@ -11,11 +11,10 @@ h1 Главная
           .form-group
             label(for="amount") хочу получить
             .input-group.amount-group
-              input.input-lg.form-control(id="amount", type="text", name="amount", ng-model="invoice.amount", placeholder="Сумма", maxlength="5", required)
+              input.input-lg.form-control(id="amount", type="text", name="amount", ng-model="invoice.amount", maxlength="5", required, autosize, zero-input)
               span.input-group-addon &#8381;
           .form-group
             label(for="payer_email") от
             input.input-lg.form-control(type="text", name="payer_email", ng-model="invoice.payer_email", placeholder="От e-mail", required)
           .form-group
-            button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") Получить деньги 
-          
+            button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") Получить деньги

@@ -10,6 +10,9 @@
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   box-shadow: none !important;
+  width: 0px;
+  float: none;
+  display: inline-block;
 }
 
 #new_invoice #amount:focus {
@@ -22,4 +25,13 @@
     border: transparent;
     font-size: 5em;
     color: yellow;
+    display: inline-block;
+    vertical-align: top;
+    padding: 0;
+    width: auto;
+}
+
+#new_invoice .amount-group {
+    text-align: center;
+    display: block;
 }

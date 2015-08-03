@@ -18,14 +18,18 @@
     "angular-bootstrap": "~0.13.0",
     "angular-i18n": "~1.4.1",
     "jquery-maskedinput": "~1.4.1",
-    "moment": "^2.10.6"
+    "moment": "^2.10.6",
+    "angular-input-autosize": "~1.0.0"
   },
   "overrides": {
     "angular-i18n": {
       "main": "angular-locale_ru-ru.js"
     },
     "moment": {
-      "main": ["moment.js", "locale/ru.js"]
+      "main": [
+        "moment.js",
+        "locale/ru.js"
+      ]
     }
   }
 }

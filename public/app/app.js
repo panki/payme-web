@@ -5,8 +5,9 @@
         'app.client',
         'app.directives',
         'app.invoice',
-        'app.invoice_new']);
-    
+        'app.invoice_new',
+        'autosizeInput']);
+
     app.config(['$routeProvider', '$locationProvider', '$httpProvider',
         function($routeProvider, $locationProvider, $httpProvider) {
             $locationProvider.html5Mode(true);
