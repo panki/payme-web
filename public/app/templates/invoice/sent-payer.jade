@@ -9,11 +9,11 @@
       .col-xs-12.col-md-3.col-md-offset-3  
         .form-group
           label Кому
-          .form-control-static {{ invoice.owner_name }}
+          .form-control-static {{ invoice.owner.email }}
         .form-group
           label Сумма
           .form-control-static {{ invoice.amount | currency }}
-        .form-group
+        .form-group(ng-visible='invoice.text')
           label Описание
           .form-control-static {{ invoice.text }}
         .form-group

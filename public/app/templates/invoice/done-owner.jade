@@ -11,8 +11,8 @@
     .col-xs-12.col-md-3.col-md-offset-3
       .form-group
         label Кем
-        .form-control-static {{ invoice.owner.email }}
-      .form-group
+        .form-control-static {{ invoice.payer.email }}
+      .form-group(ng-visible='invoice.text')
         label Комментарий
         .form-control-static {{ invoice.text }}
       .form-group
