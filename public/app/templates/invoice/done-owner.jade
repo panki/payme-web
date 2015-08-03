@@ -28,10 +28,10 @@
         label На карту
         .form-control-static {{ invoice.owner_card.masked_number }}
           
-      .form-group
+      .form-group(ng-visible='invoice.state="paid"')
         label Дата оплаты
         .form-control-static {{ invoice.updated_at | date }}
 
-    .col-xs-12.col-md-6.col-md-offset-3
+    .col-xs-12.col-md-6.col-md-offset-3(ng-visible='invoice.state="paid"')
       .form-group
         button.btn.btn-primary.btn-block(ng-click='saveReceipt()') Сохранить квитанцию в PDF
