@@ -10,7 +10,7 @@
             $scope.submitting = false;
             
             $scope.formData = {
-                expire_at: '2016-01-01',
+                expire_at: moment().add(7, 'days').format('YYYY-MM-DD'),
                 amount: $scope.invoice.amount
             };
             
