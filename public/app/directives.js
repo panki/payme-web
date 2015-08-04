@@ -32,11 +32,16 @@
             };
         })
         .directive('zeroInput', ["$parse", function($parse) {
+            var expr = new RegExp("^[0-9,]*$");
             return {
                 restrict: 'A',
                 require: '?ngModel',
                 link: function(scope, element, attrs, ngModel) {
                     scope.$watch(attrs.ngModel, function(newValue, oldValue) {
+                        if (newValue != undefined && !expr.test(newValue)) {
+                            $parse(attrs.ngModel).assign(scope, oldValue);
+                            return;
+                        }
                         if (newValue == undefined) {
                             $parse(attrs.ngModel).assign(scope, 0);
                         }
