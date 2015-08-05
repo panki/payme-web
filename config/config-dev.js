@@ -1,6 +1,6 @@
 var config = {
-    apiUrl: 'http://dev.payme4.ru/api',    // No trailing slash.
-    baseUrl: 'http://dev.payme4.ru',       // No trailing slash.
+    apiUrl: 'http://127.0.0.1:5000/api',    // No trailing slash.
+    baseUrl: 'http://127.0.0.1:3000',       // No trailing slash.
     redis: {
         host: '127.0.0.1',
         port: 6379,
@@ -9,19 +9,21 @@ var config = {
     auth: {
         deviceTtlMs: 10 * 365 * 24 * 3600 * 1000    // 10 years.
     },
-    mailer: {
+    client: {
+        device: {
+            id: '63ef2d03-5251-409b-b037-0c22532c60c5',
+            userAgent: 'Payme web client'
+        }
+    },
+    mail: {
         from: 'Dev payme robot <robot@dev.payme4.ru>',
         transport: {
             smtp: {
                 host: 'localhost',
-                port: 25,
+                port: 22225,
                 secure: false,
                 ignoreTLS: true
             }
-        },
-        device: {
-            id: '63ef2d03-5251-409b-b037-0c22532c60c5',
-            userAgent: 'Payme Mailer'
         }
     },
     invoices: {

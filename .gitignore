@@ -1,12 +1,11 @@
 # Project
 /config/config.js
 /bower_components/
-/mailer/config.js
 /public/deps/
 /public/build/
 /var/
-/web/config.js
-/worker/config.js
+/payme_web/config.js
+/payme_worker/config.js
 
 # JetBrains IDEs
 *.iml
