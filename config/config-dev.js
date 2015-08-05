@@ -9,7 +9,13 @@ var config = {
     auth: {
         deviceTtlMs: 10 * 365 * 24 * 3600 * 1000    // 10 years.
     },
-    mailer: {
+    client: {
+        device: {
+            id: '63ef2d03-5251-409b-b037-0c22532c60c5',
+            userAgent: 'Payme web client'
+        }
+    },
+    mail: {
         from: 'Dev payme robot <robot@dev.payme4.ru>',
         transport: {
             smtp: {
@@ -18,10 +24,6 @@ var config = {
                 secure: false,
                 ignoreTLS: true
             }
-        },
-        device: {
-            id: '63ef2d03-5251-409b-b037-0c22532c60c5',
-            userAgent: 'Payme Mailer'
         }
     },
     invoices: {

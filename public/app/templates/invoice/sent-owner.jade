@@ -7,11 +7,11 @@
       .form-group
         label От
         br
-        input.form-control(ng-model='invoice.owner.email' readonly)
+        input.form-control(ng-model='invoice.payer.email' readonly)
       .form-group
         label Кому
         br
-        input.form-control(ng-model='invoice.payer.email' readonly)
+        input.form-control(ng-model='invoice.owner.email' readonly)
       .form-group
         label Сумма
         br
@@ -27,6 +27,6 @@
       .form-group
         label Куда перевести деньги
         br
-        input.form-control(ng-model='invoice.owner_card_number' readonly)
+        input.form-control(ng-model='invoice.owner_card.masked_number' readonly)
       .form-group
         button.btn.btn-default(ng-click="openCancelDialog()") Отменить счет

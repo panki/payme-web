@@ -2,7 +2,7 @@
 
 
 NAME=web
-EXEC="node web/main.js"
+EXEC="node payme_web/main.js"
 export NODE_ENV="production"
 
 source $(dirname $0)/daemon

@@ -15,7 +15,7 @@ var nodemon = require('gulp-nodemon');
 var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
-var web_config = require('./web/config');
+var web_config = require('./payme_web/config');
 
 
 function makeNgConfig() {
@@ -104,9 +104,9 @@ gulp.task('dev', function() {
     gulp.watch('public/app/**/*.jade', ['app:templates']);
     
     nodemon({
-        script: 'web/main.js',
+        script: 'payme_web/main.js',
         ext: 'js',
-        watch: './web'
+        watch: './payme_web'
     });
 });
 
