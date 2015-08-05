@@ -20,7 +20,7 @@ var config = {
         transport: {
             smtp: {
                 host: 'localhost',
-                port: 22225,
+                port: 25,
                 secure: false,
                 ignoreTLS: true
             }
