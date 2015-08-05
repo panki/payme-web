@@ -24,11 +24,32 @@
         .directive('jmask', function() {
             return {
                 restrict: 'A',
-                link: function(scope, elem, attr) {
-                    if (attr.mask) {
-                        elem.mask(attr.mask, {placeholder: attr.placeholder});
+                link: function(scope, element, attrs) {
+                    if (attrs.mask) {
+                        element.mask(attrs.mask, {placeholder: attrs.placeholder});
                     }
                 }
             };
-        });
+        })
+        .directive('zeroInput', ["$parse", function($parse) {
+            var expr = new RegExp("^[0-9,]*$");
+            return {
+                restrict: 'A',
+                require: '?ngModel',
+                link: function(scope, element, attrs, ngModel) {
+                    scope.$watch(attrs.ngModel, function(newValue, oldValue) {
+                        if (newValue != undefined && !expr.test(newValue)) {
+                            $parse(attrs.ngModel).assign(scope, oldValue);
+                            return;
+                        }
+                        if (newValue == undefined) {
+                            $parse(attrs.ngModel).assign(scope, 0);
+                        }
+                        if (oldValue == 0 && newValue != undefined) {
+                            $parse(attrs.ngModel).assign(scope, parseInt(newValue, 10));
+                        }
+                    }, true);
+                }
+            }
+        }]);
 }());
