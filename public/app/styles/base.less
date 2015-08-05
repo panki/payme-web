@@ -1,4 +1,5 @@
 @bgDefault: #0066ca;
+@whiteFade: #7db1e4;
 
 html {
   position: relative;
@@ -56,29 +57,43 @@ a {
   margin-bottom: 0px;
 }
 
+#bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: url('/public/app/images/background.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: .2;
+
+}
+
 // Navbar expanded
-@media (min-width: 768px){
+@media (min-width: 768px) {
     .navbar-default .navbar-nav > li > a {
         line-height: 80px;
         font-size: 130%;
         margin: 0px 20px;
+        text-decoration: underline;
     }
-    .navbar .navbar-collapse {    
+    .navbar .navbar-collapse {
         text-align: center;
     }
     .navbar .navbar-brand {
-        padding: 2px;
+        padding: 34px;
+        height: auto;
     }
     .navbar .navbar-brand .logo {
-        background-image: url('/public/mailer/images/logo.jpg');
-        width: 106px;
-        height: 98px;
+        background-image: url('/public/app/images/payme_logo_white.png');
+        width: 160px;
+        height: 45px;
     }
 }
 
 // Navbar collapsed
 @media (max-width: 768px){
-    .navbar .navbar-collapse {    
+    .navbar .navbar-collapse {
         text-align: right;
     }
     .navbar .navbar-brand {
@@ -100,3 +115,20 @@ h1 {
   margin-bottom: 40px;
   text-align: center;
 }
+
+.form-control {
+  background-color: @bgDefault;
+  border-color: @whiteFade;
+  color: #fff;
+  border-radius: 0;
+}
+
+.form-control::-webkit-input-placeholder { color: @whiteFade; }
+.form-control::-moz-placeholder { color: @whiteFade; }
+.form-control:-ms-input-placeholder {color: @whiteFade; }
+
+.input-lg {
+  height: 50px;
+}
+
+.mt100 { margin-top: 100px; }

@@ -1,20 +1,19 @@
 h1 Главная
 
 .container(ng-controller="InvoiceNewCtrl")
-  .row
-    .col-xs-12.col-md-6.col-md-offset-3
-      form(id="new_invoice", name="form", ng-submit='submit(form.$valid)')
-        fieldset
-          .form-group
-            label(for="owner_email") Я
-            input.input-lg.form-control(type="text", name="owner_email", ng-model="invoice.owner_email", placeholder="Ваш e-mail", required)
-          .form-group
-            label(for="amount") хочу получить
-            .input-group.amount-group
-              input.input-lg.form-control(id="amount", type="text", name="amount", ng-model="invoice.amount", maxlength="5", required, autosize, zero-input)
-              span.input-group-addon &#8381;
-          .form-group
-            label(for="payer_email") от
-            input.input-lg.form-control(type="text", name="payer_email", ng-model="invoice.payer_email", placeholder="От e-mail", required)
-          .form-group
-            button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") Получить деньги
+  form(id="new_invoice", name="form", ng-submit='submit(form.$valid)')
+    fieldset.row
+      .form-group.col-xs-12.col-md-8.col-md-offset-1
+        .input-group.amount-group
+          input.input-lg.form-control(id="amount", type="text", name="amount", ng-model="invoice.amount", maxlength="5", required, autosize, zero-input)
+          span.input-group-addon &#8381;
+
+    fieldset.row.mt100
+      .form-group.col-xs-12.col-sm-6.col-md-4
+        label(for="payer_email") от
+        input.input-lg.form-control(type="text", name="payer_email", ng-model="invoice.payer_email", placeholder="От e-mail", required)
+      .form-group.col-xs-12.col-sm-6.col-md-4
+        label(for="owner_email") Я
+        input.input-lg.form-control(type="text", name="owner_email", ng-model="invoice.owner_email", placeholder="Ваш e-mail", required)
+      .form-group.col-xs-12.col-sm-6.col-sm-offset-6.col-md-4.col-md-offset-0
+        button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") Получить деньги
