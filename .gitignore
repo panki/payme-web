@@ -4,6 +4,7 @@
 /public/deps/
 /public/build/
 /var/
+/payme/config.js
 /payme_web/config.js
 /payme_worker/config.js
 

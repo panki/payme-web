@@ -1,1 +1,0 @@
-/Users/elquatro/projects/payme-web/config/config-dev.js
