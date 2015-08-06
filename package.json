@@ -21,6 +21,7 @@
     "ioredis": "^1.5.5",
     "jade": "~1.9.2",
     "moment": "^2.10.6",
+    "moment-timezone": "^0.4.0",
     "morgan": "~1.5.3",
     "nodemailer": "^1.4.0",
     "nodemailer-smtp-transport": "^1.0.3",

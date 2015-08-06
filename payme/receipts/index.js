@@ -1,5 +1,5 @@
 var PDFDocument = require('pdfkit');
-var moment = require('moment');
+var moment = require('../moment');
 require('moment/locale/ru');
 var accounting = require('accounting');
 var config = require('../config');
