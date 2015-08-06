@@ -5,7 +5,7 @@ var Redis = require('ioredis');
 
 var config = require('../config');
 var render = require('./templates')(__dirname + '/templates');
-var mqx = require('../../x/mqx');
+var mqx = require('../x/mqx');
 var mandrill = require('../mandrill');
 var transport = require('./transport');
 var redis = new Redis(config.redis);

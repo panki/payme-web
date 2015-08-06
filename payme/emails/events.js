@@ -1,6 +1,6 @@
 var Redis = require('ioredis');
 var config = require('../config');
-var mqx = require('../../x/mqx');
+var mqx = require('../x/mqx');
 var redis = new Redis(config.redis);
 var mq = new mqx.RedisMQ('mq', redis);
 var Client = require('../client');
