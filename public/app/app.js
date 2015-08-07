@@ -1,12 +1,14 @@
 (function() {
     'use strict';
-    var app = angular.module('app', ['ui.bootstrap',
+    var app = angular.module('app', ['ui.bootstrap', 'credit-cards',
         'app.index',
         'app.client',
+        'app.filters',
+        'app.services',
         'app.directives',
         'app.invoice',
         'app.invoice_new',
-        'autosizeInput']);
+        'autosizeInput', 'ui.mask']);
 
     app.config(['$routeProvider', '$locationProvider', '$httpProvider',
         function($routeProvider, $locationProvider, $httpProvider) {

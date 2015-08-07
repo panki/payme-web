@@ -1,54 +1,23 @@
 .container(ng-controller='InvoiceDraftCtrl')
-  form(name='form' ng-submit='submit(form.$valid)' novalidate).row
+  form(id="send_invoice", name='form', ng-submit='submit(form.$valid)', novalidate).row
     fieldset(ng-disabled="submitting")
-      .col-xs-12.col-md-6.col-md-offset-3
-        h1 Куда перевести деньги?
-        
-        .alert.alert-warning(
-            ng-show="form.sender_card_number.$invalid && !form.sender_card_number.$pristine").
-              Укажите корректный номер карты
-        
-      .row
-        .col-xs-12.col-md-3.col-md-offset-3
-          .form-group
-            label(for="owner") Кому {{ invoice.owner.email }}
-            input.form-control(type="text", id="owner", name="owner", ng-model="formData.owner", placeholder="Имя (необязательно)")
-              
-        .col-xs-12.col-md-3
-          .form-group
-            label(for="payer") От {{ invoice.payer.email }}
-            input.form-control(type="text", id="payer", name="payer", ng-model="formData.payer", placeholder="Имя (необязательно)")
-            
-      .row
-        .col-xs-12.col-md-3.col-md-offset-3
-          .form-group
-            label(for="amount") Сумма
-            input.form-control(type="text", id="amount", name="amount", ng-model='formData.amount')
-            
-        .col-xs-12.col-md-3
+      .col-xs-12.col-md-10.col-md-offset-1
+        h1 Осталось ввести номер карты
+        p Затем мы отправим счет на {{ invoice.amount | currency }} по адресу {{ invoice.payer.email }}. Так же можно добавить подробности: имена, комментарий к счету и указать дату оплаты. 
+        p &nbsp;
+      .col-xs-12.col-md-12.col-md-offset-1
+        .col-xs-12.col-md-4(id="slide1")
           .form-group
             label(for='owner_card_number') Номер карты
-            input.form-control(type="text", id="owner_card_number", name="owner_card_number",
-            jmask,
-            mask="9999 9999 9999 9999",
+            input.input-lg.form-control(type="text", id="owner_card_number", name="owner_card_number",
             ng-model="formData.owner_card_number",
+            maxlength="16",
+            inputmode="numeric",
+            autocomplete="cc-number",
+            autocompletetype="cc-number",
+            x-autocompletetype="cc-number",
+            ui-mask='9999 9999 9999 9999',
             required)
-      
-      .row
-        .col-xs-12.col-md-6.col-md-offset-3
-          .form-group
-            label(for='text') Описание
-            input.form-control(type="text", id="text", name="text", ng-model="formData.text", placeholder="Необязательно")
-        
-      .row
-        .col-xs-12.col-md-6.col-md-offset-3
-          .form-group
-            .checkbox
-              label
-                input(type='checkbox'
-                ng-model="formData.remind")
-                = "Ежедневно напоминать об оплате."
-    
           .form-group
             .checkbox
               label
@@ -56,12 +25,42 @@
                 ng-model="formData.owner_terms_accept" 
                 required)
                 = "Я согласен(-на) на обработку персональных данных и с правилами работы сервиса."
-    
-      .row
-        .col-xs-12.col-md-6.col-md-offset-3
           .form-group
-            button.btn.btn-primary.btn-block(type="submit"
-            ng-disabled="form.$invalid") Отправить
-  
+            button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") Отправить счет сразу
+            .show-advanced или 
+              a(ng-click="toggleAdvancedForm()", href="") добавить подробности и напоминания
+              
+        .col-xs-12.col-md-5.card-col(id="slide2")
+          label Куда перевести деньги
+          card-widget(card-number-input='#owner_card_number')
+          .show-advanced.hide(id="edit_card")
+              a(ng-click="toggleAdvancedForm()", href="") изменить данные карты
+          
+        .col-xs-12.col-md-5.offcanvas(id="slide3")
+          .form-group
+            label(for="owner") Кому {{ invoice.owner.email }}
+            input.input-lg.form-control(type="text", id="owner", name="owner", ng-model="formData.owner", placeholder="Имя (необязательно)")
+          .form-group
+            label(for="payer") От {{ invoice.payer.email }}
+            input.input-lg.form-control(type="text", id="payer", name="payer", ng-model="formData.payer", placeholder="Имя (необязательно)")
+          .form-group
+            label(for='text') Описание
+            input.input-lg.form-control(type="text", id="text", name="text", ng-model="formData.text", placeholder="Необязательно")
+          .form-group
+            .checkbox
+              label
+                input(type='checkbox'
+                ng-model="formData.remind")
+                = "Ежедневно напоминать об оплате."
+          .form-group
+            .checkbox
+              label
+                input(type='checkbox' 
+                ng-model="formData.owner_terms_accept" 
+                required)
+                = "Я согласен(-на) на обработку персональных данных и с правилами работы сервиса."
+          .form-group
+            button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") Отправить счет
+      
         .col-xs-12.col-md-6.col-md-offset-3(ng-show="submitting")
           .alert.alert-warning Работаем...

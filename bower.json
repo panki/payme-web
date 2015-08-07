@@ -19,7 +19,9 @@
     "angular-i18n": "~1.4.1",
     "jquery-maskedinput": "~1.4.1",
     "moment": "^2.10.6",
-    "angular-input-autosize": "~1.0.0"
+    "angular-input-autosize": "~1.0.0",
+    "angular-ui-mask": "~1.4.1",
+    "angular-credit-cards": "~2.3.5"
   },
   "overrides": {
     "angular-i18n": {

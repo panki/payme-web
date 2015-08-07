@@ -14,6 +14,12 @@
                 amount: $scope.invoice.amount
             };
             
+            $scope.toggleAdvancedForm = function() {
+                $('#slide1').toggleClass('offcanvas');
+                $('#slide3').toggleClass('offcanvas');
+                $('#edit_card').toggleClass('hide');
+            };
+            
             $scope.submit = function(valid) {
                 if (!valid) {
                     console.log('Submit aborted, not valid');
