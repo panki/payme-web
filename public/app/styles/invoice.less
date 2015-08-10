@@ -84,8 +84,16 @@
     transition: width 0.3s ease, height 0.3s ease, margin @marginDuration ease, padding 0.3s ease, opacity @opacityDuration ease;
 }
 
+#slide1, #slide2, #slide3 {
+  padding-left: 0;
+  padding-right: 30px;
+}
+
 @media (max-width: 1024px) {
   #slide2 {
     display: none;
+  }
+  #slide1, #slide2, #slide3 {
+    padding-right: 0;
   }
 }
