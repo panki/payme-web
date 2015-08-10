@@ -106,7 +106,7 @@
                     
                     cardNumberUpdated(angular.element(attrs.cardNumberInput).data('$ngModelController').$modelValue);
                 },
-                templateUrl: 'public/build/app/widgets/credit_card.html'
+                templateUrl: 'public/build/templates/widgets/credit_card.html'
             }
         }]);
 }());

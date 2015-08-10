@@ -88,7 +88,7 @@
             };
             
             $scope.sendSuccess = function () {
-                $scope.showChild('/public/build/app/invoice/send_success.html');    
+                $scope.showChild('/public/build/templates/invoice/send_success.html');    
             };
 
             $scope.reloadChild = function() {
@@ -99,7 +99,7 @@
                 switch ($scope.invoice.state) {
                     case 'draft':
                         if (isOwner) {
-                            $scope.showChild('/public/build/app/invoice/draft.html');
+                            $scope.showChild('/public/build/templates/invoice/draft.html');
                             break;
                         }
 
@@ -108,9 +108,9 @@
 
                     case 'sent':
                         if (isOwner) {
-                            $scope.showChild('/public/build/app/invoice/sent-owner.html');
+                            $scope.showChild('/public/build/templates/invoice/sent-owner.html');
                         } else {
-                            $scope.showChild('/public/build/app/invoice/sent-payer.html');
+                            $scope.showChild('/public/build/templates/invoice/sent-payer.html');
                         }
                         break;
 
@@ -120,9 +120,9 @@
                     case 'refused':
                     case 'cancelled':
                         if (isOwner) {
-                            $scope.showChild('/public/build/app/invoice/done-owner.html');
+                            $scope.showChild('/public/build/templates/invoice/done-owner.html');
                         } else {
-                            $scope.showChild('/public/build/app/invoice/done-payer.html');
+                            $scope.showChild('/public/build/templates/invoice/done-payer.html');
                         }
                         break;
                 }

@@ -42,7 +42,7 @@
         $scope.openRefuseDialog = function () {
             var modalInstance = $modal.open({
                 animation: true,
-                templateUrl: '/public/build/app/invoice/modals/refuse.html',
+                templateUrl: '/public/build/templates/invoice/modals/refuse.html',
                 controller: 'InvoiceRefuseCtrl',
                 size: null,
                 resolve: {

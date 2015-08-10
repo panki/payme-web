@@ -6,16 +6,16 @@
         function($routeProvider) {
             $routeProvider
                 .when('/', {
-                    templateUrl: '/public/build/app/index.html'
+                    templateUrl: '/public/build/templates/index.html'
                 })
                 .when('/howto', {
-                    templateUrl: '/public/build/app/howto.html'
+                    templateUrl: '/public/build/templates/howto.html'
                 })
                 .when('/support', {
-                    templateUrl: '/public/build/app/support.html'
+                    templateUrl: '/public/build/templates/support.html'
                 })
                 .when('/advantages', {
-                    templateUrl: '/public/build/app/advantages.html'
+                    templateUrl: '/public/build/templates/advantages.html'
                 });
         }
     ]);

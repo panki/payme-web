@@ -9,7 +9,7 @@
         $scope.openCancelDialog = function() {
             var modalInstance = $modal.open({
                 animation: true,
-                templateUrl: '/public/build/app/invoice/modals/cancel.html',
+                templateUrl: '/public/build/templates/invoice/modals/cancel.html',
                 controller: 'InvoiceCancelCtrl',
                 size: null,
                 resolve: {

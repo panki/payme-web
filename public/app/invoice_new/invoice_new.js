@@ -9,10 +9,10 @@
 
             $routeProvider
                 .when('/invoice_new', {
-                    templateUrl: '/public/build/app/invoice_new/index.html'
+                    templateUrl: '/public/build/templates/invoice_new/index.html'
                 })
                 .when('/invoice_new/success', {
-                    templateUrl: '/public/build/app/invoice_new/success.html',
+                    templateUrl: '/public/build/templates/invoice_new/success.html',
                     controller: 'InvoiceNewSuccessCtrl'
                 });
         }]);
