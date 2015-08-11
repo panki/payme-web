@@ -15,6 +15,10 @@
           | Плательщик, {{ invoice.payer_name }} 
           span.font-light {{ invoice.payer.email }}
           | , оплатил счет {{ invoice.paid_at | date:'d MMMM' }}.
+        
+        div(ng-show="invoice.text")
+          h3 КОММЕНТАРИЙ
+          p {{ invoice.text }}
 
       div(ng-switch-when="failed")
         h1
@@ -44,7 +48,7 @@
         p
           | Плательщик, {{ invoice.payer_name }} 
           span.font-light {{ invoice.payer.email }}
-          | , не оплатил счет до установленной даты.
+          | , не оплатил счет до указанной даты.
 
       div(ng-switch-when="refused")
         h1
