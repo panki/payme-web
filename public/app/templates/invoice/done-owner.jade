@@ -1,8 +1,11 @@
-.container(ng-controller='InvoiceDoneCtrl')
-  .row
-    .col-xs-12.col-md-10.col-md-offset-1(ng-switch="invoice.state")
+.container.invoice(ng-controller='InvoiceDoneCtrl' data-state="{{ invoice.state }}")
+  .row()
+    .col-xs-12.col-md-10.col-md-offset-1(
+    ng-switch="invoice.state")
+
       div(ng-switch-when="paid")
         h1
+          span.invoice-header-icon &nbsp; 
           | Счет на сумму {{ invoice.amount | currency:"₽":0 }} оплачен
         p
           | Вы, {{ invoice.owner_name }} 
@@ -14,7 +17,9 @@
           | , оплатил счет {{ invoice.paid_at | date:'d MMMM' }}.
 
       div(ng-switch-when="failed")
-        h1 Ошибка оплаты счета на сумму {{ invoice.amount | currency:"₽":0 }}
+        h1
+          span.invoice-header-icon &nbsp;
+          | Ошибка оплаты счета на сумму {{ invoice.amount | currency:"₽":0 }}
         p
           | Вы, {{ invoice.owner_name }} 
           span.font-light {{ invoice.owner.email }}
@@ -26,9 +31,11 @@
         h3 Описание ошибки
         p
           | {{ invoice.failure_reason }}
-      
+
       div(ng-switch-when="expired")
-        h1 Истекло время оплаты счета на сумму {{ invoice.amount | currency:"₽":0 }}
+        h1
+          span.invoice-header-icon &nbsp;
+          | Истекло время оплаты счета на сумму {{ invoice.amount | currency:"₽":0 }}
         p
           | Вы, {{ invoice.owner_name }} 
           span.font-light {{ invoice.owner.email }}
@@ -38,9 +45,11 @@
           | Плательщик, {{ invoice.payer_name }} 
           span.font-light {{ invoice.payer.email }}
           | , не оплатил счет до установленной даты.
-      
+
       div(ng-switch-when="refused")
-        h1 Плательщик отказался от оплаты счета на сумму {{ invoice.amount | currency:"₽":0 }}
+        h1
+          span.invoice-header-icon &nbsp;
+          | Плательщик отказался от оплаты счета на сумму {{ invoice.amount | currency:"₽":0 }}
         p
           | Вы, {{ invoice.owner_name }} 
           span.font-light {{ invoice.owner.email }}
@@ -52,22 +61,23 @@
         h3(ng-show="invoice.refuse_reason") Причина отказа
         p
           | {{ invoice.refuse_reason }}
-      
+
       div(ng-switch-when="cancelled")
         h1
+          span.invoice-header-icon &nbsp;
           | Счет на сумму {{ invoice.amount | currency:"₽":0 }} отменен
         p
           | Вы, {{ invoice.owner_name }} 
           span.font-light {{ invoice.owner.email }}
-          | , {{ invoice.cancelled_at | date:'d MMMM' }} отменили счет 
-          | , созданный {{ invoice.created_at | date:'d MMMM' }}.
+          | , {{ invoice.cancelled_at | date:'d MMMM' }} отменили счет, 
+          | созданный {{ invoice.created_at | date:'d MMMM' }}.
         p
           | Плательщик — {{ invoice.payer_name }} 
           span.font-light {{ invoice.payer.email }}
           | .
-      
+
       br
-      
+
   .row(ng-show='invoice.state == "paid"')
     .col-xs-12.col-md-4.col-md-offset-1
       button.btn.btn-primary.btn-lg.btn-block(ng-click='saveReceipt()') СОХРАНИТЬ КВИТАНЦИЮ В PDF

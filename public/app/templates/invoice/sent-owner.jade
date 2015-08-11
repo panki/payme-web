@@ -1,7 +1,9 @@
-.container(ng-controller='InvoiceSentOwnerCtrl')
+.container.invoice(ng-controller='InvoiceSentOwnerCtrl' data-state="{{ invoice.state }}")
   .row
     .col-xs-12.col-md-10.col-md-offset-1
-      h1 Счет на сумму {{ invoice.amount | currency:"₽":0 }} ожидает оплаты
+      h1
+        span.invoice-header-icon &nbsp;
+        | Счет на сумму {{ invoice.amount | currency:"₽":0 }} ожидает оплаты
 
   .row
     .col-xs-12.col-md-5.col-md-offset-1

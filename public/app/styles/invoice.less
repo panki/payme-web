@@ -86,3 +86,32 @@
     padding-right: 0;
   }
 }
+
+.invoice {
+  &-header-icon {
+    width: 58px;
+    height: 58px;
+    margin-left: -68px;
+    margin-right: 10px;
+    display: inline-block;
+  }
+
+  &[data-state="sent"] {
+    .invoice-header-icon { background-image: url("/public/app/images/invoice-header-sent.png") }
+  }
+  &[data-state="paid"] {
+    .invoice-header-icon { background-image: url("/public/app/images/invoice-header-paid.png") }
+  }
+  &[data-state="failed"] {
+    .invoice-header-icon { background-image: url("/public/app/images/invoice-header-failed.png") }
+  }
+  &[data-state="expired"] {
+    .invoice-header-icon { background-image: url("/public/app/images/invoice-header-expired.png") }
+  }
+  &[data-state="refused"] {
+    .invoice-header-icon { background-image: url("/public/app/images/invoice-header-refused.png") }
+  }
+  &[data-state="cancelled"] {
+    .invoice-header-icon { background-image: url("/public/app/images/invoice-header-cancelled.png") }
+  }
+}
