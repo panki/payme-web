@@ -5,8 +5,8 @@
     module.controller('InvoiceSentOwnerCtrl', ['$scope', '$modal', function($scope) {
         var $parent = $scope.$parent;
         $scope.invoice = angular.copy($parent.invoice);
-
-        $scope.openCancelDialog = function() {
+        
+        $scope.cancel = function() {
             $parent.showCancel();
         };
     }]);

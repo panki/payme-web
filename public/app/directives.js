@@ -52,6 +52,7 @@
                 }
             };
         }])
+        
         .directive('cardWidget', ['Client', 'cardTypeDetector', 'creditcards', function(client, cardTypeDetector, creditcards) {
             return {
                 restrict: 'E',
@@ -105,6 +106,21 @@
                     });
                     
                     cardNumberUpdated(angular.element(attrs.cardNumberInput).data('$ngModelController').$modelValue);
+                },
+                templateUrl: 'public/build/templates/widgets/credit_card.html'
+            };
+        }])
+    
+        .directive('cardStatic', ['cardTypeDetector', function(cardTypeDetector) {
+            return {
+                restrict: 'E',
+                scope: {
+                    cardNumber: '=',
+                    cardType: '=',
+                    cardBank: '='
+                },
+                link: function(scope, element, attrs) {
+                    scope.cardType = cardTypeDetector(scope.cardNumber);
                 },
                 templateUrl: 'public/build/templates/widgets/credit_card.html'
             };
