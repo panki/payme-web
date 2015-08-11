@@ -12,7 +12,8 @@
         $scope.fee = {
             loading: false,
             calculated: false,
-            value: null
+            value: null,
+            error: null
         };
         
         // Calculate fee
@@ -25,14 +26,15 @@
             $scope.fee.calculated = false;
             $scope.fee.value = null;
             if ($scope.card.number) {
+                $parent.clearError();
                 $scope.fee.loading = true;
                 client.invoices.calcFee($scope.invoiceId, $scope.card.number.replace(/ /g, '')).then(function (result) {
                     $scope.fee.value = result.fee;
                     $scope.fee.calculated = true;
                 }).catch(function (error) {
-                    alert(error);
+                    $parent.onError(error);
                 }).finally(function() {
-                    $scope.fee.loading = false;                        
+                    $scope.fee.loading = false;                   
                 });
             }
         };

@@ -39,6 +39,10 @@
                 }
                 $scope.error = error;
             };
+            
+            $scope.clearError = function() {
+                $scope.error = null;
+            };
 
             $scope.loadInvoice = function() {
                 $scope.state = 'loading';

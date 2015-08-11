@@ -59,6 +59,7 @@
                 scope: {
                     cardNumber: '=',
                     cardNumberDisplay: '=',
+                    cardExpDate: '=',
                     cardType: '=',
                     cardBank: '='
                 },
@@ -104,6 +105,23 @@
                         cardNumberUpdated($(this).val());
                         scope.$apply();
                     });
+                    
+                    function cardExpDateUpdated(value) {
+                        scope.cardExpDate = value;
+                    }
+                    
+                    if (attrs.cardExpDateInput) {
+                        $(attrs.cardExpDateInput)
+                        .keyup(function() {
+                            cardExpDateUpdated($(this).val());
+                            scope.$apply();
+                        })
+                        .blur(function() {
+                            cardExpDateUpdated($(this).val());
+                            scope.$apply();
+                        });
+                        cardExpDateUpdated($(attrs.cardExpDateInput).val());
+                    }
                     
                     cardNumberUpdated(angular.element(attrs.cardNumberInput).data('$ngModelController').$modelValue);
                 },
