@@ -105,7 +105,7 @@
                 lookup: function (bin) {
                     return get('/banks/lookup/' + bin);
                 }
-            }
+            };
 
             return this;
         }]);

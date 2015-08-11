@@ -91,6 +91,7 @@
   // additional predefined global variables
   "globals"       : {
     "$": true,
-    "angular": true
+    "angular": true,
+    "moment": true
   }
 }
