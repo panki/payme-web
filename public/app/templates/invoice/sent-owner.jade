@@ -1,32 +1,35 @@
-.container(ng-controller='InvoiceSentOwnerCtrl')
-  form(novalidate).row
-    .col-xs-12.col-md-6.col-md-offset-3
-      h1 Ожидание платежа
+.container.invoice(ng-controller='InvoiceSentOwnerCtrl' data-state="{{ invoice.state }}")
+  .row
+    .col-xs-12.col-md-10.col-md-offset-1
+      h1
+        span.invoice-header-icon &nbsp;
+        | Счет на сумму {{ invoice.amount | currency:"₽":0 }} ожидает оплаты
 
-    .col-xs-12.col-md-3.col-md-offset-3
-      .form-group
-        label От
+  .row
+    .col-xs-12.col-md-5.col-md-offset-1
+      h3 ИНФОРМАЦИЯ О ЗАПРОСЕ
+      p
+        | Вы, {{ invoice.owner_name }} 
+        span.font-light {{ invoice.owner.email }}
+        | , выставили счет {{ invoice.created_at | date:'d MMMM' }}
+        | и просите оплатить его до {{ invoice.expire_at | date:'d MMMM' }}.
+        | Плательщик — {{ invoice.payer_name }} 
+        span.font-light {{ invoice.payer.email }}
+        | . Мы отправили ему письмо с предложением оплатить счет.
         br
-        input.form-control(ng-model='invoice.payer.email' readonly)
-      .form-group
-        label Кому
-        br
-        input.form-control(ng-model='invoice.owner.email' readonly)
-      .form-group
-        label Сумма
-        br
-        input.form-control(ng-model='invoice.amount' readonly)
-      .form-group
-        label Комментарий
-        input.form-control(ng-model='invoice.text' readonly)
-      .form-group
-        label Оплатить до
-        input.form-control(ng-model='invoice.expire_at' readonly)
+        
+      div(ng-show="invoice.text")
+        h3 КОММЕНТАРИЙ
+        p {{ invoice.text }}
 
-    .col-xs-12.col-md-3
-      .form-group
-        label Куда перевести деньги
-        br
-        input.form-control(ng-model='invoice.owner_card.masked_number' readonly)
-      .form-group
-        button.btn.btn-default(ng-click="openCancelDialog()") Отменить счет
+    .col-xs-12.col-md-5
+      h3 КАРТА ДЛЯ ПОЛУЧЕНИЯ
+      card-static(
+      card-number="invoice.owner_card.masked_number"
+      card-bank="invoice.owner_card.bank")
+
+  .row
+    .col-xs-12.col-md-3.col-md-offset-1
+      br
+      button.btn.btn-primary.btn-lg.btn-block(ng-click="cancel()")
+        | ОТМЕНИТЬ СЧЕТ

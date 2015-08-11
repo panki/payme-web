@@ -1,3 +1,10 @@
+.invoice-init-loader {
+  background-image: url("/public/app/images/ajax-loader.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 300px;
+}
+
 #new_invoice #amount {
   font-size: 8em;
   height: auto;
@@ -19,7 +26,6 @@
   outline: 0;
 }
 
-
 #new_invoice .amount-group .input-group-addon{
     background: transparent;
     border: transparent;
@@ -40,26 +46,11 @@
   display: block;
 }
 
-#new_invoice .btn-primary, #send_invoice .btn-primary {
-  height: 50px;
-  border-color: white;
-  background-color: white;
-  border-radius: 0px;
-  margin-top: 22px;
-  color: @whiteFade;
-}
-
 .show-advanced {
   display: block;
   margin: 15px 0;
   text-align: center;
   color: @secondaryText;
-}
-
-.show-advanced a {
-  color: @secondaryText;
-  text-decoration: none;
-  border-bottom: 1px @secondaryText dashed;
 }
 
 #slide3.offcanvas {
@@ -98,44 +89,34 @@
   }
 }
 
+.invoice {
+  &-header-icon {
+    width: 58px;
+    height: 58px;
+    margin-left: -68px;
+    margin-right: 10px;
+    display: inline-block;
+  }
 
-// datetime picker
-
-.input-group-btn .btn:nth-child(2), .input-group-btn .btn:nth-child(3) {
-  border-left: none;
-}
-
-.btn-transparent {
-  border-color: @whiteFade !important;
-  color: #FFF !important;
-  background-color: transparent !important;
-  height: 50px;
-  line-height: 35px;
-}
-.btn-active {
-  background-color: @whiteFade !important;
-  height: 50px;
-  line-height: 35px;
-}
-
-.datetimepicker {
-  color: @whiteFade;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-ul.dropdown-menu {
-  padding: 5px;
-}
-
-ul.dropdown-menu .btn {
-  border: none;
-}
-
-button:focus,
-button:active,
-button:hover
-{
-    outline:0px !important;
-    -webkit-appearance:none;
+  &[data-state="draft"] {
+    .invoice-header-icon { background-image: url("/public/app/images/invoice-header-draft.png") }
+  }
+  &[data-state="sent"] {
+    .invoice-header-icon { background-image: url("/public/app/images/invoice-header-sent.png") }
+  }
+  &[data-state="paid"] {
+    .invoice-header-icon { background-image: url("/public/app/images/invoice-header-paid.png") }
+  }
+  &[data-state="failed"] {
+    .invoice-header-icon { background-image: url("/public/app/images/invoice-header-failed.png") }
+  }
+  &[data-state="expired"] {
+    .invoice-header-icon { background-image: url("/public/app/images/invoice-header-expired.png") }
+  }
+  &[data-state="refused"] {
+    .invoice-header-icon { background-image: url("/public/app/images/invoice-header-refused.png") }
+  }
+  &[data-state="cancelled"] {
+    .invoice-header-icon { background-image: url("/public/app/images/invoice-header-cancelled.png") }
+  }
 }

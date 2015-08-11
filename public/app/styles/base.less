@@ -2,19 +2,20 @@
 @whiteFade: #7db1e4;
 
 @secondaryText: #7db1e4;
+@lightBlueText: #80bfff;
 
 @inputBorder: #3086d9;
 @inputBorderFocused: white;
 
-@baseFontFamily: 'lato';
-@headerFontFamily: 'pragmatica-web';
-@inputFontFamily: 'pragmatica-web';
-
+@baseFontFamily: 'lato', sans-serif;
+@inputFontFamily: 'lato', sans-serif;
+@headerFontFamily: 'lato', 'Helvetica Neue', sans-serif; // pragmatica-web
 
 html {
   position: relative;
   min-height: 100%;
 }
+
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
@@ -33,10 +34,6 @@ body > .container {
   font-size: 1.2em;
 }
 
-.container .text-muted {
-  margin: 20px 0;
-}
-
 .footer > .container {
   padding-right: 15px;
   padding-left: 15px;
@@ -50,18 +47,6 @@ body > .container {
   /* Set the fixed height of the footer here */
   height: 60px;
   background-color: #ffffff;
-}
-
-a {
-  color: #00B7FF;
-}
-
-.navbar-fixed-top {
-  min-height: 130px;
-}
-
-.navbar {
-  margin-bottom: 0px;
 }
 
 .section.invoice-new {
@@ -80,87 +65,22 @@ a {
   color: #464646;
 }
 
-// Navbar expanded
-@media (min-width: 768px) {
-    .navbar-default .navbar-nav > li > a {
-        line-height: 80px;
-        font-size: 130%;
-        margin: 0px 20px;
-        text-decoration: underline;
-    }
-    .navbar .navbar-collapse {
-        text-align: center;
-    }
-    .navbar .navbar-brand {
-        padding: 34px;
-        height: auto;
-    }
-    .navbar .navbar-brand .logo {
-        background-image: url('/public/app/images/payme_logo_white.png');
-        width: 160px;
-        height: 45px;
-        transition: background-image 1s ease-in-out;
-    }
-}
+a {
+  color: #00B7FF;
 
-// Navbar collapsed
-@media (max-width: 768px){
-    .navbar .navbar-collapse {
-        text-align: right;
-    }
-    .navbar .navbar-brand {
-        padding: 2px;
-    }
-    .navbar .navbar-brand .logo {
-        background-image: url('/public/app/images/payme_logo_white.png');
-        width: 160px;
-        height: 45px;
-        transition: background-image 1s ease-in-out;
-    }
-}
-
-@media (max-width: 995px) {
-  .navbar-default .navbar-nav > li > a {
-    margin: 0px 5px;
+  &.ajax-link {
+    color: @secondaryText;
+    text-decoration: none;
+    border-bottom: 1px @secondaryText dashed;
   }
 }
-
-.navbar .navbar-nav {
-    display: inline-block;
-    float: none;
-}
-
-.navbar-default .navbar-nav>li>a,
-.navbar-default .navbar-text {
-  transition: color 1s ease-in-out;
-}
-
-
-.fp-viewing-1-0 .navbar .navbar-brand .logo {
-  background-image: url('/public/app/images/payme_logo_blue.png');
-
-}
-
-.fp-viewing-1-0 .navbar-default .navbar-toggle .icon-bar {
-  background-color: @bgDefault;
-}
-
-.navbar-default .navbar-toggle .icon-bar {
-  transition: background-color 1s ease-in-out;
-}
-
-.fp-viewing-1-0 .navbar-default .navbar-nav>li>a,
-.fp-viewing-1-0 .navbar-default .navbar-text {
-  color: @bgDefault;
-}
-
 
 h1 {
   text-align:left;
   font-family: @headerFontFamily;
-  font-size: 32px;
+  font-size: 48px;
   letter-spacing: 0.03em;
-  font-weight: 300;
+  font-weight: 100;
   margin: 0;
   margin-bottom: 30px;
 }
@@ -181,26 +101,16 @@ h2 strong {
   color: rgba(255, 255, 255, 1)
 }
 
-.form-control {
-  background-color: @bgDefault;
-  border-color: @inputBorder;
-  color: #fff;
-  border-radius: 0;
-  font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
-  font-size: 22px;
-  padding: 6px 12px;
-  font-weight: 100;
+h3 {
+  color: #a3bde6;
+  line-height: 1.5em;
+  font-size: 1em;
+  font-weight: 300;
 }
 
-.form-control::-webkit-input-placeholder { color: @whiteFade; font-weight: 200; font-family: @baseFontFamily}
-.form-control::-moz-placeholder { color: @whiteFade; font-weight: 200; font-family: @baseFontFamily }
-.form-control:-ms-input-placeholder {color: @whiteFade; font-weight: 200; font-family: @baseFontFamily }
-
-.input-lg {
-  height: 50px;
+.font-light {
+  color: @lightBlueText;
 }
-
-.mt100 { margin-top: 100px; }
 
 label {
   font-weight:300;
@@ -237,11 +147,37 @@ input[type="color"]:focus,
   line-height: 1em;
 }
 
-.checkbox label a {
-  color: white;
-  text-decoration: underline;
+div.error .error-icon {
+  background-image: url('/public/app/images/warning.png');
 }
 
-.form-group {
-  margin-bottom: 20px;
+div.error .error-icon {
+  width: 58px;
+  height: 58px;
+  margin-left: -68px;
+  display: block;
+}
+
+div.error .error-text {
+  margin-top: -52px;
+}
+
+div.error {
+  margin-bottom: 30px;
+  padding-left: 41px;
+}
+
+div.error p {
+  line-height: 20px;
+  margin-bottom: 5px;
+}
+
+div.error p.error-header {
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  div.error {
+    padding-left: 68px;
+  }
 }

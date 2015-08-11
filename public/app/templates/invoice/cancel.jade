@@ -1,0 +1,28 @@
+.container(ng-controller='InvoiceCancelCtrl')
+  form(id="cancel_invoice", name="form", ng-submit="submit(form.$valid)", novalidate)
+    fieldset(ng-disabled="submitting")
+      .row
+        .col-xs-12.col-md-10.col-md-offset-1
+          h1 Отмена счёта на сумму {{ invoice.amount | currency:"₽":0 }}
+          p
+            | Вы, {{ invoice.owner_name }} 
+            span.font-light {{ invoice.owner.email }}
+            | , выставили счет {{ invoice.created_at | date:'d MMMM' }}
+            | и просили оплатить до {{ invoice.expire_at | date:'d MMMM' }}.
+            br
+            | Плательщик — {{ invoice.payer_name }} 
+            span.font-light {{ invoice.payer.email }}
+            | . Мы отправим ему письмо с оповещением об отмене счёта.
+          p
+            | Вы действительно хотите отменить запрос на оплату?
+          br
+      .row
+        .col-xs-12.col-md-3.col-md-offset-1
+          .form-group
+            button.btn.btn-primary.btn-lg.btn-block(
+              id="cancel-submit" type="submit" ng-disabled="form.$invalid")
+              | ДА, ОТМЕНИТЬ
+        .col-xs-12.col-md-3
+          .form-group(style="line-height: 50px")
+            | или 
+            a.ajax-link(ng-click="showInvoice()", href="") вернуться к ожиданию
