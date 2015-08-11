@@ -96,6 +96,9 @@
     display: inline-block;
   }
 
+  &[data-state="draft"] {
+    .invoice-header-icon { background-image: url("/public/app/images/invoice-header-draft.png") }
+  }
   &[data-state="sent"] {
     .invoice-header-icon { background-image: url("/public/app/images/invoice-header-sent.png") }
   }

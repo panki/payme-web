@@ -1,0 +1,15 @@
+.container.invoice(ng-controller='InvoiceDraftCtrl' data-state="draft")
+  .row
+    .col-xs-12.col-md-10.col-md-offset-1
+      h1
+        span.invoice-header-icon &nbsp; 
+        | Счет на сумму {{ invoice.amount | currency:"₽":0 }} отправлен плательщику
+      p
+        | Мы отправили письмо плательщику, {{ invoice.payer_name }} 
+        span.font-light {{ invoice.payer.email }}
+        | , со ссылкой для оплаты счета. Мы пришлем вам письмо, как только он оплатит счет.
+      br
+      
+  .row
+    .col-xs-12.col-md-3.col-md-offset-5
+      button.btn.btn-primary.btn-lg.btn-block(ng-click="showInvoice()") Перейти к счету

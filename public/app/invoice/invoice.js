@@ -89,7 +89,7 @@
             };
             
             $scope.sendSuccess = function () {
-                $scope.showChild('/public/build/templates/invoice/send_success.html');    
+                $scope.showChild('/public/build/templates/invoice/send-success.html');    
             };
             
             $scope.showCancel = function() {
