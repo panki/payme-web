@@ -3,12 +3,13 @@
     fieldset(ng-disabled="submitting")
       .col-xs-12.col-md-10.col-md-offset-1
         h1 Осталось ввести номер карты
-        h2 
+        p 
           | Затем мы отправим счет на 
-          strong {{ invoice.amount | currency }} 
+          span.font-light {{ invoice.amount | currency:"₽":0 }} 
           | по адресу 
-          strong {{ invoice.payer.email }}
+          span.font-light {{ invoice.payer.email }}
           |. Так же можно добавить подробности: имена, комментарий к счету и указать дату оплаты.
+        
         .error(ng-show='error')
           span.error-icon
           .error-text
@@ -17,7 +18,7 @@
       .col-xs-12.col-md-12.col-md-offset-1
         .col-xs-12.col-md-4(id="slide1")
           .form-group
-            label(for='owner_card_number') Номер карты
+            h3(for='owner_card_number') НОМЕР КАРТЫ
             input.input-lg.form-control(type="text"
             id="owner_card_number"
             name="owner_card_number"
@@ -41,13 +42,14 @@
             .show-advanced или 
               a.ajax-link(ng-click="toggleAdvancedForm()", href="") добавить подробности и напоминания
 
-        .col-xs-12.col-md-5.card-col(id="slide2")
-          label Куда перевести деньги
+        .col-xs-12.col-md-5.col-md-offset-1.card-col(id="slide2")
+          h3 &nbsp;
           card-widget(card-number-input='#owner_card_number')
           .show-advanced.hide(id="edit_card")
               a.ajax-link(ng-click="toggleAdvancedForm()", href="") изменить данные карты
               
         .col-xs-12.col-md-5.offcanvas(id="slide3")
+          h3
           .form-group
             label(for="owner") {{ invoice.owner.email }}
             input.input-lg.form-control(type="text", id="owner", name="owner", ng-model="formData.owner", placeholder="Ваше имя")
@@ -58,7 +60,7 @@
             label(for='text') Комментарий
             input.input-lg.form-control(type="text", id="text", name="text", ng-model="formData.text", placeholder="Комментарий")
           .form-group
-            label Оплатить счет в течение
+            label Оплатить счет втечение
             .input-group
              .input-group-btn
                .btn.btn-transparent(datepicker-popup='yyyy-MM-dd'
