@@ -52,10 +52,10 @@ gulp.task('deps:less', function() {
     var less_files = gulp.src(files, {base: 'public/deps'})
         .pipe(filter('**/*.less'))
         .pipe(less())
-        
+
     var css_files = gulp.src(files, {base: 'public/deps'})
         .pipe(filter('**/*.css'))
-    
+
     merge(less_files, css_files)
         .pipe(concat('deps.css'))
         .pipe(rename({suffix: '.min'}))
@@ -68,7 +68,6 @@ gulp.task('app:less', function() {
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(concat('app.css'))
-
         .pipe(rename({suffix: '.min'}))
         .pipe(minifyCss())
         .pipe(sourcemaps.write())
@@ -112,7 +111,7 @@ gulp.task('dev', function() {
     gulp.watch('public/app/**/*.less', ['app:less']);
     gulp.watch('public/app/**/*.js', ['app:js']);
     gulp.watch('public/app/**/*.jade', ['app:templates']);
-    
+
     nodemon({
         script: 'payme_web/main.js',
         ext: 'js',
