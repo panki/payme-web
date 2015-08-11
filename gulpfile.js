@@ -15,6 +15,7 @@ var nodemon = require('gulp-nodemon');
 var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
+var merge = require('merge-stream');
 var web_config = require('./payme_web/config');
 
 
@@ -40,26 +41,26 @@ gulp.task('deps:js', function() {
         .pipe(concat('deps.js'))
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
-        .pipe(gulp.dest('public/build'));
+        .pipe(gulp.dest('public/build/js'));
 });
 
 gulp.task('deps:less', function() {
     var files = mainBowerFiles({
         checkExistence: true
     });
-    var lessFilter = filter('**/*.less', {restore: true});
-    var cssFilter = filter('**/*.css', {restore: true});
 
-    return gulp.src(files, {base: 'public/deps'})
-        .pipe(lessFilter)
+    var less_files = gulp.src(files, {base: 'public/deps'})
+        .pipe(filter('**/*.less'))
         .pipe(less())
-        .pipe(lessFilter.restore)
-        .pipe(cssFilter)
-        .pipe(concat('deps.css'))
 
+    var css_files = gulp.src(files, {base: 'public/deps'})
+        .pipe(filter('**/*.css'))
+
+    merge(less_files, css_files)
+        .pipe(concat('deps.css'))
         .pipe(rename({suffix: '.min'}))
         .pipe(minifyCss())
-        .pipe(gulp.dest('public/build'));
+        .pipe(gulp.dest('public/build/css'));
 });
 
 gulp.task('app:less', function() {
@@ -67,11 +68,10 @@ gulp.task('app:less', function() {
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(concat('app.css'))
-
         .pipe(rename({suffix: '.min'}))
         .pipe(minifyCss())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('public/build'));
+        .pipe(gulp.dest('public/build/css'));
 });
 
 gulp.task('app:js', function() {
@@ -86,7 +86,7 @@ gulp.task('app:js', function() {
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('public/build'));
+        .pipe(gulp.dest('public/build/js'));
 });
 
 gulp.task('app:templates', function() {
@@ -97,7 +97,12 @@ gulp.task('app:templates', function() {
         .pipe(jade({
             locals: locals
         }))
-        .pipe(gulp.dest('./public/build/app/'))
+        .pipe(gulp.dest('./public/build/templates/'))
+});
+
+gulp.task('app:fonts', function() {
+    return gulp.src(['./public/deps/font-awesome/fonts/*.*', './public/deps/bootstrap/fonts/*.*'])
+        .pipe(gulp.dest('./public/build/fonts/'));
 });
 
 gulp.task('dev', function() {
@@ -115,5 +120,5 @@ gulp.task('dev', function() {
 });
 
 gulp.task('default', function() {
-    gulp.start('deps:js', 'deps:less', 'app:js', 'app:less', 'app:templates');
+    gulp.start('deps:js', 'deps:less', 'app:js', 'app:less', 'app:templates', 'app:fonts');
 });

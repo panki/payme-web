@@ -76,7 +76,7 @@
                     function lookupBank(cardNumber) {
                         if (cardNumber.length >= 6) {
                             var bin = cardNumber.substring(0,6);
-                            if (scope.currentBin != bin) {
+                            if (scope.currentBin !== bin) {
                                 scope.currentBin = bin;
                                 client.banks.lookup(bin).then(function(bank) {
                                     scope.cardBank = bank.id ? bank : defaultBank;
@@ -84,7 +84,7 @@
                                     scope.cardBank = defaultBank;
                                 });
                             }
-                        } else scope.cardBank = defaultBank;
+                        } else { scope.cardBank = defaultBank; }
                     }
                     
                     function cardNumberUpdated(value) {
@@ -106,7 +106,7 @@
                     
                     cardNumberUpdated(angular.element(attrs.cardNumberInput).data('$ngModelController').$modelValue);
                 },
-                templateUrl: 'public/build/app/widgets/credit_card.html'
-            }
+                templateUrl: 'public/build/templates/widgets/credit_card.html'
+            };
         }]);
 }());

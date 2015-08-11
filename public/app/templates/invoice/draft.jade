@@ -3,8 +3,12 @@
     fieldset(ng-disabled="submitting")
       .col-xs-12.col-md-10.col-md-offset-1
         h1 Осталось ввести номер карты
-        p Затем мы отправим счет на {{ invoice.amount | currency }} по адресу {{ invoice.payer.email }}. Так же можно добавить подробности: имена, комментарий к счету и указать дату оплаты. 
-        p &nbsp;
+        h2 
+          | Затем мы отправим счет на 
+          strong {{ invoice.amount | currency }} 
+          | по адресу 
+          strong {{ invoice.payer.email }}
+          |. Так же можно добавить подробности: имена, комментарий к счету и указать дату оплаты.
       .col-xs-12.col-md-12.col-md-offset-1
         .col-xs-12.col-md-4(id="slide1")
           .form-group
@@ -26,7 +30,7 @@
                 required)
                 = "Я согласен(-на) на обработку персональных данных и с правилами работы сервиса."
           .form-group
-            button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") Отправить счет сразу
+            button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") ОТПРАВИТЬ СЧЕТ СРАЗУ
             .show-advanced или 
               a(ng-click="toggleAdvancedForm()", href="") добавить подробности и напоминания
               
@@ -38,29 +42,43 @@
           
         .col-xs-12.col-md-5.offcanvas(id="slide3")
           .form-group
-            label(for="owner") Кому {{ invoice.owner.email }}
-            input.input-lg.form-control(type="text", id="owner", name="owner", ng-model="formData.owner", placeholder="Имя (необязательно)")
+            label(for="owner") {{ invoice.owner.email }}
+            input.input-lg.form-control(type="text", id="owner", name="owner", ng-model="formData.owner", placeholder="Ваше имя")
           .form-group
-            label(for="payer") От {{ invoice.payer.email }}
-            input.input-lg.form-control(type="text", id="payer", name="payer", ng-model="formData.payer", placeholder="Имя (необязательно)")
+            label(for="payer") {{ invoice.payer.email }}
+            input.input-lg.form-control(type="text", id="payer", name="payer", ng-model="formData.payer", placeholder="Имя плательщика")
           .form-group
-            label(for='text') Описание
-            input.input-lg.form-control(type="text", id="text", name="text", ng-model="formData.text", placeholder="Необязательно")
+            label(for='text') Комментарий
+            input.input-lg.form-control(type="text", id="text", name="text", ng-model="formData.text", placeholder="Комментарий")
+          .form-group
+            label Оплатить счет в течение
+            .input-group
+             .input-group-btn
+               .btn.btn-transparent(datepicker-popup='yyyy-MM-dd'
+               ng-class="{'btn-active': datepicker.period=='week'}"
+               ng-click="setExpireInWeek()"
+               ng-model="formData.expire_at"
+               is-open="datepicker.opened"
+               custom-class="expire-datepicker"
+               datepicker-options="datepickerOptions") Недели
+               .btn.btn-transparent(ng-click="setExpireInMonth()"
+               ng-class="{'btn-active': datepicker.period=='month'}") Месяца
+               .btn.btn-transparent(ng-click="setCustomExpire()"
+               ng-class="{'btn-active': datepicker.period=='custom'}") До {{ formData.expire_at | date : 'd MMMM yyyy' }}
           .form-group
             .checkbox
               label
                 input(type='checkbox'
-                ng-model="formData.remind")
+                ng-model="formData.remind_daily") 
                 = "Ежедневно напоминать об оплате."
           .form-group
             .checkbox
               label
-                input(type='checkbox' 
-                ng-model="formData.owner_terms_accept" 
-                required)
-                = "Я согласен(-на) на обработку персональных данных и с правилами работы сервиса."
+                input(type='checkbox', ng-model="formData.owner_terms_accept", required)
+                | Я соглашаюсь на обработку персональных данных и принимаю 
+                a(href="/service") Правила работы сервиса
           .form-group
-            button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") Отправить счет
+            button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") ОТПРАВИТЬ СЧЕТ
       
         .col-xs-12.col-md-6.col-md-offset-3(ng-show="submitting")
           .alert.alert-warning Работаем...
