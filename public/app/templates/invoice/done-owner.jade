@@ -32,7 +32,7 @@
           | Плательщик — {{ invoice.payer_name }} 
           span.font-light {{ invoice.payer.email }}
           | .
-        h3 Описание ошибки
+        h3 ОПИСАНИЕ ОШИБКИ
         p
           | {{ invoice.failure_reason }}
 
@@ -62,7 +62,7 @@
           | Плательщик, {{ invoice.payer_name }} 
           span.font-light {{ invoice.payer.email }}
           | , {{ invoice.refused_at | date:'d MMMM' }} отказался оплачивать счет.
-        h3(ng-show="invoice.refuse_reason") Причина отказа
+        h3(ng-show="invoice.refuse_reason") ПРИЧИНА ОТКАЗА
         p
           | {{ invoice.refuse_reason }}
 
