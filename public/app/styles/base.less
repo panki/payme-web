@@ -1,6 +1,15 @@
 @bgDefault: #0066ca;
 @whiteFade: #7db1e4;
+
 @secondaryText: #7db1e4;
+
+@inputBorder: #3086d9;
+@inputBorderFocused: white;
+
+@baseFontFamily: 'lato';
+@headerFontFamily: 'pragmatica-web';
+@inputFontFamily: 'pragmatica-web';
+
 
 html {
   position: relative;
@@ -10,7 +19,8 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
   /* Margin top by navbar height */
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: @baseFontFamily;
+  font-weight: 300;
   background-color: @bgDefault;
 }
 
@@ -20,11 +30,6 @@ body > .container {
   margin-bottom: 120px;
   line-height: 1.5em;
   font-size: 1.2em;
-}
-
-fieldset input {
-  line-height: 1.5em;
-  font-size: 1.5em;
 }
 
 .container .text-muted {
@@ -113,22 +118,107 @@ a {
 }
 
 h1 {
+  text-align:left;
+  font-family: @headerFontFamily;
+  font-size: 32px;
+  letter-spacing: 0.03em;
+  font-weight: 300;
+  margin: 0;
   margin-bottom: 30px;
+}
+
+h2 {
+  text-align:left;
+  font-family: @headerFontFamily;
+  font-size: 1.2em;
+  letter-spacing: 0.03em;
+  font-weight: 100;
+  margin: 0;
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.8)
+}
+
+h2 strong {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1)
 }
 
 .form-control {
   background-color: @bgDefault;
-  border-color: @whiteFade;
+  border-color: @inputBorder;
   color: #fff;
   border-radius: 0;
+  font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
+  font-size: 22px;
+  padding: 6px 12px;
+  font-weight: 100;
 }
 
-.form-control::-webkit-input-placeholder { color: @whiteFade; }
-.form-control::-moz-placeholder { color: @whiteFade; }
-.form-control:-ms-input-placeholder {color: @whiteFade; }
+.form-control::-webkit-input-placeholder { color: @whiteFade; font-weight: 200; font-family: @baseFontFamily}
+.form-control::-moz-placeholder { color: @whiteFade; font-weight: 200; font-family: @baseFontFamily }
+.form-control:-ms-input-placeholder {color: @whiteFade; font-weight: 200; font-family: @baseFontFamily }
 
 .input-lg {
   height: 50px;
 }
 
 .mt100 { margin-top: 100px; }
+
+label {
+  font-weight:300;
+  color: @secondaryText;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {   
+  border-color: @inputBorderFocused;
+  border-width: 1px;
+  box-shadow: none;
+  outline: 0 none;
+}
+
+.checkbox label {
+  color: white;
+  font-weight: 200;
+  font-family: @baseFontFamily;
+  font-size: 0.8em;
+  line-height: 1em;
+}
+
+.checkbox label a {
+  color: white;
+  text-decoration: underline;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.btn-transparent {
+  border-color: @whiteFade !important;
+  color: #FFF !important;
+  background-color: transparent !important;
+}
+.btn-active {
+  background-color: @whiteFade !important;
+}
+
+.datetimepicker {
+  color: @whiteFade;
+  font-size: 12px;
+  font-weight: 500;
+}

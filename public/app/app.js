@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var app = angular.module('app', ['ui.bootstrap', 'credit-cards',
+    var app = angular.module('app', ['ui.bootstrap', 'ui.bootstrap.datetimepicker', 'credit-cards',
         'app.index',
         'app.client',
         'app.filters',
