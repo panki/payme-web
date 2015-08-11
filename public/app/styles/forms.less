@@ -32,6 +32,7 @@
 }
 .form-group .radio i {
   border-radius: 50%;
+  border-color: white;
 }
 .form-group .radio input + i:after,
 .form-group .checkbox input + i:after {
@@ -44,12 +45,13 @@
   -webkit-transition: opacity 0.1s;
 }
 .form-group .radio input + i:after {
-  content: '';
-  top: 4px;
+  content: '\f111';
+  top: 2px;
   left: 4px;
   width: 5px;
   height: 5px;
   border-radius: 50%;
+  font: 100 12px/15px FontAwesome;
 }
 .form-group .checkbox input + i:after {
   content: '\f00c';
@@ -63,6 +65,29 @@
 .form-group .radio input:checked + i:after,
 .form-group .checkbox input:checked + i:after {
   opacity: 1;
+}
+
+.form-group .checkbox label {
+  color: white;
+  font-weight: 200;
+  font-family: @baseFontFamily;
+  font-size: 0.8em;
+  line-height: 1.4em;
+  padding-left: 2px;
+}
+
+.form-group .radio label {
+  color: white;
+  font-weight: 200;
+  font-family: @baseFontFamily;
+  font-size: 0.8em;
+  line-height: 1.4em;
+  padding-left: 2px;
+}
+
+.form-group .checkbox label a {
+  color: white;
+  text-decoration: underline;
 }
 
 .form-control {
@@ -114,20 +139,6 @@ input[type="color"]:focus,
   border-width: 1px;
   box-shadow: none;
   outline: 0 none;
-}
-
-.checkbox label {
-  color: white;
-  font-weight: 200;
-  font-family: @baseFontFamily;
-  font-size: 0.8em;
-  line-height: 1.4em;
-  padding-left: 2px;
-}
-
-.checkbox label a {
-  color: white;
-  text-decoration: underline;
 }
 
 .form-group {

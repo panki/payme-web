@@ -1,0 +1,56 @@
+.container(ng-controller='InvoiceRefuseCtrl')
+  form(id="cancel_invoice", name="form", ng-submit="submit(form.$valid)", novalidate)
+    fieldset(ng-disabled="submitting")
+      .row
+        .col-xs-12.col-md-10.col-md-offset-1
+          h1 Отказ от оплаты счета на сумму {{ invoice.amount | currency:"₽":0 }}
+          p
+            | Получатель, {{ invoice.owner_name }} 
+            span.font-light {{ invoice.owner.email }}
+            | , выставил счет {{ invoice.created_at | date:'d MMMM' }}
+            | и просил оплатить до {{ invoice.expire_at | date:'d MMMM' }}.
+
+      form(name='form', ng-submit='submit(form.$valid)', novalidate)
+        .row.invoice-refuse-reason
+          .col-xs-12.col-md-5.col-md-offset-1
+            h3 УКАЖИТЕ ПРИЧИНУ ОТКАЗА
+            .form-group
+              .radio(ng-class='code == "paid" ? "active" : ""')
+                label
+                  input(type="radio" name="code" value="paid"
+                  ng-model="code"
+                  ng-change="setCode('paid')")
+                  i
+                  | Счет уже оплачен
+            .form-group
+              .radio(ng-class='code == "stranger" ? "active" : ""')
+                label
+                  input(type="radio" name="code" value="stranger"
+                  ng-model="code"
+                  ng-change="setCode('stranger')")
+                  i
+                  | Не знаю, кто этот человек
+            .form-group
+              .radio(ng-class='code == "other" ? "active" : ""')
+                label
+                  input(type="radio" name="code" value="other"
+                  ng-model="code"
+                  ng-change="setCode('other')")
+                  i
+                  | Другое
+
+            .form-group
+              textarea.form-control(id='reason-textarea' rows="3" placeholder="Напишите причину"
+              ng-model="reason"
+              ng-maxlength="255"
+              ng-click="onTextareaFocus()")
+
+        .row
+          .col-xs-12.col-md-5.col-md-offset-1
+            .form-group
+              button.btn.btn-primary.btn-lg.btn-block(type="submit" ng-disabled="form.$invalid")
+                | ОТКАЗАТЬСЯ ОТ ОПЛАТЫ
+          .col-xs-12.col-md-5
+            .form-group(style="line-height: 50px")
+              | или 
+              a.ajax-link(ng-click="showInvoice()", href="") вернуться к оплате

@@ -40,23 +40,7 @@
         // Refuse modal dialog
         
         $scope.openRefuseDialog = function () {
-            var modalInstance = $modal.open({
-                animation: true,
-                templateUrl: '/public/build/templates/invoice/modals/refuse.html',
-                controller: 'InvoiceRefuseCtrl',
-                size: null,
-                resolve: {
-                    invoiceId: function () { return $scope.invoiceId; }
-                }
-            });
-            
-            modalInstance.result.then(function(reason) {
-                $parent.refuseInvoice(reason).then(function() {
-                    $parent.reloadChild();
-                }).catch(function(error) {
-                    $parent.onError(error);
-                });
-            });
+            $parent.showRefuse();
         };
         
         $scope.submit = function() {
@@ -93,20 +77,4 @@
         
        
     }]);
-    
-    module.controller('InvoiceRefuseCtrl', ['$scope', '$modalInstance', function($scope, $modalInstance) {
-        $scope.reason = null;
-        $scope.other_reason = null;
-        $scope.refuse = function () {
-            if ($scope.refuse_form.$valid) {
-                var reason = $scope.reason === 'other' ? $scope.other_reason : $scope.reason;
-                $modalInstance.close(reason);
-            }
-        };
-        
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-    }]);
-    
 })();
