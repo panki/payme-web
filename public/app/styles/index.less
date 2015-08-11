@@ -1,0 +1,74 @@
+#new_invoice {
+  
+  & label {
+    font-weight: 300;
+    font-size: 20px;
+    color: white;
+  }
+  
+  & label span {
+    color: @secondaryText;
+  }
+  
+  & .form-control {
+    background-color: @bgDefault;
+    border-color: @whiteFade;
+    color: #fff;
+    border-radius: 0;
+    font-family2: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
+    font-size: 22px;
+    padding: 6px 12px;
+    font-weight: 100;
+  }
+  
+  & .btn {
+    &[disabled], &[disabled]:active {
+      opacity: 1;
+    }
+  }
+}
+
+#new_invoice #amount {
+  font-size: 8em;
+  height: auto;
+  background: transparent;
+  border: transparent;
+  color: white;
+  text-align: right;
+  outline: none;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+  width: 0px;
+  float: none;
+  display: inline-block;
+}
+
+#new_invoice #amount:focus {
+  outline: 0;
+}
+
+#new_invoice .amount-group .input-group-addon{
+    background: transparent;
+    border: transparent;
+    font-size: 8em;
+    color: @whiteFade;
+    display: inline-block;
+    vertical-align: baseline;
+    padding: 0;
+    width: auto;
+}
+
+#new_invoice .amount-group {
+    text-align: center;
+    display: block;
+}
+
+#new_invoice .form-group input {
+  display: block;
+}
+
+#new_invoice .btn {
+  margin-top: 0px;
+}
