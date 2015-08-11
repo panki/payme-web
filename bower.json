@@ -21,7 +21,8 @@
     "moment": "^2.10.6",
     "angular-input-autosize": "~1.0.0",
     "angular-ui-mask": "~1.4.1",
-    "angular-credit-cards": "~2.3.5"
+    "angular-credit-cards": "~2.3.5",
+    "fullpage.js": "~2.6.7"
   },
   "overrides": {
     "angular-i18n": {

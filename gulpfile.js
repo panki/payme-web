@@ -47,10 +47,14 @@ gulp.task('deps:less', function() {
     var files = mainBowerFiles({
         checkExistence: true
     });
+    var lessFilter = filter('**/*.less', {restore: true});
+    var cssFilter = filter('**/*.css', {restore: true});
 
     return gulp.src(files, {base: 'public/deps'})
-        .pipe(filter('**/*.less'))
+        .pipe(lessFilter)
         .pipe(less())
+        .pipe(lessFilter.restore)
+        .pipe(cssFilter)
         .pipe(concat('deps.css'))
 
         .pipe(rename({suffix: '.min'}))
@@ -102,7 +106,7 @@ gulp.task('dev', function() {
     gulp.watch('public/app/**/*.less', ['app:less']);
     gulp.watch('public/app/**/*.js', ['app:js']);
     gulp.watch('public/app/**/*.jade', ['app:templates']);
-    
+
     nodemon({
         script: 'payme_web/main.js',
         ext: 'js',
