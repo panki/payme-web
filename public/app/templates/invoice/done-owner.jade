@@ -1,37 +1,27 @@
 .container(ng-controller='InvoiceDoneCtrl')
-  form(novalidate).row
-    .col-xs-12.col-md-6.col-md-offset-3
-      div(ng-switch="invoice.state")
-        h1(ng-switch-when="paid") Ваш счет оплачен
-        h1(ng-switch-when="failed") Ошибка оплаты счета
-        h1(ng-switch-when="expired") Истекло время оплаты счета
-        h1(ng-switch-when="refused") Плательщик отказался от оплаты счета
-        h1(ng-switch-when="cancelled") Счет отменен
-
-    .col-xs-12.col-md-3.col-md-offset-3
-      .form-group
-        label Кем
-        .form-control-static {{ invoice.payer.email }}
-      .form-group(ng-visible='invoice.text')
-        label Комментарий
-        .form-control-static {{ invoice.text }}
-      .form-group
-        label Оплатить до
-        .form-control-static {{ invoice.expire_at | date }}
-
-    .col-xs-12.col-md-3
-      .form-group
-        label Сумма
-        .form-control-static {{ invoice.amount | currency }}
+  .row
+    .col-xs-12.col-md-10.col-md-offset-1(ng-switch="invoice.state")
+      div(ng-switch-when="paid")
+        h1
+          | Счет на сумму {{ invoice.amount | currency:"₽":0 }} оплачен
+        
+        p
+          | Вы, {{ invoice.owner_name }} 
+          span.font-light {{ invoice.owner.email }}
+          | , выставили счет {{ invoice.created_at | date:'d MMMM' }}.
+  
+        p
+          | Плательщик, {{ invoice.payer_name }} 
+          span.font-light {{ invoice.payer.email }}
+          | , оплатил счет {{ invoice.paid_at | date:'d MMMM' }}.
       
-      .form-group
-        label На карту
-        .form-control-static {{ invoice.owner_card.masked_number }}
-          
-      .form-group(ng-visible='invoice.state="paid"')
-        label Дата оплаты
-        .form-control-static {{ invoice.updated_at | date }}
-
-    .col-xs-12.col-md-6.col-md-offset-3(ng-visible='invoice.state="paid"')
-      .form-group
-        button.btn.btn-primary.btn-block(ng-click='saveReceipt()') Сохранить квитанцию в PDF
+      h1(ng-switch-when="failed") Ошибка оплаты счета
+      h1(ng-switch-when="expired") Истекло время оплаты счета
+      h1(ng-switch-when="refused") Плательщик отказался от оплаты счета
+      h1(ng-switch-when="cancelled") Счет отменен
+      
+      br
+      
+  .row
+    .col-xs-12.col-md-4.col-md-offset-1(ng-visible='invoice.state="paid"')
+      button.btn.btn-primary.btn-lg.btn-block(ng-click='saveReceipt()') СОХРАНИТЬ КВИТАНЦИЮ В PDF

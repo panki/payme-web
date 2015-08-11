@@ -9,7 +9,7 @@
       p
         | Вы, {{ invoice.owner_name }} 
         span.font-light {{ invoice.owner.email }}
-        | , выставили счёт {{ invoice.created_at | date:'d MMMM' }}
+        | , выставили счет {{ invoice.created_at | date:'d MMMM' }}
         | и просите оплатить его до {{ invoice.expire_at | date:'d MMMM' }}.
         | Плательщик — {{ invoice.payer_name }} 
         span.font-light {{ invoice.payer.email }}
