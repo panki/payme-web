@@ -22,8 +22,8 @@
     "angular-input-autosize": "~1.0.0",
     "angular-ui-mask": "~1.4.1",
     "angular-credit-cards": "~2.3.5",
-    "font-awesome": "~4.4.0",
-    "angular-bootstrap-datetimepicker": "~0.3.13"
+    "fullpage.js": "~2.6.7",
+    "font-awesome": "~4.4.0"
   },
   "overrides": {
     "angular-i18n": {

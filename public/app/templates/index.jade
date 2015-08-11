@@ -1,19 +1,48 @@
-h1 Главная
+#fullpage
+  .section.invoice-new
+    .container
+      .row
+        h1 Получить деньги безопасно и просто
 
-.container(ng-controller="InvoiceNewCtrl")
-  form(id="new_invoice", name="form", ng-submit='submit(form.$valid)')
-    fieldset.row
-      .form-group.col-xs-12.col-md-8.col-md-offset-1
-        .input-group.amount-group
-          input.input-lg.form-control(id="amount", type="text", name="amount", ng-model="invoice.amount", maxlength="5", required, autosize, zero-input)
-          span.input-group-addon &#8381;
+        .col-xs-12.col-md-8
+          p Теперь вам не нужно обмениваться номерами банковских карт, достаточно ввести сумму и адреса электронной почты &mdash; свою и того, кто отправит деньги.
 
-    fieldset.row.mt100
-      .form-group.col-xs-12.col-sm-6.col-md-4
-        label(for="payer_email") от
-        input.input-lg.form-control(type="text", name="payer_email", ng-model="invoice.payer_email", placeholder="От e-mail", required)
-      .form-group.col-xs-12.col-sm-6.col-md-4
-        label(for="owner_email") Я
-        input.input-lg.form-control(type="text", name="owner_email", ng-model="invoice.owner_email", placeholder="Ваш e-mail", required)
-      .form-group.col-xs-12.col-sm-6.col-sm-offset-6.col-md-4.col-md-offset-0
-        button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") Получить деньги
+      .container(ng-controller="InvoiceNewCtrl")
+        form(id="new_invoice", name="form", ng-submit='submit(form.$valid)')
+          fieldset.row
+            .form-group.col-xs-12.col-md-8.col-md-offset-1
+              .input-group.amount-group
+                input.input-lg.form-control(id="amount", type="text", name="amount", ng-model="invoice.amount", maxlength="5", required, autosize, zero-input)
+                span.input-group-addon &#8381;
+
+          fieldset.row.mt100
+            .form-group.col-xs-12.col-sm-6.col-md-4
+              label(for="payer_email") От кого
+              input.input-lg.form-control(type="text", name="payer_email", ng-model="invoice.payer_email", placeholder="От e-mail", required)
+            .form-group.col-xs-12.col-sm-6.col-md-4
+              label(for="owner_email") Кому &mdash; это вы
+              input.input-lg.form-control(type="text", name="owner_email", ng-model="invoice.owner_email", placeholder="Ваш e-mail", required)
+            .form-group.col-xs-12.col-sm-6.col-sm-offset-6.col-md-4.col-md-offset-0
+              button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") Получить деньги
+
+
+  .section.howto
+    .slide
+      .container
+        .row
+          .col-md-12
+            h1 Создавайте запросы в несколько кликов
+            h2 Просто заполните email того, у кого хотите попросить долг, и свой, а также сумму и все
+    .slide
+      h2 Slide 2
+
+script.
+  $(function() {
+    $('#fullpage').fullpage({
+      css3: false,
+      fixedElements: '.navbar'
+    });
+
+    $('body>.container').removeClass('container');
+
+  });

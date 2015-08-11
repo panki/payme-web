@@ -65,25 +65,51 @@ input[type="color"]:focus,
   margin-bottom: 20px;
 }
 
-.btn-transparent {
-  border-color: @whiteFade !important;
-  color: #FFF !important;
-  background-color: transparent !important;
-}
-.btn-active {
-  background-color: @whiteFade !important;
-}
+
 .btn-lg {
   height: 50px;
   border-color: white;
   background-color: white;
   border-radius: 0;
   color: #0066ca;
-  //color: @whiteFade;
+}
+
+// datetime picker
+
+.input-group-btn .btn:nth-child(2), .input-group-btn .btn:nth-child(3) {
+  border-left: none;
+}
+
+.btn-transparent {
+  border-color: @whiteFade !important;
+  color: #FFF !important;
+  background-color: transparent !important;
+  height: 50px;
+  line-height: 35px;
+}
+.btn-active {
+  background-color: @whiteFade !important;
+  height: 50px;
+  line-height: 35px;
 }
 
 .datetimepicker {
   color: @whiteFade;
   font-size: 12px;
   font-weight: 500;
+}
+
+ul.dropdown-menu {
+  padding: 5px;
+}
+
+ul.dropdown-menu .btn {
+  border: none;
+}
+
+button:focus,
+button:active,
+button:hover {
+  outline:0px !important;
+  -webkit-appearance:none;
 }

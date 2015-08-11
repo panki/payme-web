@@ -1,3 +1,10 @@
+.invoice-init-loader {
+  background-image: url("/public/app/images/ajax-loader.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 300px;
+}
+
 #new_invoice #amount {
   font-size: 8em;
   height: auto;
@@ -19,7 +26,6 @@
   outline: 0;
 }
 
-
 #new_invoice .amount-group .input-group-addon{
     background: transparent;
     border: transparent;
@@ -40,8 +46,13 @@
   display: block;
 }
 
-#new_invoice button, #send_invoice button {
-  margin-top: 30px;
+#new_invoice .btn-primary, #send_invoice .btn-primary {
+  height: 50px;
+  border-color: white;
+  background-color: white;
+  border-radius: 0px;
+  margin-top: 22px;
+  color: @whiteFade;
 }
 
 .show-advanced {
@@ -66,7 +77,7 @@
 @marginDuration: 0.6s;
 @opacityDuration: 0.3s;
 
-#send_invoice div {
+#send_invoice #slide1, #send_invoice #slide2, #send_invoice #slide3 {
     -webkit-transition: width 0.3s ease, height 0.3s ease, margin @marginDuration ease, padding 0.3s ease, opacity @opacityDuration ease;
     -moz-transition: width 0.3s ease, height 0.3s ease, margin @marginDuration ease, padding 0.3s ease, opacity @opacityDuration ease;
     -o-transition: width 0.3s ease, height 0.3s ease, margin @marginDuration ease, padding 0.3s ease, opacity @opacityDuration ease;
@@ -85,13 +96,6 @@
   #slide1, #slide2, #slide3 {
     padding-right: 0;
   }
-}
-
-.invoice-init-loader {
-  background-image: url("/public/app/images/ajax-loader.gif");
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 300px;
 }
 
 .invoice {

@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var app = angular.module('app', ['ui.bootstrap', 'ui.bootstrap.datetimepicker', 'credit-cards',
+    var app = angular.module('app', ['ui.bootstrap', 'credit-cards',
         'app.index',
         'app.client',
         'app.filters',
@@ -10,9 +10,11 @@
         'app.invoice_new',
         'autosizeInput', 'ui.mask']);
 
-    app.config(['$routeProvider', '$locationProvider', '$httpProvider',
-        function($routeProvider, $locationProvider, $httpProvider) {
+    app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'datepickerPopupConfig',
+        function($routeProvider, $locationProvider, $httpProvider, datepickerPopupConfig) {
             $locationProvider.html5Mode(true);
             $httpProvider.defaults.withCredentials = true;
+            datepickerPopupConfig.showButtonBar = false;
+            datepickerPopupConfig.appendToBody = true;
         }]);
 })();
