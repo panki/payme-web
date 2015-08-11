@@ -3,7 +3,7 @@
     fieldset(ng-disabled="submitting")
       .row
         .col-xs-12.col-md-10.col-md-offset-1
-          h1 Отмена счёта на сумму {{ invoice.amount | currency:"₽":0 }}
+          h1 Отмена счета на сумму {{ invoice.amount | currency:"₽":0 }}
           p
             | Вы, {{ invoice.owner_name }} 
             span.font-light {{ invoice.owner.email }}

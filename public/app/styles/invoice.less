@@ -130,3 +130,37 @@
   color: @secondaryHeader;
   font-size: 14px;
 }
+
+.invoice-refuse-reason {
+  .radio {
+    opacity: 0.5;
+    margin-left: -35px;
+  }
+  
+  .radio.active {
+    opacity: 1.0;
+  }
+  
+  .radio label {
+    font-size: 1.5em;
+    display: block;
+    border-bottom: 1px solid rgba(255,255,255,.8);
+    padding-bottom: 6px;
+    margin-left: 7px;
+  }
+  
+  input[type="textarea"] {
+    background: transparent;
+    border: 1px solid #fff;
+    font-size: 1.3em;
+    height: 3em;
+  }
+}
+
+@media (max-width: 768px) {
+  .invoice-refuse-reason {
+    .radio {
+      margin-left: 0;
+    }
+  }
+}

@@ -6,6 +6,7 @@
         'app.invoice.cancel',
         'app.invoice.done',
         'app.invoice.draft',
+        'app.invoice.refuse',
         'app.invoice.sent-owner',
         'app.invoice.sent-payer']);
 
@@ -97,6 +98,10 @@
             
             $scope.showCancel = function() {
                 $scope.showChild('/public/build/templates/invoice/cancel.html');
+            };
+
+            $scope.showRefuse = function() {
+                $scope.showChild('/public/build/templates/invoice/refuse.html');
             };
 
             $scope.reloadChild = function() {
