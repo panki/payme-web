@@ -15,6 +15,7 @@ var nodemon = require('gulp-nodemon');
 var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
+var merge = require('merge-stream');
 var web_config = require('./payme_web/config');
 
 
@@ -48,11 +49,15 @@ gulp.task('deps:less', function() {
         checkExistence: true
     });
 
-    return gulp.src(files, {base: 'public/deps'})
+    var less_files = gulp.src(files, {base: 'public/deps'})
         .pipe(filter('**/*.less'))
         .pipe(less())
+        
+    var css_files = gulp.src(files, {base: 'public/deps'})
+        .pipe(filter('**/*.css'))
+    
+    merge(less_files, css_files)
         .pipe(concat('deps.css'))
-
         .pipe(rename({suffix: '.min'}))
         .pipe(minifyCss())
         .pipe(gulp.dest('public/build/css'));
@@ -97,7 +102,7 @@ gulp.task('app:templates', function() {
 });
 
 gulp.task('app:fonts', function() {
-    return gulp.src(['./public/deps/font-awesome/fonts/*.*'])
+    return gulp.src(['./public/deps/font-awesome/fonts/*.*', './public/deps/bootstrap/fonts/*.*'])
         .pipe(gulp.dest('./public/build/fonts/'));
 });
 

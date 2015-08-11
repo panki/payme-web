@@ -46,6 +46,7 @@
     "gulp-util": "^3.0.6",
     "gulp-jade": "^1.0.1",
     "gulp-ng-config": "^1.2.1",
-    "main-bower-files": "^2.8.2"
+    "main-bower-files": "^2.8.2",
+    "merge-stream": "^1.0.0"
   }
 }
