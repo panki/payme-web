@@ -76,6 +76,10 @@ a {
   color: #464646;
 }
 
+.section.howto h2 {
+  color: #464646;
+}
+
 // Navbar expanded
 @media (min-width: 768px) {
     .navbar-default .navbar-nav > li > a {
@@ -95,6 +99,7 @@ a {
         background-image: url('/public/app/images/payme_logo_white.png');
         width: 160px;
         height: 45px;
+        transition: background-image 1s ease-in-out;
     }
 }
 
@@ -107,16 +112,48 @@ a {
         padding: 2px;
     }
     .navbar .navbar-brand .logo {
-        background-image: url('/public/app/images/logo-small.jpg');
-        width: 133px;
-        height: 47px;
+        background-image: url('/public/app/images/payme_logo_white.png');
+        width: 160px;
+        height: 45px;
+        transition: background-image 1s ease-in-out;
     }
+}
+
+@media (max-width: 995px) {
+  .navbar-default .navbar-nav > li > a {
+    margin: 0px 5px;
+  }
 }
 
 .navbar .navbar-nav {
     display: inline-block;
     float: none;
 }
+
+.navbar-default .navbar-nav>li>a,
+.navbar-default .navbar-text {
+  transition: color 1s ease-in-out;
+}
+
+
+.fp-viewing-1-0 .navbar .navbar-brand .logo {
+  background-image: url('/public/app/images/payme_logo_blue.png');
+
+}
+
+.fp-viewing-1-0 .navbar-default .navbar-toggle .icon-bar {
+  background-color: @bgDefault;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  transition: background-color 1s ease-in-out;
+}
+
+.fp-viewing-1-0 .navbar-default .navbar-nav>li>a,
+.fp-viewing-1-0 .navbar-default .navbar-text {
+  color: @bgDefault;
+}
+
 
 h1 {
   text-align:left;
@@ -185,7 +222,7 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
-.uneditable-input:focus {   
+.uneditable-input:focus {
   border-color: @inputBorderFocused;
   border-width: 1px;
   box-shadow: none;
