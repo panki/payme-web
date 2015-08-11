@@ -1,4 +1,69 @@
-
+.form-group .radio,
+.form-group .checkbox {
+  margin-bottom: 4px;
+  padding-left: 27px;
+  font-size: 15px;
+  line-height: 27px;
+  color: #404040;
+  cursor: pointer;
+}
+.form-group .radio:last-child,
+.form-group .checkbox:last-child {
+  margin-bottom: 0;
+}
+.form-group .radio input,
+.form-group .checkbox input {
+  position: absolute;
+  left: -9999px;
+}
+.form-group .radio i,
+.form-group .checkbox i {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  outline: none;
+  border-width: 1px;
+  border-style: solid;
+  background: transparent;
+  border-color: @inputBorder;
+}
+.form-group .radio i {
+  border-radius: 50%;
+}
+.form-group .radio input + i:after,
+.form-group .checkbox input + i:after {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.1s;
+  -o-transition: opacity 0.1s;
+  -ms-transition: opacity 0.1s;
+  -moz-transition: opacity 0.1s;
+  -webkit-transition: opacity 0.1s;
+}
+.form-group .radio input + i:after {
+  content: '';
+  top: 4px;
+  left: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+.form-group .checkbox input + i:after {
+  content: '\f00c';
+  top: 2px;
+  left: 2px;
+  width: 15px;
+  height: 15px;
+  font: 100 12px/16px FontAwesome;
+  text-align: center;
+}
+.form-group .radio input:checked + i:after,
+.form-group .checkbox input:checked + i:after {
+  opacity: 1;
+}
 
 .form-control {
   background-color: @bgDefault;
@@ -15,11 +80,14 @@
 .form-control::-moz-placeholder { color: @whiteFade; font-weight: 200; font-family: @baseFontFamily }
 .form-control:-ms-input-placeholder {color: @whiteFade; font-weight: 200; font-family: @baseFontFamily }
 
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  background-color: @bgDefault;
+  opacity: 0.9;
+}
+
 .input-lg {
   height: 50px;
 }
-
-.mt100 { margin-top: 100px; }
 
 label {
   font-weight:300;
@@ -53,7 +121,8 @@ input[type="color"]:focus,
   font-weight: 200;
   font-family: @baseFontFamily;
   font-size: 0.8em;
-  line-height: 1em;
+  line-height: 1.4em;
+  padding-left: 2px;
 }
 
 .checkbox label a {
@@ -72,6 +141,17 @@ input[type="color"]:focus,
   background-color: white;
   border-radius: 0;
   color: #0066ca;
+  
+  &[disabled] {
+    cursor: inherit;
+    color: #0066ca;
+  }
+  
+  &:hover {
+    border-color: white;
+    background-color: #eee;
+    color: #0066ca;
+  }
 }
 
 // datetime picker
@@ -87,6 +167,7 @@ input[type="color"]:focus,
   height: 50px;
   line-height: 35px;
 }
+
 .btn-active {
   background-color: @whiteFade !important;
   height: 50px;

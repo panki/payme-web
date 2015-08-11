@@ -37,8 +37,7 @@
                     $scope.error = error;
                     return;
                 }
-                
-                alert(error.message);
+                $scope.error = error;
             };
 
             $scope.loadInvoice = function() {

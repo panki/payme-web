@@ -107,3 +107,43 @@ h3 {
 .font-light {
   color: @lightBlueText;
 }
+
+label {
+  font-weight:300;
+  color: @secondaryText;
+}
+
+div.error .error-icon {
+  background-image: url('/public/app/images/warning.png');
+}
+
+div.error .error-icon {
+  width: 58px;
+  height: 58px;
+  margin-left: -68px;
+  display: block;
+}
+
+div.error .error-text {
+  margin-top: -52px;
+}
+
+div.error {
+  margin-bottom: 30px;
+  padding-left: 41px;
+}
+
+div.error p {
+  line-height: 20px;
+  margin-bottom: 5px;
+}
+
+div.error p.error-header {
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  div.error {
+    padding-left: 68px;      
+  }
+}
