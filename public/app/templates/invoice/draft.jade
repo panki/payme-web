@@ -51,20 +51,25 @@
             label(for='text') Комментарий
             input.input-lg.form-control(type="text", id="text", name="text", ng-model="formData.text", placeholder="Комментарий")
           .form-group
-            label(for='text') Оплатить счет в течение
-              .input-group
-               .input-group-btn
-                 button.btn.btn-transparent.btn-active Недели
-                 button.btn.btn-transparent Месяца
-                 .btn-group
-                   button.btn.btn-transparent.btn-active.dropdown-toggle(id='dLabel', role='button', data-toggle='dropdown', data-target='#') До {{ formData.expire_at | date : "dd.MM.yyyy" }}
-                   ul.dropdown-menu(role='menu', aria-labelledby='dLabel', style='border: 1px solid #7DB1E4')
-                     datetimepicker(data-ng-model='formData.expire_at', data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }")
+            label Оплатить счет в течение
+            .input-group
+             .input-group-btn
+               .btn.btn-transparent(datepicker-popup='yyyy-MM-dd'
+               ng-class="{'btn-active': datepicker.period=='week'}"
+               ng-click="setExpireInWeek()"
+               ng-model="formData.expire_at"
+               is-open="datepicker.opened"
+               custom-class="expire-datepicker"
+               datepicker-options="datepickerOptions") Недели
+               .btn.btn-transparent(ng-click="setExpireInMonth()"
+               ng-class="{'btn-active': datepicker.period=='month'}") Месяца
+               .btn.btn-transparent(ng-click="setCustomExpire()"
+               ng-class="{'btn-active': datepicker.period=='custom'}") До {{ formData.expire_at | date : 'd MMMM yyyy' }}
           .form-group
             .checkbox
               label
                 input(type='checkbox'
-                ng-model="formData.remind")
+                ng-model="formData.remind_daily") 
                 = "Ежедневно напоминать об оплате."
           .form-group
             .checkbox

@@ -40,7 +40,7 @@
   display: block;
 }
 
-#new_invoice button, #send_invoice button {
+#new_invoice .btn-primary, #send_invoice .btn-primary {
   height: 50px;
   border-color: white;
   background-color: white;
@@ -77,7 +77,7 @@
 @marginDuration: 0.6s;
 @opacityDuration: 0.3s;
 
-#send_invoice div {
+#send_invoice #slide1, #send_invoice #slide2, #send_invoice #slide3 {
     -webkit-transition: width 0.3s ease, height 0.3s ease, margin @marginDuration ease, padding 0.3s ease, opacity @opacityDuration ease;
     -moz-transition: width 0.3s ease, height 0.3s ease, margin @marginDuration ease, padding 0.3s ease, opacity @opacityDuration ease;
     -o-transition: width 0.3s ease, height 0.3s ease, margin @marginDuration ease, padding 0.3s ease, opacity @opacityDuration ease;
@@ -96,4 +96,46 @@
   #slide1, #slide2, #slide3 {
     padding-right: 0;
   }
+}
+
+
+// datetime picker
+
+.input-group-btn .btn:nth-child(2), .input-group-btn .btn:nth-child(3) {
+  border-left: none;
+}
+
+.btn-transparent {
+  border-color: @whiteFade !important;
+  color: #FFF !important;
+  background-color: transparent !important;
+  height: 50px;
+  line-height: 35px;
+}
+.btn-active {
+  background-color: @whiteFade !important;
+  height: 50px;
+  line-height: 35px;
+}
+
+.datetimepicker {
+  color: @whiteFade;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+ul.dropdown-menu {
+  padding: 5px;
+}
+
+ul.dropdown-menu .btn {
+  border: none;
+}
+
+button:focus,
+button:active,
+button:hover
+{
+    outline:0px !important;
+    -webkit-appearance:none;
 }
