@@ -34,11 +34,6 @@
         "moment.js",
         "locale/ru.js"
       ]
-    },
-    "angular-bootstrap-datetimepicker": {
-      "main": [
-        "src/css/datetimepicker.css"
-      ]
     }
   }
 }

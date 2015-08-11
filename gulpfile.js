@@ -51,10 +51,10 @@ gulp.task('deps:less', function() {
 
     var less_files = gulp.src(files, {base: 'public/deps'})
         .pipe(filter('**/*.less'))
-        .pipe(less())
+        .pipe(less());
         
     var css_files = gulp.src(files, {base: 'public/deps'})
-        .pipe(filter('**/*.css'))
+        .pipe(filter('**/*.css'));
     
     merge(less_files, css_files)
         .pipe(concat('deps.css'))

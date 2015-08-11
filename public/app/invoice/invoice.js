@@ -3,6 +3,7 @@
 
     var module = angular.module('app.invoice', [
         'ngRoute',
+        'app.invoice.cancel',
         'app.invoice.done',
         'app.invoice.draft',
         'app.invoice.sent-owner',
@@ -89,6 +90,10 @@
             
             $scope.sendSuccess = function () {
                 $scope.showChild('/public/build/templates/invoice/send_success.html');    
+            };
+            
+            $scope.showCancel = function() {
+                $scope.showChild('/public/build/templates/invoice/cancel.html');
             };
 
             $scope.reloadChild = function() {

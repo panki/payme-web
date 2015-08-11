@@ -1,3 +1,53 @@
+.navbar-fixed-top {
+  min-height: 130px;
+}
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+// Navbar expanded
+@media (min-width: 768px) {
+  .navbar-default .navbar-nav > li > a {
+    line-height: 80px;
+    font-size: 130%;
+    margin: 0 20px;
+    text-decoration: underline;
+  }
+  .navbar .navbar-collapse {
+    text-align: center;
+    float: right;;
+  }
+  .navbar .navbar-brand {
+    padding: 34px;
+    height: auto;
+  }
+  .navbar .navbar-brand .logo {
+    background-image: url('/public/app/images/payme_logo_white.png');
+    width: 160px;
+    height: 45px;
+  }
+}
+
+// Navbar collapsed
+@media (max-width: 768px){
+  .navbar .navbar-collapse {}
+  .navbar .navbar-brand {
+    padding: 2px;
+  }
+  .navbar .navbar-brand .logo {
+    background-image: url('/public/app/images/logo-small.jpg');
+    width: 133px;
+    height: 47px;
+  }
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+}
+
+
 /* Genereated by http://work.smarchal.com/twbscolor/ */
 @bgDefault      : #0066ca;
 @bgHighlight    : #0066ca;

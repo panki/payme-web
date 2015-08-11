@@ -32,13 +32,13 @@
           .form-group
             button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") ОТПРАВИТЬ СЧЕТ СРАЗУ
             .show-advanced или 
-              a(ng-click="toggleAdvancedForm()", href="") добавить подробности и напоминания
-              
+              a.ajax-link(ng-click="toggleAdvancedForm()", href="") добавить подробности и напоминания
+
         .col-xs-12.col-md-5.card-col(id="slide2")
           label Куда перевести деньги
           card-widget(card-number-input='#owner_card_number')
           .show-advanced.hide(id="edit_card")
-              a(ng-click="toggleAdvancedForm()", href="") изменить данные карты
+              a.ajax-link(ng-click="toggleAdvancedForm()", href="") изменить данные карты
           
         .col-xs-12.col-md-5.offcanvas(id="slide3")
           .form-group
