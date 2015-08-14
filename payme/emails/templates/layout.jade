@@ -66,7 +66,7 @@ mixin tr_space(height)
     td(height="#{height}")
       img(src="#{config.baseUrl}/public/emails/images/pixel.gif", height="#{height}")
       
-mixin table_wrapper(email_type)
+mixin table_wrapper(email)
   table(width="100%", cellspacing="0", cellpadding="0", border="0")
     tbody
       if !web
@@ -78,17 +78,17 @@ mixin table_wrapper(email_type)
                     td.terms(align="center")
                       span.terms
                       | Если письмо отображается некорректно, вы можете
-                      a(href="", target="_blank") открыть его в браузере
+                      a(href="email.viewUrl", target="_blank") открыть его в браузере
         +tr_space(10)
       else
         +tr_space(20)
       tr
         td(align="center")
-          table.container(align="center", cellspacing="0", cellpadding="0", border="0", class="invoice " + email_type.replace('/', '-'), width="#{email_width}")
+          table.container(align="center", cellspacing="0", cellpadding="0", border="0", class="invoice " + email.type.replace('/', '-'), width="#{email_width}")
             tbody
               tr
                 td(width="#{email_width}", height="80", align="left", valign="top")
-                  img(src="#{config.baseUrl}/public/emails/images/payme_logo_white.png", width="120", style="margin: 15px")
+                  img(src="#{config.baseUrl}/public/emails/images/payme_logo_white.png", style="margin: 15px; width: 120px;")
               tr
                 td(align="center")
                   table(align="center", cellspacing="0", cellpadding="0", border="0", width="#{content_width}")

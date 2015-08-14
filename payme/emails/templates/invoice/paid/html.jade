@@ -5,7 +5,7 @@ block title
   
 block content
   if email.address == email.invoice.owner.email
-    +table_wrapper(email.type)
+    +table_wrapper(email)
       +tr_title("Ваш счет оплачен")
       +tr_space(15)
       +tr_amount(email.invoice.amount, 'blue')
@@ -18,7 +18,7 @@ block content
       +tr_secondary_action(email.invoiceUrl, "Открыть квитанцию")
       +tr_space(25)
   else
-    +table_wrapper(email.type)
+    +table_wrapper(email)
       +tr_title("Вы оплатили счет")
       +tr_space(15)
       +tr_amount(email.invoice.amount, 'blue')

@@ -4,14 +4,13 @@ block title
   title Confirm invoice
   
 block content
-  +table_wrapper(email.type)
+  +table_wrapper(email)
     +tr_title("Вы запросили перевод")
     +tr_space(15)
     +tr_amount(email.invoice.amount, 'blue')
     +tr_desc
       +p_name('От', email.invoice.payer)
       +p_comment(email.invoice.text)
-      +p_expire(email.invoice.expire_at)
     +tr_space(25)
     +tr_primary_action(email.confirmUrl, "Ввести данные карты")
     +tr_space(25)
