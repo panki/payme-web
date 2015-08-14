@@ -11,7 +11,7 @@ mixin p_name(desc, account)
   p.label #{desc}
   if account.name
     p #{account.name}
-  p!= account.email.replace('@', '&#64;')
+  p.email!= account.email.replace('@', '&#64;')
   p.divider
   
 mixin p_comment(value)
