@@ -19,7 +19,6 @@ img {
 }
 
 img.logo {
-  margin: 15px;
   width: 120px;
 }
 
@@ -54,19 +53,17 @@ a.button {
   color: white;
 }
 
-.amount span{
+.amount {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 60px;
   font-weight: 200;
-  line-height: 1.4;  
+  line-height: 70px;  
   color: white;
 }
 
-.amount .rouble {
+img.rouble {
   height: 44px;
   width: 30px;
-  display: inline;
-  vertical-align: middle;
 }
 
 .desc, .desc a {
