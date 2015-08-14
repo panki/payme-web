@@ -18,6 +18,11 @@ img {
   display: block;
 }
 
+img.logo {
+  margin: 15px;
+  width: 120px;
+}
+
 .container td div {
   overflow: hidden;
 }
