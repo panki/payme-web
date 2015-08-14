@@ -76,6 +76,7 @@ img.rouble {
 
 p.email, p.email:active, p.email:hover, p.email a, p.email a:active, p.email a:hover {
   color: white;
+  text-decoration: none;
 }
 
 .desc .label {
