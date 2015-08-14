@@ -10,7 +10,7 @@
             $scope.submitting = false;
             
             
-            $scope.setCode = function(code) {
+            $scope.updateReasonWithCode = function(code) {
                 switch (code) {
                     case 'paid':
                         $scope.reason = 'Счет уже оплачен.';
@@ -27,15 +27,15 @@
                 }
             };
             $scope.code = 'paid';
-            $scope.setCode($scope.code);
+            $scope.updateReasonWithCode($scope.code);
             
             $scope.onTextareaFocus = function() {
-                if ($scope.code == 'other') {
+                if ($scope.code === 'other') {
                     return;
                 }
 
-                $scope.code = code;
-                $scope.setCode('other');
+                $scope.code = 'other';
+                $scope.updateReasonWithCode('other');
             };
 
             $scope.submit = function(valid) {

@@ -19,7 +19,7 @@
                 label
                   input(type="radio" name="code" value="paid"
                   ng-model="code"
-                  ng-change="setCode('paid')")
+                  ng-change="updateReasonWithCode('paid')")
                   i
                   | Счет уже оплачен
             .form-group
@@ -27,7 +27,7 @@
                 label
                   input(type="radio" name="code" value="stranger"
                   ng-model="code"
-                  ng-change="setCode('stranger')")
+                  ng-change="updateReasonWithCode('stranger')")
                   i
                   | Не знаю, кто этот человек
             .form-group
@@ -35,7 +35,7 @@
                 label
                   input(type="radio" name="code" value="other"
                   ng-model="code"
-                  ng-change="setCode('other')")
+                  ng-change="updateReasonWithCode('other')")
                   i
                   | Другое
 
