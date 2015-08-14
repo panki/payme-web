@@ -69,7 +69,7 @@ function generateReceipt(invoice) {
 
     
     lines.push(['Дата создания счета', moment(invoice.created_at).format(dateFormat, 'ru')]);
-    lines.push(['Дата оплаты', moment(invoice.transaction.completed_at).format(dateFormat, 'ru')]);
+    lines.push(['Дата оплаты', moment(invoice.paid_at).format(dateFormat, 'ru')]);
     lines.push(['Сумма', accounting.formatMoney(invoice.amount)]);
     
     if (invoice.transaction.card.masked_number) {

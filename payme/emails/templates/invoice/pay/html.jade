@@ -4,15 +4,16 @@ block title
   title Pay invoice
   
 block content
-  +table_wrapper("#0366cb")
+  +table_wrapper(email.type)
     +tr_title("Вам пришел счет")
     +tr_space(15)
-    +tr_amount(email.invoice.amount)
+    +tr_amount(email.invoice.amount, 'blue')
     +tr_desc
-        p От: #{email.invoice.owner.name} #{email.invoice.owner.email}
-        p= email.invoice.text
-    +tr_space(15)
-    +tr_primary_action("#0480ff", email.payUrl, "Оплатить")
+      +p_name("От", email.invoice.owner)
+      +p_comment(email.invoice.text)
+      +p_expire(email.invoice.expire_at)
+    +tr_space(25)
+    +tr_primary_action(email.payUrl, "Оплатить")
     +tr_space(15)
     +tr_secondary_action(email.refuseUrl, "Отказаться от оплаты")
     +tr_space(15)

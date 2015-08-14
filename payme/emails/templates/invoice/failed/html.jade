@@ -5,29 +5,30 @@ block title
   
 block content
   if email.address == email.invoice.owner.email
-    +table_wrapper("#666666")
+    +table_wrapper(email.type)
       +tr_title("Ошибка при оплате счета")
       +tr_reason
           p= email.invoice.failure_reason
       +tr_space(15)
-      +tr_amount(email.invoice.amount)
+      +tr_amount(email.invoice.amount, 'gray')
       +tr_desc
-          p От: #{email.invoice.payer.name} #{email.invoice.payer.email}
-          p= email.invoice.text
-      +tr_space(15)
+          +p_name('От', email.invoice.payer)
+          +p_comment(email.invoice.text)
+          +p_card('На карту', email.invoice.owner_card)
+      +tr_space(25)
       +tr_secondary_action(email.invoiceUrl, "Открыть квитанцию")
-      +tr_space(15)
+      +tr_space(25)
   else
-    +table_wrapper("#666666")
+    +table_wrapper(email.type)
       +tr_title("Ошибка при оплате счета")
       +tr_reason
           p= email.invoice.failure_reason
       +tr_space(15)
-      +tr_amount(email.invoice.amount)
+      +tr_amount(email.invoice.amount, 'gray')
       +tr_desc
-          p Кому: #{email.invoice.owner.name} #{email.invoice.owner.email}
-          p= email.invoice.text
-      +tr_space(15)
+          +p_name('Кому', email.invoice.owner)
+          +p_comment(email.invoice.text)
+      +tr_space(25)
       +tr_secondary_action(email.invoiceUrl, "Открыть квитанцию")
-      +tr_space(15)
+      +tr_space(25)
     

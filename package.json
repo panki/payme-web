@@ -25,6 +25,7 @@
     "morgan": "~1.5.3",
     "nodemailer": "^1.4.0",
     "nodemailer-smtp-transport": "^1.0.3",
+    "numeral": "^1.5.3",
     "pdfkit": "^0.7.1",
     "raven": "^0.8.1",
     "request": "^2.58.0",

@@ -1,14 +1,43 @@
 - var email_width = 300;
 - var content_width = 220;
 
+mixin p_row(desc, value)
+  if value
+    p.label #{desc}
+    p #{value}
+    p.divider
+  
+mixin p_name(desc, account)
+  p.label #{desc}
+  if account.name
+    p #{account.name}
+  p #{account.email}
+  p.divider
+  
+mixin p_comment(value)
+  +p_row("Комментарий", value)
+
+mixin p_expire(value)
+  +p_row("Оплатить до", moment(value).format('LL'))
+
+mixin p_paid_at(value)
+  +p_row("Оплачен", moment(value).format('LL'))
+  
+mixin p_card(desc, card)
+  p.label #{desc}
+  p #{cards.maskCardNumber(card.masked_number)}
+  p.divider
+  
 mixin tr_title(title)
   tr
     td.title(align="center")= title
     
-mixin tr_amount(amount)
+mixin tr_amount(amount, color)
   tr
     td.amount(align="center", valign="middle")
-      div.amount #{amount} &#8381;
+      div.amount
+        | #{numeral(amount).format('0,0')} 
+        img.rouble(src="#{config.baseUrl}/public/emails/images/rouble_#{color}.png")
         
 mixin tr_desc
   tr
@@ -22,9 +51,9 @@ mixin tr_reason
       if block
         block
 
-mixin tr_primary_action(color, url, text)
+mixin tr_primary_action(url, text)
   tr
-    td.button(height="50", align="center", valign="middle", bgcolor="#{color}")
+    td.button(height="50", align="center", valign="middle")
       a.button(href="#{url}")= text
       
 mixin tr_secondary_action(url, text)
@@ -37,17 +66,29 @@ mixin tr_space(height)
     td(height="#{height}")
       img(src="#{config.baseUrl}/public/emails/images/pixel.gif", height="#{height}")
       
-mixin table_wrapper(bgcolor)
+mixin table_wrapper(email_type)
   table(width="100%", cellspacing="0", cellpadding="0", border="0")
     tbody
-      +tr_space(20)
+      if !web
+        tr
+          td(align="center")
+              table(align="center", cellspacing="0", cellpadding="0", border="0", width="#{email_width}")
+                tbody
+                  tr
+                    td.terms(align="center")
+                      span.terms
+                      | Если письмо отображается некорректно, вы можете
+                      a(href="", target="_blank") открыть его в браузере
+        +tr_space(10)
+      else
+        +tr_space(20)
       tr
         td(align="center")
-          table.container(align="center", cellspacing="0", cellpadding="0", border="0", bgcolor="#{bgcolor}", width="#{email_width}")
+          table.container(align="center", cellspacing="0", cellpadding="0", border="0", class="invoice " + email_type.replace('/', '-'), width="#{email_width}")
             tbody
               tr
-                td(width="#{email_width}", height="200", align="center")
-                  img(src="#{config.baseUrl}/public/emails/images/payme_logo_white.png")
+                td(width="#{email_width}", height="80", align="left", valign="top")
+                  img(src="#{config.baseUrl}/public/emails/images/payme_logo_white.png", width="120", style="margin: 15px")
               tr
                 td(align="center")
                   table(align="center", cellspacing="0", cellpadding="0", border="0", width="#{content_width}")
@@ -68,6 +109,10 @@ mixin table_wrapper(bgcolor)
               tr
                 td.copyright(align="center")
                   span.copyright 2015 © Payme4 &nbsp;|&nbsp; <a href="#{config.baseUrl}/">Сайт</a> &nbsp;|&nbsp; <a href="#{config.baseUrl}/security">Безопасность</a>
+              +tr_space(15)
+              tr
+                td.copyright(align="center")
+                  img(src="#{config.baseUrl}/public/emails/images/security.jpg")
       +tr_space(50)
 
 doctype html

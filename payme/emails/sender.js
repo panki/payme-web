@@ -1,5 +1,8 @@
 var ejs = require('ejs');
 var he = require('he');
+var numeral = require('../numeral');
+var moment = require('../moment');
+var cards = require('../cards');
 var crypto = require('crypto');
 var Redis = require('ioredis');
 
@@ -53,7 +56,15 @@ function send_email(email) {
     var emailType = email.type;
     var emailAddress = email.address;
     
-    return render(email.template, { email: email, config: config }).then(function(content) {
+    var locals = {
+        email: email,
+        config: config,
+        numeral: numeral,
+        moment: moment,
+        cards: cards
+    };
+    
+    return render(email.template, locals).then(function(content) {
         return {
             from: config.mail.from,
             to: emailAddress,
