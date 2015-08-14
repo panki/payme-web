@@ -36,7 +36,7 @@ mixin tr_amount(amount, color)
   tr
     td.amount(align="center", valign="middle")
       div.amount
-        | #{numeral(amount).format('0,0')} 
+        span #{numeral(amount).format('0,0')} 
         img.rouble(src="#{config.baseUrl}/public/emails/images/rouble_#{color}.png")
         
 mixin tr_desc
