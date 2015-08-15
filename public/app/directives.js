@@ -81,6 +81,7 @@
                             if (scope.currentBin !== bin) {
                                 scope.currentBin = bin;
                                 client.banks.lookup(bin).then(function(bank) {
+                                    if (bank.id && bank.color === '#000000') { bank.color = defaultBank.color }
                                     scope.cardBank = bank.id ? bank : defaultBank;
                                 }).catch(function(err) {
                                     scope.cardBank = defaultBank;
