@@ -108,15 +108,16 @@ Client.prototype.parseResponse = function(response) {
     var body = response.body;
     var error;
     
-    
     switch (status) {
         case 200:
             return JSON.parse(body);
         case 204:
             return null;
         case 422:
-            error = new Error(JSON.parse(body).message);
-            error.status = status;
+            var e = JSON.parse(body);
+            
+            error = new Error(e.message);
+            error.code = e.code;
             throw error;
         default:
             error = new Error(body);

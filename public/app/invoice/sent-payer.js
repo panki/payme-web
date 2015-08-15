@@ -1,8 +1,12 @@
 (function() {
     'use strict';
     var module = angular.module('app.invoice.sent-payer', []);
+
+    function endsWith(s, suffix) {
+        return s.indexOf(suffix, s.length - suffix.length) !== -1;
+    }
     
-    module.controller('InvoicePayCtrl', ['$scope', '$modal', 'config', 'Client', function($scope, $modal, config, client) {
+    module.controller('InvoicePayCtrl', ['$scope', '$location', '$modal', 'config', 'Client', function($scope, $location, $modal, config, client) {
         var $parent = $scope.$parent;
         $scope.invoice = angular.copy($parent.invoice);
         
@@ -76,7 +80,25 @@
                 });
             }
         };
-        
-       
+
+        // Handle refuse links.
+        {
+            var path = $location.path();
+            var refuse = false;
+            var newPath = null;
+
+            if (endsWith(path, '/refuse')) {
+                refuse = true;
+                newPath = path.substring(0, path.length - '/refuse'.length);
+            } else if (endsWith(path, '/refuse/')) {
+                refuse = true;
+                newPath = path.substring(0, path.length - '/refuse/'.length);
+            }
+            
+            if (refuse) {
+                $location.path(newPath);
+                $scope.openRefuseDialog();
+            }
+        }
     }]);
 })();
