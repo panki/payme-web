@@ -33,24 +33,6 @@ function initDevice(req, res, next) {
 }
 
 
-function authToken(req, res, next) {
-    if (req.query.token) {
-        req.client.tokens.authorize(req.query.token).then(function (session) {
-            res.locals.session = session;
-            res.locals.session_json = JSON.stringify({
-                id: session.id,
-                account_id: session.account_id
-            });
-            next();
-        }).catch(function (e) {
-            next(e)
-        });
-    } else {
-        next();    
-    }
-}
-
-
 var router = express.Router();
 
 // uncomment after placing your favicon in /public
@@ -61,6 +43,5 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.use(cookieParser());
 router.use(initClient);
 router.use(initDevice);
-router.use(authToken);
 
 module.exports = router;

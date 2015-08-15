@@ -4,9 +4,9 @@ var extend = require('util')._extend;
 var querystring = require('querystring');
 var request = Promise.promisifyAll(require('request'));
 
+var Auth = require('./auth');
 var Devices = require('./devices');
 var Emails = require('./emails');
-var Tokens = require('./tokens');
 var Alfabank = require('./alfabank');
 var Invoices = require('./invoices');
 
@@ -20,13 +20,13 @@ var Invoices = require('./invoices');
 function Client(config, url, token) {
     this.apiUrl = url;
     this.token = token;
-    
+
+    this.auth = new Auth(this);
     this.devices = new Devices(this);
     this.emails = new Emails(this, config);
-    this.tokens = new Tokens(this);
     this.alfabank = new Alfabank(this);
     this.invoices = new Invoices(this);
-
+    
     this.headers = {'Content-Type': 'application/x-www-form-urlencoded'};
     if (token) {
         this.headers['Authorization'] = 'token ' + this.token;

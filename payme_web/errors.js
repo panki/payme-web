@@ -26,10 +26,15 @@ module.exports = function(app) {
             res.render('error', {error: {message: 'Страница не найдена'}})
             return;
         }
-        
+
+        console.log(err);
         switch (err.code) {
             case 'invalid':
                 res.status(422);
+                res.render('error', {error: err});
+                break;
+            case 'unauthorized':
+                res.status(403);
                 res.render('error', {error: err});
                 break;
             default:
