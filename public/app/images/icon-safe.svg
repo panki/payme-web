@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="69px" height="86px" viewBox="0 0 69 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.4 (305) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_safe</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="index_main" sketch:type="MSArtboardGroup" transform="translate(-235.000000, -1966.000000)" fill="#FFF031">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(79.000000, 1850.000000)">
+                <g id="icon_safe" transform="translate(156.000000, 116.000000)" sketch:type="MSShapeGroup">
+                    <path d="M31.1231076,48.1454959 L20.8185968,37.8409851 C18.9153886,35.9377769 15.8459211,35.9418115 13.9502426,37.83749 C12.0584214,39.7293111 12.0561289,42.8082354 13.9537377,44.7058442 L26.6148214,57.3669278 C27.6238815,58.3759879 28.9607776,58.8489213 30.2767574,58.7880527 C31.9884576,59.4014281 33.9753736,59.022948 35.3489437,57.6493778 L57.7828404,35.2154812 C59.6786966,33.3196249 59.6749834,30.2421214 57.7831622,28.3503003 C55.8874838,26.4546218 52.8167223,26.4518812 50.9179813,28.3506222 L31.1231076,48.1454959 Z M1.43457031,7.82226563 L35.8222656,0.23828125 L67.9980469,8.13867188 L68.3242188,53.6728516 C68.3242188,53.6728516 68.4189453,73.0830078 34.6699219,85.3271484 C10.5615234,77.2998047 0.920898438,63.5205078 0.920898438,52.7285156 L1.43457031,7.82226563 Z" id="Path-75"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
