@@ -160,7 +160,7 @@
                     
                     cardNumberUpdated(angular.element(attrs.cardNumberInput).data('$ngModelController').$modelValue);
                 },
-                templateUrl: 'public/build/templates/widgets/credit_card.html'
+                templateUrl: '/public/build/templates/widgets/credit_card.html'
             };
         }])
     
@@ -175,7 +175,7 @@
                 link: function(scope) {
                     scope.cardType = cardTypeDetector(scope.cardNumber);
                 },
-                templateUrl: 'public/build/templates/widgets/credit_card.html'
+                templateUrl: '/public/build/templates/widgets/credit_card.html'
             };
         }])
     

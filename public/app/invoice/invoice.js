@@ -139,6 +139,8 @@
                         }
                         break;
                 }
+
+                window.scrollTo(0, 0);
             };
             
             $scope.showChild = function(templateUrl) {

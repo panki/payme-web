@@ -12,6 +12,7 @@
 
         $scope.cancel = function() {
             $parent.showCancel();
+            window.scrollTo(0, 0);
         };
         
         // Handle cancel links.
