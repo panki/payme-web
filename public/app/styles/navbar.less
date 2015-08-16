@@ -41,7 +41,7 @@
     margin: 0 20px;
     text-decoration: underline;
   }
-  
+
   .navbar {
     .navbar-collapse {
       text-align: center;
@@ -94,24 +94,24 @@
 });
 
 
-.fp-viewing-1-0 .navbar .navbar-brand .logo {
-  background-image: url('/public/app/images/payme_logo_blue.png');
+.fp-viewing-1-0, .fp-viewing-1-1, .fp-viewing-1-2 {
+  .navbar .navbar-brand .logo {
+    background-image: url('/public/app/images/payme_logo_blue.png');
+  }
 
-}
+  .navbar-default .navbar-toggle .icon-bar {
+    background-color: @bgDefault;
+  }
 
-.fp-viewing-1-0 .navbar-default .navbar-toggle .icon-bar {
-  background-color: @bgDefault;
+  .navbar-default .navbar-nav>li>a,
+  .navbar-default .navbar-text {
+    color: @bgDefault;
+  }
 }
 
 .navbar-default .navbar-toggle .icon-bar {
   transition: background-color 1s ease-in-out;
 }
-
-.fp-viewing-1-0 .navbar-default .navbar-nav>li>a,
-.fp-viewing-1-0 .navbar-default .navbar-text {
-  color: @bgDefault;
-}
-
 
 /* Genereated by http://work.smarchal.com/twbscolor/ */
 @bgDefault      : #0066ca;
