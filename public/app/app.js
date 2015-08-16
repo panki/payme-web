@@ -10,9 +10,8 @@
         'app.invoice_new',
         'autosizeInput', 'ui.mask']);
 
-    app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'datepickerPopupConfig',
-        function($routeProvider, $locationProvider, $httpProvider, datepickerPopupConfig) {
-            $locationProvider.html5Mode(true);
+    app.config(['$httpProvider', 'datepickerPopupConfig',
+        function($httpProvider, datepickerPopupConfig) {
             $httpProvider.defaults.withCredentials = true;
             datepickerPopupConfig.showButtonBar = false;
             datepickerPopupConfig.appendToBody = true;
