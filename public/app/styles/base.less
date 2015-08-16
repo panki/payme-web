@@ -9,8 +9,11 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  /* Margin top by navbar height */
+  margin-bottom: 100px;
+  .media-mobile({
+    margin-bottom: 120px;
+  });
+  
   font-family: @baseFontFamily;
   font-weight: 300;
   background-color: @bgDefault;
@@ -24,21 +27,6 @@ body > .container {
   margin-bottom: 120px;
   line-height: 1.5em;
   font-size: 1.2em;
-}
-
-.footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
-  text-align: center;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #ffffff;
 }
 
 .section.invoice-new {
@@ -110,72 +98,32 @@ h3 {
   color: @lightBlueText;
 }
 
-label {
-  font-weight:300;
-  color: @secondaryText;
-}
-
-textarea:focus,
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="date"]:focus,
-input[type="month"]:focus,
-input[type="time"]:focus,
-input[type="week"]:focus,
-input[type="number"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="search"]:focus,
-input[type="tel"]:focus,
-input[type="color"]:focus,
-.uneditable-input:focus {
-  border-color: @inputBorderFocused;
-  border-width: 1px;
-  box-shadow: none;
-  outline: 0 none;
-}
-
-.checkbox label {
-  color: white;
-  font-weight: 200;
-  font-family: @baseFontFamily;
-  font-size: 0.8em;
-  line-height: 1em;
-}
-
-div.error .error-icon {
-  background-image: url('/public/app/images/warning.png');
-}
-
-div.error .error-icon {
-  width: 58px;
-  height: 58px;
-  margin-left: -68px;
-  display: block;
-}
-
-div.error .error-text {
-  margin-top: -52px;
-}
-
 div.error {
   margin-bottom: 30px;
   padding-left: 41px;
-}
 
-div.error p {
-  line-height: 20px;
-  margin-bottom: 5px;
-}
-
-div.error p.error-header {
-  font-weight: 600;
-}
-
-@media (max-width: 768px) {
-  div.error {
-    padding-left: 68px;
+  .error-icon {
+    background-image: url('/public/app/images/warning.png');
+    width: 58px;
+    height: 58px;
+    margin-left: -68px;
+    display: block;
   }
+
+  .error-text {
+    margin-top: -52px;
+  }
+
+  p {
+    line-height: 20px;
+    margin-bottom: 5px;
+  }
+
+  p.error-header {
+    font-weight: 600;
+  }
+
+  .media-mobile({
+    padding-left: 68px;
+  });
 }
