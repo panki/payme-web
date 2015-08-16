@@ -15,9 +15,9 @@ html(ng-app="app")
         Typekit.load();
       } catch (e) {}
 
-  base(href='/')
+  base(href='/invoice/')
   body
-    nav.navbar.navbar-default.navbar-fixed-top
+    nav.navbar.navbar-default.navbar-static-top
       .container
         .navbar-header
           button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="#navbar", aria-expanded="false", aria-controls="navbar")
@@ -25,8 +25,8 @@ html(ng-app="app")
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href="/")
-            .logo
+          .navbar-brand
+            a.logo(href="/")
         .navbar-collapse.collapse(id="navbar")
           ul.nav.navbar-nav
             li
@@ -41,4 +41,13 @@ html(ng-app="app")
 
     footer.footer
       .container
-        img(src="/public/app/images/secure.jpg")
+        .row
+          .col-xs-6.col-sm-3.footer-left-links
+            a(href='/offer') Оферта
+            a(href='/tariffs') Тарифы
+          .col-sm-6.hidden-xs.footer-center-links
+            img(src="/public/app/images/secure.jpg")
+          .col-xs-6.col-sm-3.footer-right-links
+            a(href='mailto:support@payme4.ru') support@payme4.ru
+          .col-xs-12.visible-xs-block.footer-center-links
+            img(src="/public/app/images/secure.jpg")

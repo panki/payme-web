@@ -52,6 +52,7 @@
         
         $scope.openRefuseDialog = function () {
             $parent.showRefuse();
+            window.scrollTo(0, 0);
         };
         
         $scope.submit = function() {

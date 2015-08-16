@@ -1,0 +1,49 @@
+// Footer styles.
+@import "media";
+
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #ffffff;
+
+  /* Set the fixed height of the footer here */
+  height: 100px;
+  line-height: 60px;
+  
+  .media-mobile({
+    height: 120px;    // Should equal body margin-bottom.
+    line-height: 40px;
+  });
+  
+  .container {
+    padding: 20px 15px;
+    
+    .media-mobile({
+      padding: 10px 15px;
+    });
+  }
+  
+  a {
+    color: #8d8d8d;
+    font-size: 14px;
+    font-weight: normal;
+    text-decoration: underline;
+  }
+  
+  &-left-links {
+    text-align: left;
+    a {
+      margin-right: 15px;
+    }
+  }
+  
+  &-center-links {
+    text-align: center;
+  }
+  
+  &-right-links {
+    text-align: right;
+  }
+}

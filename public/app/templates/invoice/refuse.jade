@@ -1,5 +1,5 @@
 .container(ng-controller='InvoiceRefuseCtrl')
-  form(id="refuse_invoice", name="form", ng-submit="submit(form.$valid)", novalidate)
+  form(id="refuse_invoice", name="form", ng-submit="confirm()", novalidate)
     fieldset(ng-disabled="submitting")
       .row
         .col-xs-12.col-md-10.col-md-offset-1
@@ -46,11 +46,11 @@
               ng-click="onTextareaFocus()")
 
         .row
-          .col-xs-8.col-md-5.col-md-offset-1
+          .col-xs-12.col-md-5.col-md-offset-1
             .form-group
               button.btn.btn-primary.btn-lg.btn-block(type="submit" ng-disabled="form.$invalid")
                 | ОТКАЗАТЬСЯ ОТ ОПЛАТЫ
-          .col-xs-4.col-md-5
+          .col-xs-12.col-md-5
             .form-group(style="line-height: 50px")
               | или 
               a.ajax-link(ng-click="showInvoice()", href="") вернуться к оплате

@@ -1,0 +1,20 @@
+// Media mixins.
+
+
+.media-mobile(@rules) {
+  @media (max-width: 768px){
+    @rules();
+  }
+}
+
+.media-tablet(@rules) {
+  @media (max-width: 995px) {
+    @rules();
+  }
+}
+
+.media-desktop(@rules) {
+  @media (min-width: 768px) {
+    @rules();
+  }
+}

@@ -8,7 +8,7 @@
           span.font-light {{ invoice.amount | currency:"₽":0 }} 
           | по адресу 
           span.font-light {{ invoice.payer.email }}
-          |. Так же можно добавить подробности: имена, комментарий к счету и указать дату оплаты.
+          |. Также можно добавить подробности: имена, комментарий к счету и указать дату оплаты.
         
         .error(ng-show='error')
           span.error-icon

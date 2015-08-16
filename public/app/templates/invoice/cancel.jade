@@ -1,5 +1,5 @@
 .container(ng-controller='InvoiceCancelCtrl')
-  form(id="cancel_invoice", name="form", ng-submit="submit(form.$valid)", novalidate)
+  form(id="cancel_invoice", name="form", ng-submit="confirm()", novalidate)
     fieldset(ng-disabled="submitting")
       .row
         .col-xs-12.col-md-10.col-md-offset-1
@@ -12,17 +12,15 @@
             br
             | Плательщик — {{ invoice.payer_name }} 
             span.font-light {{ invoice.payer.email }}
-            | . Мы отправим ему письмо с оповещением об отмене счёта.
-          p
-            | Вы действительно хотите отменить запрос на оплату?
+            | . Мы отправим ему письмо с оповещением об отмене счета.
           br
       .row
-        .col-xs-8.col-md-3.col-md-offset-1
+        .col-xs-12.col-md-3.col-md-offset-1
           .form-group
             button.btn.btn-primary.btn-lg.btn-block(
               id="cancel-submit" type="submit" ng-disabled="form.$invalid")
-              | ДА, ОТМЕНИТЬ
-        .col-xs-4.col-md-3
+              | ОТМЕНИТЬ СЧЕТ
+        .col-xs-12.col-md-3
           .form-group(style="line-height: 50px")
             | или 
             a.ajax-link(ng-click="showInvoice()", href="") вернуться к ожиданию

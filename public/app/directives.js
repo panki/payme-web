@@ -36,7 +36,7 @@
             return {
                 restrict: 'A',
                 require: '?ngModel',
-                link: function(scope, element, attrs, ngModel) {
+                link: function(scope, element, attrs) {
                     scope.$watch(attrs.ngModel, function(newValue, oldValue) {
                         if (newValue !== undefined && !expr.test(newValue)) {
                             $parse(attrs.ngModel).assign(scope, oldValue);
@@ -82,9 +82,11 @@
                             if (scope.currentBin !== bin) {
                                 scope.currentBin = bin;
                                 client.banks.lookup(bin).then(function(bank) {
-                                    if (bank.id && bank.color === '#000000') { bank.color = defaultBank.color; }
+                                    if (bank.id && bank.color === '#000000') {
+                                        bank.color = defaultBank.color;
+                                    }
                                     scope.cardBank = bank.id ? bank : defaultBank;
-                                }).catch(function(err) {
+                                }).catch(function() {
                                     scope.cardBank = defaultBank;
                                 });
                             }
@@ -158,7 +160,7 @@
                     
                     cardNumberUpdated(angular.element(attrs.cardNumberInput).data('$ngModelController').$modelValue);
                 },
-                templateUrl: 'public/build/templates/widgets/credit_card.html'
+                templateUrl: '/public/build/templates/widgets/credit_card.html'
             };
         }])
     
@@ -170,10 +172,10 @@
                     cardType: '=',
                     cardBank: '='
                 },
-                link: function(scope, element, attrs) {
+                link: function(scope) {
                     scope.cardType = cardTypeDetector(scope.cardNumber);
                 },
-                templateUrl: 'public/build/templates/widgets/credit_card.html'
+                templateUrl: '/public/build/templates/widgets/credit_card.html'
             };
         }])
     
