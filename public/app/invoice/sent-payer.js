@@ -8,31 +8,36 @@
         
         $scope.form_error = null;
         $scope.submitting = false;
-        $scope.card = {};
+        $scope.card = {
+            number: null,
+            exp_date: null,
+            cvv: null
+        };
         $scope.fee = {
             loading: false,
             calculated: false,
-            value: null,
-            error: null
+            value: null
         };
         
         // Calculate fee
         
         $scope.$watch('card.number', function() {
+            $scope.form.card_number.$setValidity('commission', true);
             $scope.calcFee();
         }, true);
         
         $scope.calcFee = function () {
             $scope.fee.calculated = false;
             $scope.fee.value = null;
-            if ($scope.card.number) {
+            if ($scope.card.number && $scope.form.card_number.$valid) {
                 $parent.clearError();
                 $scope.fee.loading = true;
                 client.invoices.calcFee($scope.invoiceId, $scope.card.number.replace(/ /g, '')).then(function (result) {
                     $scope.fee.value = result.fee;
                     $scope.fee.calculated = true;
+                    $scope.form.card_number.$setValidity('commission', true);
                 }).catch(function (error) {
-                    $parent.onError(error);
+                    $scope.form.card_number.$setValidity('commission', false);
                 }).finally(function() {
                     $scope.fee.loading = false;                   
                 });

@@ -1,8 +1,13 @@
-.card(style='background-color: {{ cardBank.color }}')
-  .card-bank-logo(ng-show='cardBank.icon')
-    img(ng-if='cardBank.icon', ng-src="/public/banks/{{ cardBank.icon }}")
-  .card-bank-name(ng-hide='cardBank.icon') {{ cardBank.name }}
-  .card-number {{ cardNumber | card_number }}
-  .card-expdate {{ cardExpDate }}
-  .card-type(class="{{ cardType }}") 
+.card
+  .card-side.card-face(style='background-color: {{ cardBank.color }}')
+    .card-bank-logo(ng-show='cardBank.icon')
+      img(ng-if='cardBank.icon', ng-src="/public/banks/{{ cardBank.icon }}")
+    .card-bank-name(ng-hide='cardBank.icon') {{ cardBank.name }}
+    .card-number {{ cardNumber | card_number }}
+    .card-expdate {{ cardExpDate }}
+    .card-type(class="{{ cardType }}")
+  .card-side.card-back(style='background-color: {{ cardBank.color }}')
+    .card-stripe
+    .card-cvv-stripe
+      .card-cvv {{ cardCvv }}
   

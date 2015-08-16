@@ -208,3 +208,24 @@ button:hover {
   outline:0px !important;
   -webkit-appearance:none;
 }
+
+input.ng-invalid.ng-touched, 
+.ng-submitted input.ng-invalid,
+.ng-submitted .form-group .checkbox i.ng-invalid,
+.ng-submitted .form-group .radio i.ng-invalid
+{
+  border:2px solid red;
+}
+
+.error-message {
+  color: white;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  margin-top: 3px;
+}
+
+.btn {
+  font-family: @inputFontFamily;
+}
+
