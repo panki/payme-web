@@ -7,7 +7,6 @@
         'app.services',
         'app.directives',
         'app.invoice',
-        'app.invoice_new',
         'autosizeInput', 'ui.mask']);
 
     app.config(['$httpProvider', 'datepickerPopupConfig',

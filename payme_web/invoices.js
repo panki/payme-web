@@ -107,5 +107,10 @@ router.post('/transaction/confirmed/', function(req, res, next) {
     })
 });
 
+router.get('/invoice_created', function(req, res, next) {
+    res.render('invoice_created');
+});
+
+
 
 module.exports = router;
