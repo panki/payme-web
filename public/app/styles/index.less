@@ -1,15 +1,15 @@
 #new_invoice {
-  
+
   & label {
     font-weight: 300;
     font-size: 20px;
     color: white;
   }
-  
+
   & label span {
     color: @secondaryText;
   }
-  
+
   & .form-control {
     background-color: @bgDefault;
     border-color: @whiteFade;
@@ -20,7 +20,7 @@
     padding: 6px 12px;
     font-weight: 100;
   }
-  
+
   & .btn {
     &[disabled], &[disabled]:active {
       opacity: 1;
@@ -71,4 +71,37 @@
 
 #new_invoice .btn {
   margin-top: 0px;
+}
+
+.next-slide {
+  font-size: 18px;
+  width: 200px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  margin-left: -100px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.adv-box {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 18px;
+
+  .icon {
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    background: url('/public/app/images/adv-icon-bg.png') no-repeat 0 0;
+    margin: 0 auto 30px auto;
+
+    img {
+      margin-top: 32px;
+    }
+  }
+
+  h2 {
+    text-align: center;
+  }
 }

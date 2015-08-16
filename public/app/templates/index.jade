@@ -15,7 +15,7 @@
                     input.input-lg.form-control(id="amount", type="text", name="amount", ng-model="invoice.amount", maxlength="5", required, autosize, zero-input)
                     span.input-group-addon &#8381;
 
-            .row.mt100
+            .row
               .col-xs-12.col-md-10.col-md-offset-1
                 .row
                   .form-group.col-xs-12.col-sm-6.col-md-4
@@ -23,13 +23,18 @@
                     input.input-lg.form-control(type="text", name="payer_email", ng-model="invoice.payer_email", placeholder="От e-mail", required)
                   .form-group.col-xs-12.col-sm-6.col-md-4
                     label(for="owner_email")
-                      | Кому 
+                      | Кому
                       span &mdash; это вы
                     input.input-lg.form-control(type="text", name="owner_email", ng-model="invoice.owner_email", placeholder="Ваш e-mail", required)
                   .form-group.col-xs-12.col-sm-6.col-sm-offset-6.col-md-4.col-md-offset-0
                     label &nbsp;
                     button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") Продолжить
 
+      .row
+        .next-slide(onclick='$.fn.fullpage.moveSectionDown();')
+          p.text-center Как это работает?
+          p.text-center
+            span.glyphicon.glyphicon-chevron-down
 
   .section.howto
     .slide
@@ -38,16 +43,49 @@
           .col-md-12
             h1.text-center Создавайте запросы в несколько кликов
             h2.text-center Просто заполните email того, у кого хотите попросить долг, и свой, а также сумму и все
+
+    .next-slide(onclick='$.fn.fullpage.moveSectionDown();')
+      p.text-center Преимущества
+      p.text-center
+        span.glyphicon.glyphicon-chevron-down
+
     .slide
       h2 Slide 2
 
+  .section.advantages
+    .container
+      .row
+        .col-md-6
+          .adv-box
+            h2 Безопасно
+            .icon
+              img(src="/public/app/images/icon-safe.svg", alt='')
+            p Лимиты применяются и к картам отправителя, и к картам получателя услуги (сайт, смс, мобильное приложение или интернет-банк)
+        .col-md-6
+          .adv-box
+            h2 Просто
+            .icon
+              img(src="/public/app/images/icon-clock.svg", alt='')
+
+            p Лимиты применяются и к картам отправителя, и к картам получателя услуги (сайт, смс, мобильное приложение или интернет-банк)
+        .col-md-6
+          .adv-box
+            h2 Надежно
+            .icon
+              img(src="/public/app/images/icon-safety.svg", alt='')
+
+            p Лимиты применяются и к картам отправителя, и к картам получателя услуги (сайт, смс, мобильное приложение или интернет-банк)
+        .col-md-6
+          .adv-box
+            h2 Удобно
+            .icon
+              img(src="/public/app/images/icon-easy.svg", alt='')
+            p Лимиты применяются и к картам отправителя, и к картам получателя услуги (сайт, смс, мобильное приложение или интернет-банк)
+
 script.
   $(function() {
-    $('#fullpage').fullpage({
-      css3: false,
-      fixedElements: '.navbar'
-    });
-
+    $('.footer').appendTo('.section.advantages');
     $('body>.container').removeClass('container');
+    $('#fullpage').fullpage({});
 
   });
