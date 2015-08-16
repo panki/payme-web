@@ -1,5 +1,5 @@
 .container(ng-controller='InvoiceRefuseCtrl')
-  form(id="refuse_invoice", name="form", ng-submit="submit(form.$valid)", novalidate)
+  form(id="refuse_invoice", name="form", ng-submit="confirm()", novalidate)
     fieldset(ng-disabled="submitting")
       .row
         .col-xs-12.col-md-10.col-md-offset-1
