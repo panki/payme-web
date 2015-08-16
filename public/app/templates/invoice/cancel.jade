@@ -17,12 +17,12 @@
             | Вы действительно хотите отменить запрос на оплату?
           br
       .row
-        .col-xs-12.col-md-3.col-md-offset-1
+        .col-xs-8.col-md-3.col-md-offset-1
           .form-group
             button.btn.btn-primary.btn-lg.btn-block(
               id="cancel-submit" type="submit" ng-disabled="form.$invalid")
               | ДА, ОТМЕНИТЬ
-        .col-xs-12.col-md-3
+        .col-xs-4.col-md-3
           .form-group(style="line-height: 50px")
             | или 
             a.ajax-link(ng-click="showInvoice()", href="") вернуться к ожиданию
