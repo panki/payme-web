@@ -23,7 +23,8 @@
     "angular-ui-mask": "~1.4.1",
     "angular-credit-cards": "~2.3.5",
     "fullpage.js": "~2.6.7",
-    "font-awesome": "~4.4.0"
+    "font-awesome": "~4.4.0",
+    "modernizr": "~2.8.3"
   },
   "overrides": {
     "angular-i18n": {
@@ -34,6 +35,9 @@
         "moment.js",
         "locale/ru.js"
       ]
+    },
+    "modernizr": {
+      "main": []
     }
   }
 }

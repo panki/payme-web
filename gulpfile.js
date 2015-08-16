@@ -16,6 +16,7 @@ var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var merge = require('merge-stream');
+var modernizr = require('gulp-modernizr');
 var web_config = require('./payme_web/config');
 
 
@@ -35,9 +36,14 @@ gulp.task('deps:js', function() {
     var files = mainBowerFiles({
         checkExistence: true
     });
+    
+    var modernizr_files = gulp.src('./public/deps/modernizr/*.js')
+        .pipe(modernizr());
 
-    return gulp.src(files, {base: 'public/deps'})
-        .pipe(filter('**/*.js'))
+    var deps_files = gulp.src(files, {base: 'public/deps'})
+        .pipe(filter('**/*.js'));
+
+    return merge(modernizr_files, deps_files)
         .pipe(concat('deps.js'))
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
