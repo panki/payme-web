@@ -210,5 +210,29 @@
                     });
                 }
             };
+        })
+        .directive('email', function (){ 
+            var isValidEmail = function(value) {
+                return value && !value.match(/[\@\.\-\_]{2,}/) 
+                    && ( 
+                        value.match(/^[a-zA-Z0-9\.\-\_]{2,}@[a-zA-Z0-9\.\-]{2,}\.\w{2,}$/) ||
+                        value.match(/^[a-zA-Z0-9\.\-\_]{2,}@[АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя0-9\.\-]{2,}\.рф$/)        
+                    ) ? true : false;
+            };
+            return {
+                require: 'ngModel',
+                link: function(scope, elem, attr, ngModel) {
+                    ngModel.$parsers.unshift(function(value) {
+                        var valid = value ? isValidEmail(value.replace(/^\s+/, '').replace(/\s+$/, '')) : false;
+                        ngModel.$setValidity('email', valid);
+                        return value;
+                    });
+                    
+                    ngModel.$formatters.unshift(function(value) {
+                        ngModel.$setValidity('email', isValidEmail(value));
+                        return value;
+                    });
+                }
+            };
         });
 }());

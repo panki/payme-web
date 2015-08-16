@@ -20,12 +20,12 @@
                 .row
                   .form-group.col-xs-12.col-sm-6.col-md-4
                     label(for="payer_email") От кого
-                    input.input-lg.form-control(type="text", name="payer_email", ng-model="invoice.payer_email", placeholder="От e-mail", required)
+                    input.input-lg.form-control(type="text", name="payer_email", ng-model="invoice.payer_email", placeholder="От e-mail", required, email)
                   .form-group.col-xs-12.col-sm-6.col-md-4
                     label(for="owner_email")
                       | Кому
                       span &mdash; это вы
-                    input.input-lg.form-control(type="text", name="owner_email", ng-model="invoice.owner_email", placeholder="Ваш e-mail", required)
+                    input.input-lg.form-control(type="text", name="owner_email", ng-model="invoice.owner_email", placeholder="Ваш e-mail", required, email)
                   .form-group.col-xs-12.col-sm-6.col-sm-offset-6.col-md-4.col-md-offset-0
                     label &nbsp;
                     button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") Продолжить
