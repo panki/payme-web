@@ -24,7 +24,7 @@ function initDevice(req, res, next) {
     req.client.devices.current().then(function(device) {
         var expires = new Date(Date.now() + config.auth.deviceTtlMs);
         req.client.setDeviceId(device.id);
-        res.cookie('device', device.id, {expires: expires});
+        res.cookie('device', device.id, {expires: expires, httpOnly: true});
         
         next();
     }).catch(function (error) {

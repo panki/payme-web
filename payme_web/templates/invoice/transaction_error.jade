@@ -1,0 +1,23 @@
+extends ../layout
+block content
+  .aaa {{ error.message }}
+  .container.invoice(data-state="error")
+    .row
+      .col-xs-12.col-md-8.col-md-offset-2
+        h1
+          span.invoice-header-icon &nbsp; 
+          | Счет не оплачен
+        p В процессе перевода прозошла ошибка, деньги с вашей карты не списаны.
+        h3 ОПИСАНИЕ ОШИБКИ:  
+        p #{ error.message }
+        p &nbsp;
+    .row
+      .col-xs-12.col-md-4.col-md-offset-2
+        .form-group
+          a.btn.btn-primary.btn-lg.btn-block(
+          href="/invoice/" + invoiceId + '/')
+            | ПОВТОРИТЬ ПОПЫТКУ
+      .col-xs-12.col-md-3
+        .form-group.secondary-action
+          | или 
+          a.ajax-link(href="/invoice/" + invoiceId + '/refuse/') отказаться от оплаты

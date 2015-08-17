@@ -69,7 +69,7 @@ router.use('/invoice/:invoice_id/*', function(req, res, next) {
 
 
 router.get('/invoice/:invoice_id', function(req, res, next) {
-    res.render('invoice', req.params);
+    res.render('invoice/main', req.params);
 });
 
 
@@ -95,20 +95,21 @@ router.get('/invoice/:invoice_id/receipt.pdf', function(req, res, next) {
 
 
 router.get('/invoice/:invoice_id/*', function(req, res, next) {
-    res.render('invoice', req.params);
+    res.render('invoice/main', req.params);
 });
 
 
-router.post('/transaction/confirmed/', function(req, res, next) {
+router.get('/transaction/confirmed/:invoice_id/', function(req, res, next) {
     req.client.alfabank.confirm_transaction(req.body.PaRes, req.body.MD).then(function(result) {
-        res.render('success');
+        res.redirect('/invoice/' + req.params.invoice_id + '/');
     }).catch(function(error) {
-        res.render('error', {error: error});
+        var locals = {error: error, invoiceId: req.params.invoice_id};
+        res.render('invoice/transaction_error', locals);
     })
 });
 
 router.get('/invoice_created', function(req, res, next) {
-    res.render('invoice_created');
+    res.render('invoice/created');
 });
 
 

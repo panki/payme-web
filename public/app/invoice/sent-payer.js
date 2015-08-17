@@ -73,7 +73,7 @@
                 .then(function (transaction) {
                     // Fill 3ds hidden form and submit it
                     var form = $('form[name="form_3ds"]');
-                    form.find('input[name="TermUrl"]').val(config.termUrl);
+                    form.find('input[name="TermUrl"]').val(config.termUrl+'/'+$scope.invoice.id+'/'+$scope.$parent.session.id+'/');
                     form.find('input[name="PaReq"]').val(transaction.PaReq);
                     form.find('input[name="MD"]').val(transaction.MD);
                     form.prop('action', transaction.acsUrl).submit();

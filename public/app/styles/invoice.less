@@ -82,7 +82,11 @@
     display: inline-block;
     
     .media-mobile({
-      display: none;
+      margin-left: 0px;
+      width: 32px;
+      height: 32px;
+      background-size: 32px 32px;
+      background-repeat: no-repeat;
     });
   }
 
@@ -106,6 +110,9 @@
   }
   &[data-state="cancelled"] {
     .invoice-header-icon { background-image: url("/public/app/images/invoice-header-cancelled.png") }
+  }
+  &[data-state="error"] {
+    .invoice-header-icon { background-image: url("/public/app/images/invoice-header-failed.png") }
   }
 }
 
