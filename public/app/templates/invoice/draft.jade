@@ -18,35 +18,38 @@
       .col-xs-12.col-md-12.col-md-offset-1
         .col-xs-12.col-md-4(id="slide1")
           .form-group
-            h3(for='owner_card_number') НОМЕР КАРТЫ
+            h3 ПОЛУЧИТЬ ДЕНЬГИ НА КАРТУ
+            label(for="owner_card_number") Номер карты
             input.input-lg.form-control(type="text"
             id="owner_card_number"
             name="owner_card_number"
             ng-model="formData.owner_card_number"
-            maxlength="16"
             inputmode="numeric"
             autocomplete="cc-number"
             autocompletetype="cc-number"
             x-autocompletetype="cc-number"
             ui-mask='9999 9999 9999 9999'
+            luhn
             required)
+            .error-message(ng-show="form.owner_card_number.$error.invalid && form.owner_card_number.$touched && !form.owner_card_number.$pristine") Неверный номер карты
           .form-group
             .checkbox
               label
                 input(type='checkbox', ng-model="formData.owner_terms_accept", required)
-                i
+                i(ng-class="{'ng-invalid': !formData.owner_terms_accept}")
                 | Я соглашаюсь на обработку персональных данных и принимаю 
-                a(href="/service") Правила работы сервиса
+                a(href="/terms") Правила работы сервиса
           .form-group
-            button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") ОТПРАВИТЬ СЧЕТ СРАЗУ
-            .show-advanced или 
+            button.btn.btn-primary.btn-lg.btn-block(type="submit") ОТПРАВИТЬ СЧЕТ СРАЗУ
+            .show-advanced(ng-show="form.$valid") или 
               a.ajax-link(ng-click="toggleAdvancedForm()", href="") добавить подробности и напоминания
-
+              
         .col-xs-12.col-md-5.card-col(id="slide2")
           h3 &nbsp;
-          card-widget(card-number-input='#owner_card_number')
-          .show-advanced.hide(id="edit_card")
-              a.ajax-link(ng-click="toggleAdvancedForm()", href="") изменить данные карты
+          .card-container
+            card-widget.card-face-only(card-number-input='#owner_card_number')
+          .edit-card.hide(id="edit_card")
+            a.ajax-link(ng-click="toggleAdvancedForm()", href="") изменить данные карты
               
         .col-xs-12.col-md-5.offcanvas(id="slide3")
           h3
@@ -85,8 +88,8 @@
             .checkbox
               label
                 input(type='checkbox', ng-model="formData.owner_terms_accept", required)
-                i
+                i(ng-class="{'ng-invalid': !formData.owner_terms_accept}")
                 | Я соглашаюсь на обработку персональных данных и принимаю 
-                a(href="/service") Правила работы сервиса
+                a(href="/terms") Правила работы сервиса
           .form-group
-            button.btn.btn-primary.btn-lg.btn-block(type="submit", ng-disabled="form.$invalid") ОТПРАВИТЬ СЧЕТ
+            button.btn.btn-primary.btn-lg.btn-block(type="submit") ОТПРАВИТЬ СЧЕТ

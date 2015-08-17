@@ -1,3 +1,5 @@
+@import "media";
+
 .form-group .radio,
 .form-group .checkbox {
   margin-bottom: 4px;
@@ -236,4 +238,16 @@ input.ng-invalid.ng-touched,
 .btn {
   font-family: @inputFontFamily;
 }
+
+.secondary-action {
+  line-height: 50px;
+}
+
+.media-tablet({
+  .secondary-action {
+    line-height: 20px;
+    margin-top: -10px;
+    text-align: center;
+  }
+});
 

@@ -58,10 +58,11 @@
                     required)
                     i(ng-class="{'ng-invalid': !card.payer_terms_accept}")
                     | Я соглашаюсь на обработку персональных данных и принимаю 
-                    a(href="/service") Правила работы сервиса
+                    a(href="/terms") Правила работы сервиса
         .col-xs-12.col-md-4.col-md-offset-1.card-col
           h3 &nbsp;
-          card-widget(card-number-input='#card_number', card-exp-date-input='#card_exp_date', card-cvv-input='#card_cvv')
+          .card-container
+            card-widget.card-animate(card-number-input='#card_number', card-exp-date-input='#card_exp_date', card-cvv-input='#card_cvv')
       .row
         .col-xs-12.col-md-3.col-md-offset-1
           .form-group
@@ -70,7 +71,7 @@
               | ОПЛАТИТЬ {{ invoice.amount + fee.value | currency:"₽":0 }}
             .commission(ng-show='fee.calculated') Комиссия {{ fee.value | currency:"₽":0 }} включена
         .col-xs-12.col-md-3
-          .form-group(style="line-height: 50px")
+          .form-group.secondary-action
             | или 
             a.ajax-link(ng-click="openRefuseDialog()", href="") отказаться
       

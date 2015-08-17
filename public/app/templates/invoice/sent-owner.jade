@@ -24,9 +24,10 @@
 
     .col-xs-12.col-md-5
       h3 КАРТА ДЛЯ ПОЛУЧЕНИЯ
-      card-static(
-      card-number="invoice.owner_card.masked_number"
-      card-bank="invoice.owner_card.bank")
+      .card-container
+        card-static.card-face-only(
+        card-number="invoice.owner_card.masked_number"
+        card-bank="invoice.owner_card.bank")
 
   .row
     .col-xs-12.col-md-3.col-md-offset-1

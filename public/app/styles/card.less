@@ -1,194 +1,213 @@
-.card-side {
-  position: relative;
-  width: 380px;
-  height: 220px;
-  background-color: #0a2972;
-  border-radius: 10px;
-  font-family: "ocr-a-std";
-  font-size: 1.3em;
-
-  -webkit-box-shadow: 0px 10px 35px 0px rgba(0,0,0,0.2);
-  -moz-box-shadow: 0px 10px 35px 0px rgba(0,0,0,0.2);
-  box-shadow: 0px 10px 35px 0px rgba(0,0,0,0.2);
-}
-
-.card-face .card-number {
-  position: absolute;
-  top: 120px;
-  left: 40px;
-}
-
-.card-face .card-expdate {
-  position: absolute;
-  top: 160px;
-  left: 150px;
-}
-
-.card-face .card-bank-logo {
-  position: absolute;
-  margin-top: 20px;
-  margin-left: 20px;
-}
-
-.card-face .card-bank-name {
-  position: absolute;
-  font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
-  margin-top: 15px;
-  margin-left: 15px;
-}
-
-.card-face .card-type {
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  width: 75px;
-  height: 45px;
-}
-
-.card-face .visa {
-  background: url("/public/banks/visa.png") center no-repeat;
-}
-
-.card-face .mastercard {
-  background: url("/public/banks/mastercard.png") center no-repeat;
-}
-
-.card-back .card-stripe {
-  position: absolute;
-  top: 20px;
-  background-color: black;
-  width: 380px;
-  height: 50px;
-}
-
-.card-back .card-cvv-stripe {
-  position: absolute;
-  background: url("/public/banks/card-back-cvv.png") center no-repeat;
-  font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
-  font-style: italic;
-  font-weight: 400;
-  width: 233px;
-  height: 37px;
-  top: 90px;
-  left: 30px;
-}
-
-.card-back .stripe {
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-}
-
-.card-back .card-cvv {
-  float: right;
-  color: black;
-  margin: 5px 20px;
-}
-
-
 .card-col {
   min-width: 410px !important;
   max-width: 410px !important;
 }
 
-/* Animation */
-
-.card .card-side {
-  position: absolute;
-  left: 0;
-  top: 0;
-  -webkit-transition-property: -webkit-transform;
-  -moz-transition-property: -moz-transform;
-  -o-transition-property: -o-transform;
-  transition-property: transform;
-  -webkit-transition-duration: 1s;
-  -moz-transition-duration: 1s;
-  -o-transition-duration: 1s;
-  transition-duration: 1s;
-  -webkit-transition-timing-function: cubic-bezier(.11, .11, .2, 1.42);
-  -moz-transition-timing-function: cubic-bezier(.11, .11, .2, 1.42);
-  -o-transition-timing-function: cubic-bezier(.11, .11, .2, 1.42);
-  transition-timing-function: cubic-bezier(.11, .11, .2, 1.42);
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  -o-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
-  backface-visibility: hidden;
+.card-container {
+  width: 380px;
+  height: 220px;
 }
 
 .card {
-  width: 100%;
-  height: 100%;
   position: absolute;
-  -webkit-perspective: 800px;
-  -moz-perspective: 800px;
-  -ms-perspective: 800px;
-  -o-perspective: 800px;
-  perspective: 800px;
+  & .card-side {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 380px;
+    height: 220px;
+    background-color: #0a2972;
+    border-radius: 10px;
+    font-family: "ocr-a-std";
+    font-size: 1.3em;
+  
+    -webkit-box-shadow: 0px 10px 35px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 10px 35px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 10px 35px 0px rgba(0,0,0,0.2);
+  }
 }
 
-.card:hover .card-back,
-.card:hover .card-side:last-child {
-  -webkit-transform: rotateY(0);
-  -moz-transform: rotateY(0);
-  -ms-transform: rotateY(0);
-  -o-transform: rotateY(0);
-  transform: rotateY(0);
+.card-face {
+  & .card-number {
+    position: absolute;
+    top: 120px;
+    left: 40px;
+  }
+
+  & .card-expdate {
+    position: absolute;
+    top: 160px;
+    left: 150px;
+  }
+
+  & .card-bank-logo {
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+
+  & .card-bank-name {
+    position: absolute;
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+
+  & .card-type {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 75px;
+    height: 45px;
+  }
+
+  & .visa {
+    background: url("/public/banks/visa.png") center no-repeat;
+  }
+
+  & .mastercard {
+    background: url("/public/banks/mastercard.png") center no-repeat;
+  }
 }
 
-.card:hover .card-face,
-.card:hover .card-side:first-child {
-  -webkit-transform: rotateY(180deg);
-  -moz-transform: rotateY(180deg);
-  -ms-transform: rotateY(180deg);
-  -o-transform: rotateY(180deg);
-  transform: rotateY(180deg);
+.card-back {
+  & .card-stripe {
+    position: absolute;
+    top: 20px;
+    background-color: black;
+    width: 380px;
+    height: 50px;
+  }
+
+  & .card-cvv-stripe {
+    position: absolute;
+    background: url("/public/banks/card-back-cvv.png") center no-repeat;
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
+    font-style: italic;
+    font-weight: 400;
+    width: 233px;
+    height: 37px;
+    top: 90px;
+    left: 30px;
+  }
+
+  & .stripe {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  & .card-cvv {
+    float: right;
+    color: black;
+    margin: 5px 20px;
+  }
 }
 
-.card .card-back,
-.card .card-side:last-child {
-  -webkit-transform: rotateY(-180deg);
-  -moz-transform: rotateY(-180deg);
-  -ms-transform: rotateY(-180deg);
-  -o-transform: rotateY(-180deg);
-  transform: rotateY(-180deg);
+  /* Animation */
+
+.card-back-only {
+  & .card-face {
+    display: none;
+  }
 }
 
-
-
-.card.back .card-back,
-.card.back .card-side:last-child {
-  -webkit-transform: rotateY(0);
-  -moz-transform: rotateY(0);
-  -ms-transform: rotateY(0);
-  -o-transform: rotateY(0);
-  transform: rotateY(0);
+.card-face-only {
+  & .card-back {
+    display: none;
+  }
 }
 
-.card.back .card-face,
-.card.back .card-side:first-child {
-  -webkit-transform: rotateY(180deg);
-  -moz-transform: rotateY(180deg);
-  -ms-transform: rotateY(180deg);
-  -o-transform: rotateY(180deg);
-  transform: rotateY(180deg);
+.card-animate {
+  & .card .card-side {
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    transition-duration: 1s;
+    -webkit-transition-timing-function: cubic-bezier(.11, .11, .2, 1.42);
+    -moz-transition-timing-function: cubic-bezier(.11, .11, .2, 1.42);
+    -o-transition-timing-function: cubic-bezier(.11, .11, .2, 1.42);
+    transition-timing-function: cubic-bezier(.11, .11, .2, 1.42);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  & .card {
+    -webkit-perspective: 800px;
+    -moz-perspective: 800px;
+    -ms-perspective: 800px;
+    -o-perspective: 800px;
+    perspective: 800px;
+  }
+
+  & .card:hover .card-back,
+  & .card:hover .card-side:last-child {
+    -webkit-transform: rotateY(0);
+    -moz-transform: rotateY(0);
+    -ms-transform: rotateY(0);
+    -o-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+
+  & .card:hover .card-face,
+  & .card:hover .card-side:first-child {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
+
+  & .card .card-back,
+  & .card .card-side:last-child {
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+  }
+
+
+
+  & .card.back .card-back,
+  & .card.back .card-side:last-child {
+    -webkit-transform: rotateY(0);
+    -moz-transform: rotateY(0);
+    -ms-transform: rotateY(0);
+    -o-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+
+  & .card.back .card-face,
+  & .card.back .card-side:first-child {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
+
+  & .card .back,
+  & .card .card-side:last-child {
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+  }
 }
-
-.card .back,
-.card .card-side:last-child {
-  -webkit-transform: rotateY(-180deg);
-  -moz-transform: rotateY(-180deg);
-  -ms-transform: rotateY(-180deg);
-  -o-transform: rotateY(-180deg);
-  transform: rotateY(-180deg);
-}
-
-
 
 .no-csstransforms3d .card .card-face,
 .no-csstransforms3d .card div:first-child {
