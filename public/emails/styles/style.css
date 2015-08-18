@@ -132,22 +132,22 @@ p.email, p.email:active, p.email:hover, p.email a, p.email a:active, p.email a:h
 
 /* expired */
 
-.invoice-expired {
+.invoice-expired, .invoice-refused, .invoice-failed, .invoice-cancelled {
   background-color: #666666;
 }
 
-.invoice-expired a.button {
+.invoice-expired a.button, .invoice-refused a.button, .invoice-failed a.button, .invoice-cancelled a.button {
   color: #0066ca;
 }
 
-.invoice-expired td.button {
+.invoice-expired td.button, .invoice-refused td.button, .invoice-failed td.button, .invoice-cancelled td.button {
   background-color: #eeeeee;
 }
 
-.invoice-expired p.label {
+.invoice-expired p.label, .invoice-refused p.label, .invoice-failed p.label, .invoice-cancelled p.label {
   color: #aaaaaa;
 }
   
-.invoice-expired p.divider {
+.invoice-expired p.divider, .invoice-refused p.divider, .invoice-failed p.divider, .invoice-cancelled p.divider {
   border-bottom: 1px solid #aaaaaa;
 }
