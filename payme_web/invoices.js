@@ -47,6 +47,7 @@ function authMiddleware(req, res, next) {
             throw error;
         }
 
+        req.client.setSessionId(session.id);
         res.locals.session = session;
         res.locals.session_json = JSON.stringify({
             id: session.id,

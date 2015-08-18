@@ -89,7 +89,7 @@
             
             $scope.saveReceipt = function() {
                 $window.location.href = '/invoice/' +
-                    $scope.invoice.id + '/receipt.pdf?download&token=' + $location.search().token;
+                    $scope.invoice.id + '/receipt.pdf?download';
             };
             
             $scope.sendSuccess = function () {
