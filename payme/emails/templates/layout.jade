@@ -40,9 +40,9 @@ mixin tr_amount(amount, color)
         body
           tr
             td(valign="middle")
-              div.amount #{numeral(amount).format('0,0')}
+              div.amount= amount
             td(valign="middle")
-              img.rouble(src="#{config.baseUrl}/public/emails/images/rouble_#{color}.png")
+              img.rouble(src="#{config.baseUrl}/public/emails/images/rouble_#{color}.png", width="30" height="44")
         
 mixin tr_desc
   tr
