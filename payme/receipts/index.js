@@ -47,7 +47,7 @@ function generateReceipt(invoice) {
     
     // Header
     doc.font('header').fillColor(headerColor).fontSize(headerFontSize);
-    doc.text('Квитанция об оплате счета\n№ '+ invoice.id, 0, headerYOffset, {width: docWidth, align: 'center'});
+    doc.text('Квитанция об оплате счета\n№ '+ invoice.number, 0, headerYOffset, {width: docWidth, align: 'center'});
 
     // Sub header
     doc.fillColor(subHeaderColor).fontSize(subHeaderFontSize);
@@ -91,7 +91,7 @@ function generateReceipt(invoice) {
     
     // Document meta info
     doc.info.Title = 'Квитанция об оплате счета';
-    doc.info.Subject = 'Счет № ' + invoice.id;
+    doc.info.Subject = 'Счет № ' + invoice.number;
     doc.info.Author = doc.info.Producer = doc.info.Creator = 'payme4.ru';
     
     return doc;
