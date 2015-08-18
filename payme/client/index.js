@@ -28,12 +28,10 @@ function Client(config, url, token) {
     this.invoices = new Invoices(this);
     
     this.headers = {'Content-Type': 'application/x-www-form-urlencoded'};
-    if (token) {
-        this.headers['Authorization'] = 'token ' + this.token;
-    }
     
     this.setUserAgent(config.client.device.userAgent);
     this.setDeviceId(config.client.device.id);
+    this.setToken(token);
 }
 
 Client.prototype.setUserAgent = function(ua) {
@@ -52,12 +50,28 @@ Client.prototype.setDeviceId = function(deviceId) {
     this.headers['Cookie'] = 'device=' + deviceId;
 };
 
+Client.prototype.setSessionId = function(sessionId) {
+    if (!sessionId) {
+        return;
+    }
+
+    this.headers['Authorization'] = 'session ' + sessionId;
+};
+
+Client.prototype.setToken = function(token) {
+    if (!token) {
+        return;
+    }
+
+    this.headers['Authorization'] = 'token ' + token;
+};
+
 Client.prototype.get = function(path, params) {
     var self = this;
     var t0 = new Date().getTime();
     var url = self.apiUrl + path;
     var headers = self.headers;
-
+    
     return request.getAsync({
         url: url,
         qs: params,
@@ -83,7 +97,7 @@ Client.prototype.post = function(path, params) {
     var t0 = new Date().getTime();
     var url = self.apiUrl + path;
     var headers = self.headers;
-
+    
     return request.postAsync({
         url: url,
         headers: headers,
