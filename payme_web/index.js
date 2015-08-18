@@ -6,8 +6,8 @@ var index_handler = function (req, res, next) {
 };
 
 router.get('/', index_handler);
-router.get('/howto', index_handler);
-router.get('/advantages', index_handler);
-router.get('/support', index_handler);
+router.get('/faq', index_handler);
+router.get('/terms', index_handler);
+router.get('/tariffs', index_handler);
 
 module.exports = router;

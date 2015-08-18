@@ -15,4 +15,11 @@
             datepickerPopupConfig.showButtonBar = false;
             datepickerPopupConfig.appendToBody = true;
         }]);
+    
+    app.run(['$rootScope', '$location', '$anchorScroll', function($rootScope, $location, $anchorScroll) {
+        $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+            console.log($location.hash());
+            if($location.hash()) $anchorScroll();  
+        });
+    }]);
 })();
