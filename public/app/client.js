@@ -77,7 +77,7 @@
             
             this.auth = {
                 pingSession: function() {
-                    return post('/auth/touch_session').then(function(result) {console.log(result)});
+                    return post('/auth/touch_session');
                 },
                 startSessionPing: function() {
                     $interval(self.auth.pingSession, config.sessionPingInterval || 5000);
