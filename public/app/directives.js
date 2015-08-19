@@ -52,7 +52,7 @@
                 }
             };
         }])
-        
+
         .directive('cardWidget', ['Client', 'cardTypeDetector', 'creditcards', function(client, cardTypeDetector, creditcards) {
             return {
                 restrict: 'E',
@@ -71,11 +71,11 @@
                         country: 'RU',
                         icon: ''
                     };
-                    
+
                     function detectCardType(cardNumber) {
                         scope.cardType = cardTypeDetector(cardNumber);
                     }
-                    
+
                     function lookupBank(cardNumber) {
                         if (cardNumber.length >= 6) {
                             var bin = cardNumber.substring(0,6);
@@ -92,14 +92,14 @@
                             }
                         } else { scope.cardBank = defaultBank; }
                     }
-                    
+
                     function cardNumberUpdated(value) {
                         scope.cardNumber = creditcards.card.parse(value);
                         scope.cardNumberDisplay = creditcards.card.format(scope.cardNumber);
                         detectCardType(scope.cardNumber);
                         lookupBank(scope.cardNumber);
                     }
-                    
+
                     $(attrs.cardNumberInput)
                     .keyup(function() {
                         cardNumberUpdated($(this).val());
@@ -113,15 +113,15 @@
                         cardNumberUpdated($(this).val());
                         scope.$apply();
                     });
-                    
+
                     function cardExpDateUpdated(value) {
                         scope.cardExpDate = value;
                     }
-                    
+
                     function cardCvvUpdated(value) {
                         scope.cardCvv = value;
                     }
-                    
+
                     if (attrs.cardExpDateInput) {
                         $(attrs.cardExpDateInput)
                         .keyup(function() {
@@ -138,7 +138,7 @@
                         });
                         cardExpDateUpdated($(attrs.cardExpDateInput).val());
                     }
-                    
+
                     if (attrs.cardCvvInput) {
                         $(attrs.cardCvvInput)
                         .keyup(function() {
@@ -157,13 +157,13 @@
                         });
                         cardExpDateUpdated($(attrs.cardExpDateInput).val());
                     }
-                    
+
                     cardNumberUpdated(angular.element(attrs.cardNumberInput).data('$ngModelController').$modelValue);
                 },
                 templateUrl: '/public/build/templates/widgets/credit_card.html'
             };
         }])
-    
+
         .directive('cardStatic', ['cardTypeDetector', function(cardTypeDetector) {
             return {
                 restrict: 'E',
@@ -178,8 +178,8 @@
                 templateUrl: '/public/build/templates/widgets/credit_card.html'
             };
         }])
-    
-        .directive('luhn', function (){ 
+
+        .directive('luhn', function (){
             var luhn = (function (array) {
                 return function luhn (number) {
                     if (!number) { return false; }
@@ -188,12 +188,12 @@
                     var bit = 1;
                     var sum = 0;
                     var value;
-                    
+
                     while (length) {
                         value = parseInt(number.charAt(--length), 10);
                         sum += (bit ^= 1) ? array[value] : value;
                     }
-                    
+
                     return !!sum && sum % 10 === 0;
                 };
             }([0, 2, 4, 6, 8, 1, 3, 5, 7, 9]));
@@ -205,7 +205,7 @@
                         ngModel.$setValidity('invalid', valid);
                         return value;
                     });
-                    
+
                     ngModel.$formatters.unshift(function(value) {
                         ngModel.$setValidity('invalid', luhn(value));
                         return value;
@@ -213,12 +213,12 @@
                 }
             };
         })
-        .directive('email', function (){ 
+        .directive('email', function (){
             var isValidEmail = function(value) {
-                return value && !value.match(/[\@\.\-\_]{2,}/) 
-                    && ( 
+                return value && !value.match(/[\@\.\-\_]{2,}/) &&
+                    (
                         value.match(/^[a-zA-Z0-9\.\-\_]{2,}@[a-zA-Z0-9\.\-]{2,}\.\w{2,}$/) ||
-                        value.match(/^[a-zA-Z0-9\.\-\_]{2,}@[АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя0-9\.\-]{2,}\.рф$/)        
+                        value.match(/^[a-zA-Z0-9\.\-\_]{2,}@[АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя0-9\.\-]{2,}\.рф$/)
                     ) ? true : false;
             };
             return {
@@ -229,7 +229,7 @@
                         ngModel.$setValidity('email', valid);
                         return value;
                     });
-                    
+
                     ngModel.$formatters.unshift(function(value) {
                         ngModel.$setValidity('email', isValidEmail(value));
                         return value;
