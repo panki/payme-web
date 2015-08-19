@@ -17,7 +17,7 @@ module.exports.makeHeaders = function(email) {
 module.exports.validateInvoiceRequest = function (msg) {
     var payme_domain = /^.+@(dev\.)?payme4\.ru$/;
     var amount = parseInt(msg.subject.replace(/^\D+/, ''));
-    if ( isNaN(amount) || amount < 100 || amount > 75000) return false;
+    if ( isNaN(amount) || amount < config.invoices.minAmount || amount > config.invoices.maxAmount) return false;
     
     if (msg.to.length != 1) return false;
     if (msg.cc.length != 1) return false;
