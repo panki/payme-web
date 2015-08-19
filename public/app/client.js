@@ -1,8 +1,8 @@
 (function() {
     'use strict';
 
-    angular.module('app.client', []).factory('Client', ['$http', '$httpParamSerializer', 'config',
-        function($http, $httpParamSerializer, config) {
+    angular.module('app.client', []).factory('Client', ['$http', '$httpParamSerializer', '$interval', 'config',
+        function($http, $httpParamSerializer, $interval, config) {
             var self = this;
             var apiUrl = config.apiUrl;
             self.sessionId = null;
@@ -72,6 +72,17 @@
                         throw new Error('Неизвестная ошибка');
                 }
             }
+            
+            // Auth
+            
+            this.auth = {
+                pingSession: function() {
+                    return post('/auth/touch_session');
+                },
+                startSessionPing: function() {
+                    $interval(self.auth.pingSession, config.sessionPingInterval || 5000);
+                }
+            };
 
             // Invoices
 

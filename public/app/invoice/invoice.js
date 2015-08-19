@@ -28,7 +28,7 @@
                 $scope.accountId = session.account_id;
                 $scope.invoiceId = invoiceId;
                 client.sessionId = session.id;
-
+                client.auth.startSessionPing();
                 $scope.loadInvoice();
             };
 
