@@ -46,13 +46,28 @@
                             $parse(attrs.ngModel).assign(scope, 0);
                         }
                         if (oldValue === 0 && newValue !== undefined) {
-                            $parse(attrs.ngModel).assign(scope, parseInt(newValue, 10));
+                            var value = parseInt(newValue, 10);
+                            $parse(attrs.ngModel).assign(scope, value);
                         }
                     }, true);
                 }
             };
         }])
-
+        .directive('invoiceAmount', ["$parse", 'config', function($parse, config) {
+            return {
+                restrict: 'A',
+                require: '?ngModel',
+                link: function(scope, element, attrs) {
+                    $(element).blur(function() {
+                        var value = parseInt($(this).val(), 10);
+                        if (value < config.invoices.minAmount) { value = config.invoices.minAmount }
+                        if (value > config.invoices.maxAmount) { value = config.invoices.maxAmount }
+                        $parse(attrs.ngModel).assign(scope, value);
+                        scope.$apply();
+                    });
+                }
+            };
+        }])
         .directive('cardWidget', ['Client', 'cardTypeDetector', 'creditcards', function(client, cardTypeDetector, creditcards) {
             return {
                 restrict: 'E',

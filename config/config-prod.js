@@ -46,7 +46,8 @@ var config = {
 config.ng = {
     apiUrl: config.apiUrl,
     termUrl: config.baseUrl + '/transaction/confirmed/',
-    sessionPingInterval: 60000
+    sessionPingInterval: 60000,
+    invoices: config.invoices
 };
 
 // Mandrill config
