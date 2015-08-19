@@ -14,7 +14,7 @@ html(ng-app="app")
       } catch (e) {}
   base(href='/')
   body
-    
+
     nav.navbar.navbar-default.navbar-static-top
       .container
         .navbar-header
@@ -37,4 +37,13 @@ html(ng-app="app")
 
     footer.footer
       .container
-        img(src="/public/app/images/secure.jpg")
+        .row
+          .col-xs-6.col-sm-3.footer-left-links
+            a(href='/offer') Оферта
+            a(href='/tariffs') Тарифы
+          .col-sm-6.hidden-xs.footer-center-links
+            img(src="/public/app/images/secure.jpg")
+          .col-xs-6.col-sm-3.footer-right-links
+            a(href='mailto:support@payme4.ru') support@payme4.ru
+          .col-xs-12.visible-xs-block.footer-center-links
+            img(src="/public/app/images/secure.jpg")
