@@ -53,7 +53,11 @@ router.post('/mandrill/inbound', function (req, res, next) {
     Promise.map(req.events, function (event) {
         if (event.event == 'inbound') {
             var invoiceRequest = mandrill.validateInvoiceRequest(event.msg);
-            if (invoiceRequest) return req.client.invoices.create(invoiceRequest);    
+            if (invoiceRequest) {
+                console.log('Create invoice request', invoiceRequest);
+                return req.client.invoices.create(invoiceRequest);
+            }     
+            console.log('Relay message', event.msg);
             return mandrill.relayMessage(event.msg);
         } else {
             console.log('Unexpected email event (unknown event type)', event);
