@@ -1,6 +1,6 @@
 var config = {
-    apiUrl: 'http://payme4.ru/api',    // No trailing slash.
-    baseUrl: 'http://payme4.ru',       // No trailing slash.
+    apiUrl: 'https://payme4.ru/api',    // No trailing slash.
+    baseUrl: 'https://payme4.ru',       // No trailing slash.
     redis: {
         host: '127.0.0.1',
         port: 6379,
