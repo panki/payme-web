@@ -213,7 +213,7 @@
                 }
             };
         })
-        .directive('email', function (){
+        .directive('email', function () {
             var isValidEmail = function(value) {
                 return value && !value.match(/[\@\.\-\_]{2,}/) &&
                     (
@@ -233,6 +233,26 @@
                     ngModel.$formatters.unshift(function(value) {
                         ngModel.$setValidity('email', isValidEmail(value));
                         return value;
+                    });
+                }
+            };
+        })
+
+        .directive('slideToAnchor', function() {
+            return {
+                restrict: 'A',
+                require: "?href",
+                link: function(scope, elem, attr, ngModel) {
+                    $(elem).on('click', function(e) {
+                        e.preventDefault();
+
+                        var target = $(attr.href);
+                        if (target.length==0) {
+                            return;
+                        }
+                        $('html, body').stop().animate({
+                            'scrollTop': target.offset().top
+                        }, 300, 'swing');
                     });
                 }
             };
