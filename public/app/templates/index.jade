@@ -155,7 +155,8 @@ script.
       var invoiceContainer = $('.section.invoice-new>div');
       var invoiceForm = invoiceContainer.find('form');
 
-      section.height($(window).height() - $('.navbar').height());
+      section.height($(window).height());
+      section.parents('div').css('margin-top', -$('.navbar').height());
 
       var marginTop = section.height() - invoiceForm.height() - 100;
 
