@@ -1,3 +1,5 @@
+@import "media";
+
 #new_invoice {
 
   & label {
@@ -15,10 +17,13 @@
     border-color: @whiteFade;
     color: #fff;
     border-radius: 0;
-    font-family2: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
     font-size: 22px;
     padding: 6px 12px;
     font-weight: 100;
+  }
+  
+  & .form-control:focus {
+    border-color: white;
   }
 
   & .btn {
@@ -26,30 +31,34 @@
       opacity: 1;
     }
   }
-}
-
-#new_invoice #amount {
-  font-size: 12em;
-  height: auto;
-  background: transparent;
-  border: transparent;
-  color: white;
-  text-align: right;
-  outline: none;
-  border: none !important;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  box-shadow: none !important;
-  width: 0px;
-  float: none;
-  display: inline-block;
-}
-
-#new_invoice #amount:focus {
-  outline: 0;
-}
-
-#new_invoice .amount-group .input-group-addon{
+  
+  & #amount {
+    font-size: 12em;
+    height: auto;
+    background: transparent;
+    border: transparent;
+    color: white;
+    text-align: right;
+    outline: none;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    width: 0px;
+    float: none;
+    display: inline-block;
+    .media-tablet({
+      font-size: 10em;  
+    });
+    .media-mobile({
+      font-size: 6em;  
+    });
+    &:focus {
+      outline: 0;
+    }
+  }
+  
+  & .amount-group .input-group-addon {
     background: transparent;
     border: transparent;
     font-size: 12em;
@@ -58,30 +67,26 @@
     vertical-align: baseline;
     padding: 0;
     width: auto;
-}
-
-#new_invoice .amount-group {
+    .media-tablet({
+      font-size: 10em;  
+    });
+    .media-mobile({
+      font-size: 6em;  
+    });
+  }
+  
+  & .amount-group {
     text-align: center;
     display: block;
-}
-
-#new_invoice .form-group input {
-  display: block;
-}
-
-#new_invoice .btn {
-  margin-top: 0px;
-}
-
-.next-slide {
-  font-size: 18px;
-  width: 200px;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  margin-left: -100px;
-  cursor: pointer;
-  z-index: 5;
+  }
+  
+  & .form-group input {
+    display: block;
+  }
+  
+  & .btn {
+    margin-top: 0px;
+  }
 }
 
 .adv-box {
@@ -100,64 +105,73 @@
       margin-top: 32px;
     }
   }
+}
 
-  h2 {
-    text-align: center;
+#enough {
+  border: 1px solid #0066ca;
+  border-radius: 25px;
+  padding: 30px;
+  & h1, & h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
   }
 }
 
-.howto {
+.enough {
+  margin: 80px 0;
+  .media-mobile({
+    margin: 30px 0;
+  });
+}
 
-  h2 {
-    font-size: 3em;
-    font-weight: 300;
+.section.howto {
+  background-color: #fff;
+  color: #464646;
+  & h1, & h2 {
+    color: #464646;
   }
-
-  p {
-    font-size: 1.2em;
+  & p {
     color: #999;
-    margin-bottom: 20px;
-
-  }
-
-  .profit img {
-    margin-top: 100px;
-  }
-
-  p.hard {
-    color: #000;
-  }
-
-  .fp-controlArrow.fp-next {
-    border-color: transparent transparent transparent #ccc;
-  }
-
-  .fp-controlArrow.fp-prev {
-    border-color: transparent #ccc transparent transparent;
-  }
-
-  #enough {
-    border: 1px solid #0066ca;
-    border-radius: 25px;
-    padding: 50px;
   }
 }
 
-.advantages {
-  h2 {
+.section.howto, .section.advantages {
+  & h1 {
     font-size: 3em;
-    font-weight: 300;
+    font-weight: 200;
+    margin-top: 50px;
+    .media-mobile({
+      font-size: 28px;
+      font-weight: 300;
+      margin-top: 20px;
+    });
   }
-
-  p {
+  
+  & h2 {
+    font-size: 2.5em;
+    font-weight: 200;
+    margin-top: 50px;
+    .media-mobile({
+      font-size: 22px;
+      font-weight: 300;
+      margin-top: 20px;
+    });
+  }
+  
+  & p {
     font-size: 1.2em;
     margin-bottom: 20px;
   }
+}
 
-  .section {
-    h2 {
-      font-size: 2.5em;
-    }
 
-  }
+.profit {
+  min-width: 220px;
+  min-height: 220px;
+  width: inherit;
+  height: inherit;
+  &.profit-1 { background: url('/public/app/images/profit-1.png') center center no-repeat; }
+  &.profit-2 { background: url('/public/app/images/profit-1.png') center center no-repeat; }
+  &.profit-3 { background: url('/public/app/images/profit-1.png') center center no-repeat; }
+  &.profit-4 { background: url('/public/app/images/profit-1.png') center center no-repeat; }
 }

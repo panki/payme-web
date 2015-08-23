@@ -1,13 +1,16 @@
 (function() {
     'use strict';
-    var app = angular.module('app', ['ui.bootstrap', 'credit-cards',
+    var app = angular.module('app', [
+        'ui.bootstrap',
+        'ui.mask',
+        'credit-cards',
         'app.index',
         'app.client',
         'app.filters',
         'app.services',
         'app.directives',
-        'app.invoice',
-        'autosizeInput', 'ui.mask']);
+        'app.invoice'
+    ]);
 
     app.config(['$httpProvider', 'datepickerPopupConfig',
         function($httpProvider, datepickerPopupConfig) {
