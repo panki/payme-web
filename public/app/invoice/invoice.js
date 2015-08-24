@@ -88,8 +88,7 @@
             };
             
             $scope.saveReceipt = function() {
-                $window.location.href = '/invoice/' +
-                    $scope.invoice.id + '/receipt.pdf?download';
+                $window.location.href = $scope.invoiceId + '/receipt.pdf?download';
             };
             
             $scope.sendSuccess = function () {

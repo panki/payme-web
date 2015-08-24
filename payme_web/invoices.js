@@ -5,7 +5,7 @@ var receipts = require('../payme/receipts');
 
 
 // Invoice session middleware.
-function authMiddleware(req, res, next) {
+function authMiddleware(cookie_url_prefix, req, res, next) {
     var invoiceId = req.params.invoice_id;
 
     Promise.resolve(req.cookies.invoice_session).then(function(session_id) {
@@ -32,7 +32,7 @@ function authMiddleware(req, res, next) {
             // Set a session cookie for the current invoice.
 
             res.cookie('invoice_session', session.id, {
-                path: '/invoice/' + invoiceId,
+                path: '/invoice/' + cookie_url_prefix + '/' + invoiceId,
                 httpOnly: true
             });
             return session;
@@ -60,21 +60,20 @@ function authMiddleware(req, res, next) {
     });
 }
 
-router.use('/invoice/:invoice_id', authMiddleware);
-router.use('/invoice/:invoice_id/*', function(req, res, next) {
-    if (res.locals.session) {
-        return next();
-    }
-    return authMiddleware(req, res, next);
-});
-
-
-router.get('/invoice/:invoice_id', function(req, res, next) {
+function renderInvoice(req, res, next) {
     res.render('invoice/main', req.params);
+}
+
+router.use('/invoice/:direction(outgoing|incoming)/:invoice_id', function(req, res, next) {
+    return authMiddleware(req.params.direction, req, res, next);
 });
 
+router.use('/invoice/:direction(outgoing|incoming)/:invoice_id/*', function(req, res, next) {
+    if (res.locals.session) { return next(); }
+    return authMiddleware(req.params.direction, req, res, next);
+});
 
-router.get('/invoice/:invoice_id/receipt.pdf', function(req, res, next) {
+router.get('/invoice/:direction(outgoing|incoming)/:invoice_id/receipt.pdf', function(req, res, next) {
     req.client.invoices.get(req.params.invoice_id).then(function(invoice) {
         if (invoice.state != 'paid') {
             var err = new Error('Счет еще не оплачен');
@@ -94,10 +93,8 @@ router.get('/invoice/:invoice_id/receipt.pdf', function(req, res, next) {
     });
 });
 
-
-router.get('/invoice/:invoice_id/*', function(req, res, next) {
-    res.render('invoice/main', req.params);
-});
+router.get('/invoice/:direction(outgoing|incoming)/:invoice_id', renderInvoice);
+router.get('/invoice/:direction(outgoing|incoming)/:invoice_id/*', renderInvoice);
 
 
 router.post('/transaction/confirmed/:invoice_id/', function(req, res, next) {
@@ -107,6 +104,11 @@ router.post('/transaction/confirmed/:invoice_id/', function(req, res, next) {
         var locals = {error: error, invoiceId: req.params.invoice_id};
         res.render('invoice/transaction_error', locals);
     });
+});
+
+router.get('/transaction/error/:invoice_id/', function(req, res, next) {
+    var locals = {error: {message: 'error'}, invoiceId: req.params.invoice_id};
+    res.render('invoice/transaction_error', locals);
 });
 
 router.get('/invoice_created', function(req, res, next) {

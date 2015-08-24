@@ -1,13 +1,12 @@
+block vars
 doctype html
 html(ng-app="app")
   head
     title= title
     meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
-    
     link(href="/public/app/images/favicon.png" rel="icon" type="image/png")
     link(rel='stylesheet', href='/public/build/css/deps.min.css')
     link(rel='stylesheet', href='/public/build/css/app.min.css')
-
     script(type='text/javascript', src='/public/build/js/deps.min.js')
     script(type='text/javascript', src='/public/build/js/app.min.js')
     script(type='text/javascript', src='//use.typekit.net/isd5xxq.js')
@@ -15,8 +14,7 @@ html(ng-app="app")
       try {
         Typekit.load();
       } catch (e) {}
-
-  base(href='/invoice/')
+  base(href=baseHref)
   body
     nav.navbar.navbar-default.navbar-static-top
       .container
@@ -31,13 +29,11 @@ html(ng-app="app")
         .navbar-collapse.collapse(id="navbar")
           ul.nav.navbar-nav
             li
-              a(href="/#how-to-use") Как это работает
+              a(href="#how-to-use", slide-to-anchor="/") Как это работает
             li
-              a(href="/#what-is-it-for") Для чего это нужно
+              a(href="#what-is-it-for", slide-to-anchor="/") Для чего это нужно
             li
               a(href="/faq") Вопросы и ответы
-
-
     block content
 
     footer.footer

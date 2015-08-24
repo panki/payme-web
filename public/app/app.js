@@ -22,7 +22,6 @@
     
     app.run(['$rootScope', '$location', '$anchorScroll', 'smoothScroll', '$timeout', function($rootScope, $location, $anchorScroll, smoothScroll, $timeout) {
         $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
-            console.log(newRoute, oldRoute);
             var id = $location.search().to;
             var max_tries = 20;
             

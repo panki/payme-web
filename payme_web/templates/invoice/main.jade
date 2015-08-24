@@ -1,4 +1,6 @@
 extends ../layout
+block vars
+  - var baseHref = '/invoice/' + direction + '/'
 
 block content
   .container(ng-controller='InvoiceCtrl', ng-init='init(#{session_json}, "#{invoice_id}")')
