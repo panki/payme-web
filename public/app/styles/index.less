@@ -89,24 +89,6 @@
   }
 }
 
-.adv-box {
-  text-align: center;
-  margin-top: 50px;
-  font-size: 18px;
-
-  .icon {
-    text-align: center;
-    width: 150px;
-    height: 150px;
-    background: url('/public/app/images/adv-icon-bg.png') no-repeat 0 0;
-    margin: 0 auto 30px auto;
-
-    img {
-      margin-top: 32px;
-    }
-  }
-}
-
 #enough {
   border: 1px solid #0066ca;
   border-radius: 25px;
@@ -124,7 +106,7 @@
   });
 }
 
-.section.howto {
+.section.what-is-it-for {
   background-color: #fff;
   color: #464646;
   & h1, & h2 {
@@ -135,7 +117,7 @@
   }
 }
 
-.section.howto, .section.advantages {
+.section.what-is-it-for, .section.how-to-use {
   & h1 {
     font-size: 3em;
     font-weight: 200;
@@ -166,12 +148,62 @@
 
 
 .profit {
-  min-width: 220px;
-  min-height: 220px;
+  .media-desktop({
+    min-width: 220px;
+    min-height: 220px;
+  });
+  
+  .media-mobile({
+    width: 100px;
+    height: 100px;
+    &.pull-left {
+      margin-right: 15px;
+    }
+    &.pull-right {
+      margin-left: 15px;
+    }
+  });
+
+  
   width: inherit;
   height: inherit;
-  &.profit-1 { background: url('/public/app/images/profit-1.png') center center no-repeat; }
-  &.profit-2 { background: url('/public/app/images/profit-2.png') center center no-repeat; }
-  &.profit-3 { background: url('/public/app/images/profit-3.png') center center no-repeat; }
-  &.profit-4 { background: url('/public/app/images/profit-4.png') center center no-repeat; }
+  &.profit-1 { background: url('/public/app/images/profit-1.png') center center no-repeat; background-size: cover }
+  &.profit-2 { background: url('/public/app/images/profit-2.png') center center no-repeat; background-size: cover }
+  &.profit-3 { background: url('/public/app/images/profit-3.png') center center no-repeat; background-size: cover }
+  &.profit-4 { background: url('/public/app/images/profit-4.png') center center no-repeat; background-size: cover }
 }
+
+.usage {
+  text-align: center;
+  
+  .media-desktop({
+    width: 150px;
+    height: 150px;
+  });
+  
+  .media-mobile({
+    width: 100px;
+    height: 100px;
+    &.pull-left {
+      margin-right: 15px;
+    }
+    &.pull-right {
+      margin-left: 15px;
+    }
+  });
+  
+  background: url('/public/app/images/adv-icon-bg.png') center center no-repeat;
+  background-size: cover;
+  
+  & .icon {
+    width: inherit;
+    height: inherit;
+  }
+  
+  & .safety { background: url('/public/app/images/icon-safety.svg') center center no-repeat; background-size: 50% }
+  & .safe { background: url('/public/app/images/icon-safe.svg') center center no-repeat; background-size: 50% }
+  & .clock { background: url('/public/app/images/icon-clock.svg') center center no-repeat; background-size: 50% }
+  
+}
+
+

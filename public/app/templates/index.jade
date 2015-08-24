@@ -33,7 +33,7 @@
                   label &nbsp;
                   button.btn.btn-primary.btn-lg.btn-block(type="submit") Продолжить
 
-.section.howto(id="what-is-it-for")
+.section.what-is-it-for(id="what-is-it-for")
   .container
     .row
       .col-xs-10.col-md-10.col-sm-offset-1.col-md-offset-1
@@ -51,6 +51,7 @@
         h2 Выгода 1
     .row
       .col-sm-6.col-md-7.col-sm-offset-1.col-md-offset-1
+        .profit.profit-1.pull-right.hidden-sm.hidden-md.hidden-lg
         p Вы пообедали с друзьями в ресторане и великодушно заплатили за общий счет.
         p Теперь вместо того чтобы напоминать им об их долге, Вам достаточно послать им сообщение (счет), по почте с указанием суммы их долга с помощью PayMe4.
         p По мере того, как Ваши друзья будут оплачивать, полученные от Вас счета, будут приходить уведомления, и Вы сможете посмотреть кто уже оплатил счет, а кто еще тянет оплатой.
@@ -65,6 +66,7 @@
       .hidden-xs.col-sm-4.col-md-3.col-sm-offset-1.col-md-offset-1
         .profit.profit-2.pull-right
       .col-sm-6.col-md-7
+        .profit.profit-2.pull-left.hidden-sm.hidden-md.hidden-lg
         p Ваш друг остался без денег и просит у Вас наличные взаймы.
         p С одной стороны это друг, а с другой стороны напоминать ему о долге не всегда удобно.
         p Решение &mdash; сразу после того как дали ему взаймы, отправьте ему по почте требование (счет) на эту сумму. Теперь напоминать о долге будет PayMe4, он же и поможет другу оплатить долг удобным способом.
@@ -75,6 +77,7 @@
 
     .row
       .col-sm-6.col-md-7.col-sm-offset-1.col-md-offset-1
+        .profit.profit-3.pull-right.hidden-sm.hidden-md.hidden-lg
         p Вы часто продаете ненужные Вам вещи, а деньги за эти вещи Вы хотите получать на банковскую карту &mdash; PayMe4 поможет Вам в этом.
         p С помощью PayMe4 Вы сможете быстро отправить счет покупателю и получить деньги на банковскую карту.
 
@@ -90,6 +93,7 @@
         .profit.profit-4
 
       .col-sm-6.col-md-7
+        .profit.profit-4.pull-left.hidden-sm.hidden-md.hidden-lg
         p Вы агент по продаже товаров или услуг в больших количествах и со многими клиентами общаетесь по телефону.
         p Лично встречаться сейчас просто не хватает времени. Отдельная проблема следить, кто из клиентов заплатил Вам, а кто нет.
         p Здесь может помочь PayMe4 &mdash; все выставленные Вами счета и их статус доступны в Вашей электронной почте &mdash; Вы никогда не запутаетесь кто и сколько Вам должен.
@@ -102,65 +106,74 @@
           p НЕ НАДО РЕГИСТРИРОВАТЬСЯ !!!
           p Просто используйте свой почтовый ящик или заходите на наш сайт.
 
-.section.advantages(id="how-to-use")
+.section.how-to-use(id="how-to-use")
   .container
     .row
-      .col-md-12
-        h2(style="margin-top: 50px;") Как этим пользоваться?
+      .col-sm-10.col-md-10.col-sm-offset-1.col-md-offset-1
+        h1 Как этим пользоваться?
         p Вы можете создать счет двумя способами
 
-    .row.section
-      .col-sm-8.col-md-9
+        
+    .row
+      .col-sm-10.col-md-10.col-sm-offset-1.col-md-offset-1
         h2 Просто
+    .row
+      .col-sm-6.col-md-7.col-sm-offset-1.col-md-offset-1
         p Просто пишите сообщение по электронной почте человеку, от которого вам нужно получить деньги.
         p В теме письма пишите "Заплати мне 100 рублей" или сколько вам надо. В копию нужно обязательно поставить pay@payme4.ru
         p Дальше сервис пришлет вам по почте сообщение для указания банковской карты, на которую Вы хотите получить деньги.
         p Человек, которому Вы отправили запрос (счет), получит сообщение (счет) на e-mail, и сможет не только посмотреть сколько вы попросили денег и за что, но и тут же оплатить Ваш счет (перевести деньги на Вашу банковскую карту).
 
       .hidden-xs.col-sm-4.col-md-3
-        img(src="/public/app/images/adv-phone.png", alt="")
+        img(src="/public/app/images/adv-phone.png", alt="", style="margin-top: -60px")
+        
 
-
-    .row.section
-      .hidden-xs.col-sm-4.col-md-3.text-center
-        .adv-box
-          .icon
-            img(src="/public/app/images/icon-safety.svg", alt="")
-
-      .col-sm-8.col-md-9
+    .row
+      .col-sm-8.col-md-9.col-md-offset-4.col-sm-offset-5
         h2 Надежно
+    .row
+      .hidden-xs.col-sm-4.col-md-3.col-sm-offset-1.col-md-offset-1
+        .usage
+          .icon.safety
+      .col-sm-6.col-md-7
+        .usage.pull-left.hidden-sm.hidden-md.hidden-lg
+          .icon.safety
         p Также Вы можете воспользоваться нашим сайтом. Вообще-то, если Вы читаете это, значит Вы уже пользуетесь им.
         p Мы убрали на нем все лишнее.
         p Вы вводите минимум информации: адреса электронной почты и свои реквизиты банковской карты.
         p Все это работает с помощью технологии MasterCard Money-Send/Visa Personal Payments, который создали платежные системы Visa и MasterCard.
 
-
-    .row.section
-      .col-sm-8.col-md-9
+        
+    .row
+      .col-sm-10.col-md-10.col-sm-offset-1.col-md-offset-1
         h2 Безопасно
+    .row
+      .col-sm-6.col-md-7.col-sm-offset-1.col-md-offset-1
+        .usage.pull-right.hidden-sm.hidden-md.hidden-lg
+          .icon.safe
         p Также Вы можете воспользоваться нашим сайтом. Вообще-то, если Вы читаете это, значит Вы уже пользуетесь им.
         p Мы убрали на нем все лишнее.
         p Вы вводите минимум информации: адреса электронной почты и свои реквизиты банковской карты.
         p Все это работает с помощью технологии MasterCard Money-Send/Visa Personal Payments, который создали платежные системы Visa и MasterCard.
 
-      .hidden-xs.col-sm-4.col-md-3.text-center
-        .adv-box
-          .icon
-            img(src="/public/app/images/icon-safe.svg", alt="")
-
-    .row.section
-      .hidden-xs.col-sm-4.col-md-3.text-center
-        .adv-box
-          .icon
-            img(src="/public/app/images/icon-clock.svg", alt="")
-
-      .col-sm-8.col-md-9
+      .hidden-xs.col-sm-4.col-md-3
+        .usage
+          .icon.safe
+            
+    .row
+      .col-sm-8.col-md-9.col-md-offset-4.col-sm-offset-5
         h2 Быстро
+    .row
+      .hidden-xs.col-sm-4.col-md-3.col-sm-offset-1.col-md-offset-1
+        .usage
+          .icon.clock
+      .col-sm-6.col-md-7
+        .usage.pull-left.hidden-sm.hidden-md.hidden-lg
+          .icon.clock
         p Также Вы можете воспользоваться нашим сайтом. Вообще-то, если Вы читаете это, значит Вы уже пользуетесь им.
         p Мы убрали на нем все лишнее.
         p Вы вводите минимум информации: адреса электронной почты и свои реквизиты банковской карты.
         p Все это работает с помощью технологии MasterCard Money-Send/Visa Personal Payments, который создали платежные системы Visa и MasterCard.
-
 
 script.
   $(function() {
