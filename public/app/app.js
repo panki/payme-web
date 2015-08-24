@@ -4,6 +4,7 @@
         'ui.bootstrap',
         'ui.mask',
         'credit-cards',
+        'smoothScroll',
         'app.index',
         'app.client',
         'app.filters',
@@ -19,10 +20,25 @@
             datepickerPopupConfig.appendToBody = true;
         }]);
     
-    app.run(['$rootScope', '$location', '$anchorScroll', function($rootScope, $location, $anchorScroll) {
+    app.run(['$rootScope', '$location', '$anchorScroll', 'smoothScroll', '$timeout', function($rootScope, $location, $anchorScroll, smoothScroll, $timeout) {
         $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
-            console.log($location.hash());
-            if($location.hash()) $anchorScroll();  
+            console.log(newRoute, oldRoute);
+            var id = $location.search().to;
+            var max_tries = 20;
+            
+            function tryScrollTo() {
+                var e = document.getElementById(id);
+                if (e) {
+                    smoothScroll(e);
+                } else {
+                    max_tries--;
+                    if (max_tries > 0) $timeout(tryScrollTo, 100);
+                }
+            }
+            
+            if (id) {
+                tryScrollTo();
+            }
         });
     }]);
 })();

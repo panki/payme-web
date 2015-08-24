@@ -312,7 +312,7 @@
             };
         })
 
-        .directive('slideToAnchor', function() {
+        .directive('slideToAnchor', [ '$window', function($window) {
             return {
                 restrict: 'A',
                 require: "?href",
@@ -322,6 +322,8 @@
 
                         var target = $(attr.href);
                         if (target.length==0) {
+                            var baseUrl = attr.slideToAnchor;
+                            $window.location.href = baseUrl + '?to=' + attr.href.replace('#', '');
                             return;
                         }
                         $('html, body').stop().animate({
@@ -330,5 +332,5 @@
                     });
                 }
             };
-        });
+        }]);
 }());

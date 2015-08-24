@@ -23,7 +23,8 @@
     "angular-credit-cards": "~2.3.5",
     "fullpage.js": "~2.6.7",
     "font-awesome": "~4.4.0",
-    "modernizr": "~2.8.3"
+    "modernizr": "~2.8.3",
+    "ngSmoothScroll": "~1.7.1"
   },
   "overrides": {
     "angular-i18n": {
