@@ -9,6 +9,44 @@
   height: 300px;
 }
 
+.card-3d-secure {
+  margin-top: 20px;
+  padding: 5px;
+  font-weight: 400;
+  font-size: 0.8em;
+  line-height: 1.4em;
+  color: #214b6e;
+  text-align: center;
+  background-color: #fefefe;
+  border-radius: 10px;
+
+  a, a:hover, a:visited, a:focus, a:active {
+    color: #214b6e;
+  }
+  
+  a {
+    text-decoration: underline;
+  }
+  
+  & .icon {
+    padding: 0px;
+    margin-right: 15px;
+    display: inline-block;
+    & .icon-mastercard {
+      background: url('/public/app/images/mastercard-secure-code.png') center center no-repeat;
+      background-size: 100px 38px;
+      width: 100px;
+      height: 44px;
+    }
+    & .icon-visa {
+      background: url('/public/app/images/verified-by-visa.png') center center no-repeat;
+      background-size: 86px 38px;
+      width: 100px;
+      height: 44px;
+    }
+  }
+}
+
 .show-advanced {
   display: block;
   margin: 15px 0;

@@ -16,7 +16,7 @@
       .row
         .col-xs-12.col-md-4.col-md-offset-1
           .row
-            .col-xs-12.col-sm-12.col-md12
+            .col-xs-12.col-sm-12.col-md-12
               .form-group
                 h3 ОПЛАТА БАНКОВСКОЙ КАРТОЙ
                 label(for='card_number') Номер карты
@@ -49,7 +49,7 @@
                 input.input-lg.form-control(id="card_cvv", name="card_cvv", type="text", jmask, mask="999", ng-model="card.cvv", maxlength="3", ng-required="true")
                 span.alert.alert-warning(ng-show="form.card_cvv.$invalid && form.card_cvv.$touched && form.card_cvv.$dirty") Укажите корректный cvv код
           .row
-            .col-xs-12.col-sm-12.col-md12
+            .col-xs-12.col-sm-12.col-md-12
               .form-group
                 .checkbox
                   label
@@ -59,21 +59,31 @@
                     i(ng-class="{'ng-invalid': !card.payer_terms_accept}")
                     | Я соглашаюсь на обработку персональных данных и принимаю 
                     a(href="/terms") Правила работы сервиса
+          .row
+            .col-xs-12.col-md-12
+              .form-group
+                button.btn.btn-primary.btn-lg.btn-block(
+                  type="submit" ng-disabled="submitting")
+                  | ОПЛАТИТЬ {{ invoice.amount + fee.value | currency:"₽":0 }}
+                .commission(ng-show='fee.calculated') Комиссия {{ fee.value | currency:"₽":0 }} включена
+            .col-xs-12.col-md-12
+              .form-group.secondary-action.secondary-action-bottom
+                | или 
+                a.ajax-link(ng-click="openRefuseDialog()", href="") отказаться
         .col-xs-12.col-md-4.col-md-offset-1.card-col
           h3 &nbsp;
           .card-container
             card-widget.card-animate(card-number-input='#card_number', card-exp-date-input='#card_exp_date', card-cvv-input='#card_cvv')
-      .row
-        .col-xs-12.col-md-3.col-md-offset-1
-          .form-group
-            button.btn.btn-primary.btn-lg.btn-block(
-              type="submit" ng-disabled="submitting")
-              | ОПЛАТИТЬ {{ invoice.amount + fee.value | currency:"₽":0 }}
-            .commission(ng-show='fee.calculated') Комиссия {{ fee.value | currency:"₽":0 }} включена
-        .col-xs-12.col-md-3
-          .form-group.secondary-action
-            | или 
-            a.ajax-link(ng-click="openRefuseDialog()", href="") отказаться
+          .card-3d-secure
+            p
+              | Карта должна поддерживать технологию 
+              a(href="/faq", target="_blank") безопасных платежей 3D-Secure
+              |.
+            .icon
+              .icon-visa
+            .icon
+              .icon-mastercard
+      
       
   form(name="form_3ds", method="POST", ng-hide="true" novalidate)
     input(type="hidden", name="PaReq")
