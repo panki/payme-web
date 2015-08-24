@@ -1,20 +1,23 @@
 #faq-page
-  h1 Вопросы и ответы
 
   .row
-    .hidden-xs.col-sm-5
-      ul#questions(data-spy="affix", data-offset-top="180")
+    .col-xs-12.col-sm-12.col-md-12
+      h1 Вопросы и ответы
+  .row
+    .hidden-xs.col-sm-5.col-md-5
+      
+      ul#questions
         li
-          a(href="#why", slide-to-anchor="") Для чего нужен сервис Payme?
+          a(href="#why", slide-to-anchor="/faq") Для чего нужен сервис Payme?
         li
-          a(href="#how", slide-to-anchor="") Как пользоваться сервисом Payme4?
+          a(href="#how", slide-to-anchor="/faq") Как пользоваться сервисом Payme4?
         li
-          a(href="#what", slide-to-anchor="") На банковские карты каких платежных систем я могу перевести средства?
+          a(href="#what", slide-to-anchor="/faq") На банковские карты каких платежных систем я могу перевести средства?
         li
-          a(href="#tax", slide-to-anchor="") Как узнать точный размер комиссии за перевод?
+          a(href="#tax", slide-to-anchor="/faq") Как узнать точный размер комиссии за перевод?
 
 
-    .col-xs-12.col-sm-7
+    .col-xs-12.col-sm-7.col-md-7
 
       h2#why &mdash; Для чего нужен сервис Payme?
       p Просить у кого-то деньги всегда неловко.
