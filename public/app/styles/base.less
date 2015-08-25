@@ -37,8 +37,15 @@ body > .container {
   background-size: cover;
 }
 
+
+
 a {
   color: #00B7FF;
+  text-decoration: underline;
+  
+  &:active, &:hover, &:visited {
+    color: #00B7FF;
+  }
 
   &.ajax-link {
     color: @secondaryText;
