@@ -35,6 +35,9 @@ html(ng-app="app")
             li
               a(href="/faq") Вопросы и ответы
     block content
+    
+    a.back-to-top(href="#")
+      i.fa.fa-arrow-circle-up
 
     footer.footer
       .container
@@ -48,3 +51,26 @@ html(ng-app="app")
             a(href='mailto:'+config.contacts.support.email)= config.contacts.support.email
           .col-xs-12.visible-xs-block.footer-center-links
             img(src="/public/app/images/secure-mobile.jpg")
+    
+    script.
+      $(document).ready(function () {
+        var duration = 500;
+        
+        var handleScroll = function () {
+          var section = $('#what-is-it-for');
+          var offset = (section.length == 0) ? Math.max(document.documentElement.clientWidth, window.innerWidth || 0) : section.offset().top;
+          console.log(offset);
+          if ($(this).scrollTop() > offset) {
+            $('.back-to-top').fadeIn(duration);
+          } else {
+            $('.back-to-top').fadeOut(duration);
+          }
+        };
+        
+        $(window).scroll(handleScroll).resize(handleScroll);
+        $('.back-to-top').click(function (event) {
+          event.preventDefault();
+          $('html, body').animate({scrollTop: 0}, duration);
+          return false;
+        });
+      });

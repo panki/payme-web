@@ -174,8 +174,6 @@
         p Мы убрали на нем все лишнее.
         p Вы вводите минимум информации: адреса электронной почты и свои реквизиты банковской карты.
         p Все это работает с помощью технологии MasterCard Money-Send/Visa Personal Payments, который создали платежные системы Visa и MasterCard.
-  a.back-to-top(href="#")
-    i.fa.fa-arrow-circle-up
 script.
   $(function() {
     $('body>.container').removeClass('container');
@@ -207,26 +205,4 @@ script.
 
     $(window).on('resize', onResize);
 
-  });
-script.
-  $(document).ready(function () {
-    var duration = 500;
-    
-    var handleScroll = function () {
-      var section = $('#what-is-it-for');
-      if (section.length == 0) { return; }
-      var offset = section.offset().top;
-      if ($(this).scrollTop() > offset) {
-        $('.back-to-top').fadeIn(duration);
-      } else {
-        $('.back-to-top').fadeOut(duration);
-      }
-    };
-    
-    $(window).scroll(handleScroll).resize(handleScroll);
-    $('.back-to-top').click(function (event) {
-      event.preventDefault();
-      $('html, body').animate({scrollTop: 0}, duration);
-      return false;
-    });
   });
