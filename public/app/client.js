@@ -14,9 +14,9 @@
                     url: apiUrl + url,
                     headers: {}
                 };
-                if (data) {
-                    req.data = data;
-                }
+                var params = data || {};
+                params['r'] = Math.random();
+                req.url += '?' + $.param(params);
                 if (self.sessionId) {
                     req.headers.Authorization = 'session ' + self.sessionId;
                 }
