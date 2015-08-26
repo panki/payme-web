@@ -99,7 +99,7 @@ router.get('/invoice/:direction(outgoing|incoming)/:invoice_id/*', renderInvoice
 
 router.post('/transaction/confirmed/:invoice_id/', function(req, res, next) {
     req.client.alfabank.confirm_transaction(req.body.PaRes, req.body.MD).then(function(result) {
-        res.redirect('/invoice/' + req.params.invoice_id + '/');
+        res.redirect('/invoice/incoming/' + req.params.invoice_id + '/');
     }).catch(function(error) {
         var locals = {error: error, invoiceId: req.params.invoice_id};
         res.render('invoice/transaction_error', locals);
