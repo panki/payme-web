@@ -10,6 +10,7 @@
             function get(url, data) {
                 var req = {
                     method: 'GET',
+                    cache: false,
                     url: apiUrl + url,
                     headers: {}
                 };
@@ -26,6 +27,7 @@
             function post(url, data) {
                 var req = {
                     method: 'POST',
+                    cache: false,
                     url: apiUrl + url,
                     data: $httpParamSerializer(data),
                     headers: {
