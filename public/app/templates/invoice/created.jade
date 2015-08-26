@@ -1,8 +1,3 @@
-extends ../layout
-
-block vars
-  - var baseHref = '/invoice_created/'
-  
 block content
   .container.invoice(data-state="draft")
     .row
@@ -11,4 +6,6 @@ block content
           span.invoice-header-icon &nbsp; 
           | Осталось добавить банковскую карту, на которую Вы получите деньги
         p
-          | Для этого, мы отправили Вам письмо со ссылкой на страницу ввода номера карты.
+          | Для этого, мы отправили Вам письмо на 
+          span.font-light {{ invoice.owner_email }} 
+          | со ссылкой на страницу ввода номера карты.

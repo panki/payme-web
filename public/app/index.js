@@ -9,6 +9,9 @@
             .when('/', {
                 templateUrl: '/public/build/templates/index.html'
             })
+            .when('/invoice/created', {
+                templateUrl: '/public/build/templates/invoice/created.html'
+            })
             .when('/tariffs', {
                 templateUrl: '/public/build/templates/tariffs.html'
             })
@@ -24,8 +27,8 @@
     module.controller('IndexCtrl', [function() {
     }]);
     
-    module.controller('InvoiceNewCtrl', ['$scope', '$location', 'Client',
-        function($scope, $location, client) {
+    module.controller('InvoiceNewCtrl', ['$rootScope', '$scope', '$location', 'Client',
+        function($rootScope, $scope, $location, client) {
             $scope.invoice = {
                 amount: 100
             };
@@ -42,8 +45,10 @@
                 }
                 
                 $scope.submitting = true;
+                $rootScope.invoice = $scope.invoice;
+                
                 client.invoices.create($scope.invoice).then(function(invoice) {
-                    window.location.href = '/invoice_created';
+                    $location.path('/invoice/created');
                 }).catch(function(error) {
                     alert(error);
                 }).finally(function() {

@@ -111,10 +111,8 @@ router.get('/transaction/error/:invoice_id/', function(req, res, next) {
     res.render('invoice/transaction_error', locals);
 });
 
-router.get('/invoice_created', function(req, res, next) {
+router.get('/invoice/created', function(req, res, next) {
     res.render('invoice/created');
 });
-
-
 
 module.exports = router;
