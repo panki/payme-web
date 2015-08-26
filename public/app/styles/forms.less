@@ -168,16 +168,16 @@ a.btn-lg {
   background-color: white;
   border-radius: 0;
   color: #0066ca;
-  
+
   .media-mobile({
     font-size: 17px;
   });
-  
+
   &[disabled], &[disabled]:active {
     cursor: inherit;
     color: #0066ca;
   }
-  
+
   &:hover {
     border-color: white;
     background-color: #eee;
@@ -228,12 +228,13 @@ button:hover {
   -webkit-appearance:none;
 }
 
-input.ng-invalid.ng-touched, 
+input.ng-invalid.ng-touched,
 .ng-submitted input.ng-invalid,
 .ng-submitted .form-group .checkbox i.ng-invalid,
 .ng-submitted .form-group .radio i.ng-invalid
 {
   border:2px solid red !important;
+  outline: none;
 }
 
 .error-message {
