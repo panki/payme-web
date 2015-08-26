@@ -59,7 +59,6 @@ html(ng-app="app")
         var handleScroll = function () {
           var section = $('#what-is-it-for');
           var offset = (section.length == 0) ? Math.max(document.documentElement.clientWidth, window.innerWidth || 0) : section.offset().top;
-          console.log(offset);
           if ($(this).scrollTop() > offset) {
             $('.back-to-top').fadeIn(duration);
           } else {
