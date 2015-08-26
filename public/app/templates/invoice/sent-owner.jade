@@ -7,7 +7,7 @@
 
   .row
     .col-xs-12.col-md-5.col-md-offset-1
-      h3 ИНФОРМАЦИЯ О ЗАПРОСЕ
+      h3 ИНФОРМАЦИЯ О СЧЕТЕ
       p
         | Вы, {{ invoice.owner_name }} 
         span.font-light {{ invoice.owner.email }}
@@ -23,7 +23,7 @@
         p {{ invoice.text }}
 
     .col-xs-12.col-md-5.card-col
-      h3 КАРТА ДЛЯ ПОЛУЧЕНИЯ
+      h3 КАРТА, ДЛЯ ПОЛУЧЕНИЯ ДЕНЕГ
       .card-container
         card-static.card-face-only(
         card-number="invoice.owner_card.masked_number"
