@@ -53,8 +53,8 @@
             };
             
             $scope.toggleAdvancedForm = function() {
-                $('#slide1').toggleClass('offcanvas');
-                $('#slide3').toggleClass('offcanvas');
+                $('#slide1').toggleClass('preoffcanvas').toggleClass('offcanvas');
+                $('#slide3').toggleClass('preoffcanvas').toggleClass('offcanvas');
                 $('#edit_card').toggleClass('hide');
             };
             
