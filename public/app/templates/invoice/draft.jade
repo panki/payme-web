@@ -7,8 +7,8 @@
           | Затем мы отправим счет на 
           span.font-light {{ invoice.amount | currency:"₽":0 }} 
           | по адресу 
-          span.font-light {{ invoice.payer.email }}
-          |. Также можно добавить подробности: имена, комментарий к счету и указать дату оплаты.
+          span.font-light {{ invoice.payer.email }}.
+        p Еще можно добавить к счету: имена, комментарий и указать срок оплаты.
         
         .error(ng-show='error')
           span.error-icon
@@ -37,8 +37,8 @@
               label
                 input(type='checkbox', ng-model="formData.owner_terms_accept", required)
                 i(ng-class="{'ng-invalid': !formData.owner_terms_accept}")
-                | Я соглашаюсь на обработку персональных данных и принимаю 
-                a(href="/terms", target="_blank") Правила работы сервиса
+                | Я соглашаюсь с  
+                a(href="/terms", target="_blank") Условиями предоставления сервиса
           .form-group
             button.btn.btn-primary.btn-lg.btn-block(type="submit") ОТПРАВИТЬ СЧЕТ СРАЗУ
             .show-advanced(ng-show="form.$valid") или 
@@ -89,7 +89,7 @@
               label
                 input(type='checkbox', ng-model="formData.owner_terms_accept", required)
                 i(ng-class="{'ng-invalid': !formData.owner_terms_accept}")
-                | Я соглашаюсь на обработку персональных данных и принимаю 
-                a(href="/terms", target="_blank") Правила работы сервиса
+                | Я соглашаюсь с 
+                a(href="/terms", target="_blank") Условиями предоставления сервиса
           .form-group
             button.btn.btn-primary.btn-lg.btn-block(type="submit") ОТПРАВИТЬ СЧЕТ
