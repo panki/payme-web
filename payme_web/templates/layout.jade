@@ -31,7 +31,7 @@ html(ng-app="app")
             li
               a(href="#what-is-it-for", slide-to-anchor="/") Для чего это нужно?
             li
-              a(href="#how-to-use", slide-to-anchor="/") Как это работает?
+              a(href="#how-to-use", slide-to-anchor="/") Как этим пользоваться?
             li
               a(href="/faq") Вопросы и ответы
     block content
@@ -58,7 +58,7 @@ html(ng-app="app")
         
         var handleScroll = function () {
           var section = $('#what-is-it-for');
-          var offset = (section.length == 0) ? Math.max(document.documentElement.clientWidth, window.innerWidth || 0) : section.offset().top;
+          var offset = (section.length == 0) ? Math.max(document.documentElement.clientHeight, window.innerHeight || 0) : section.offset().top;
           if ($(this).scrollTop() > offset) {
             $('.back-to-top').fadeIn(duration);
           } else {

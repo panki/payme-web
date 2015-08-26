@@ -1,6 +1,6 @@
 .section.invoice-new
   .container(ng-controller="InvoiceNewCtrl")
-    form(id="new_invoice", name="form", ng-submit='submit(form.$valid)')
+    form.fullsize(id="new_invoice", name="form", ng-submit='submit(form.$valid)')
         fieldset
           .row
             .col-xs-12.col-md-10.col-md-offset-1
@@ -14,8 +14,8 @@
                   input.input-lg.form-control(id="amount", type="tel", name="amount", ng-model="invoice.amount", maxlength="5", required, autosizeinput, zero-input, invoice-amount, size-delta="16")
                   span.input-group-addon &#8381;
 
-          .row
-            .hidden-xs.col-sm-10.col-sm-offset-2.col-md-10.col-md-offset-2
+          .row.from-to
+            .col-sm-10.col-sm-offset-2.col-md-10.col-md-offset-2
               img(src="/public/app/images/from-to.png", alt="", style="height: 110px;")
 
           .row
@@ -60,7 +60,7 @@
 
           
     .row
-      .col-sm-8.col-md-9.col-md-offset-4.col-sm-offset-5
+      .col-sm-7.col-md-8.col-md-offset-4.col-sm-offset-5
         h2 Выгода 2
     .row
       .hidden-xs.col-sm-4.col-md-3.col-sm-offset-1.col-md-offset-1
@@ -85,7 +85,7 @@
         .profit.profit-3.pull-left
     
     .row
-      .col-sm-8.col-md-9.col-md-offset-4.col-sm-offset-5
+      .col-sm-7.col-md-8.col-md-offset-4.col-sm-offset-5
         h2 Выгода 4
         
     .row
@@ -129,15 +129,15 @@
         
 
     .row
-      .col-sm-8.col-md-9.col-md-offset-4.col-sm-offset-5
+      .col-sm-7.col-md-8.col-md-offset-4.col-sm-offset-5
         h2 Надежно
     .row
       .hidden-xs.col-sm-4.col-md-3.col-sm-offset-1.col-md-offset-1
         .usage
-          .icon.safety
+          .icon.safe
       .col-sm-6.col-md-7
         .usage.pull-left.hidden-sm.hidden-md.hidden-lg
-          .icon.safety
+          .icon.safe
         p Также Вы можете воспользоваться нашим сайтом. Вообще-то, если Вы читаете это, значит Вы уже пользуетесь им.
         p Мы убрали на нем все лишнее.
         p Вы вводите минимум информации: адреса электронной почты и свои реквизиты банковской карты.
@@ -150,7 +150,7 @@
     .row
       .col-sm-6.col-md-7.col-sm-offset-1.col-md-offset-1
         .usage.pull-right.hidden-sm.hidden-md.hidden-lg
-          .icon.safe
+          .icon.safety
         p Также Вы можете воспользоваться нашим сайтом. Вообще-то, если Вы читаете это, значит Вы уже пользуетесь им.
         p Мы убрали на нем все лишнее.
         p Вы вводите минимум информации: адреса электронной почты и свои реквизиты банковской карты.
@@ -158,10 +158,10 @@
 
       .hidden-xs.col-sm-4.col-md-3
         .usage
-          .icon.safe
+          .icon.safety
             
     .row
-      .col-sm-8.col-md-9.col-md-offset-4.col-sm-offset-5
+      .col-sm-7.col-md-8.col-md-offset-4.col-sm-offset-5
         h2 Быстро
     .row
       .hidden-xs.col-sm-4.col-md-3.col-sm-offset-1.col-md-offset-1
@@ -182,6 +182,22 @@ script.
     var invoiceForm = invoiceContainer.find('form');
     var navBar = $('.navbar');
     
+    function fixFormHeight() {
+      var vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+      var sh = section.height();
+      var fh = invoiceForm.height();
+      var fullsized = invoiceForm.hasClass('fullsize');
+      if (fullsized) {
+        if (sh > vh + 60 ) {
+          invoiceForm.removeClass('fullsize');
+        }
+      } else {
+        sh = Math.min(sh, vh);
+        if (sh - fh > 220) {
+          invoiceForm.addClass('fullsize');
+        }
+      }
+    }
     
     function resizeFormSection() {
       var wh = $(window).height();
@@ -198,6 +214,7 @@ script.
 
     function onResize() {
       resizeFormSection();
+      fixFormHeight();
       centerForm();
     }
 

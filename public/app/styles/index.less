@@ -113,14 +113,14 @@
     color: #464646;
   }
   & p {
-    color: #999;
+    color: #333;
   }
 }
 
 .section.what-is-it-for, .section.how-to-use {
   & h1 {
     font-size: 3em;
-    font-weight: 200;
+    font-weight: 300;
     margin-top: 50px;
     .media-mobile({
       font-size: 28px;
@@ -131,7 +131,7 @@
   
   & h2 {
     font-size: 2.5em;
-    font-weight: 200;
+    font-weight: 300;
     margin-top: 50px;
     .media-mobile({
       font-size: 22px;
@@ -234,4 +234,14 @@
     i {
       color: #6593c5;
     }
+}
+
+.from-to {
+  display: none;
+}
+
+.fullsize {
+  .from-to {
+    display: block;
+  }
 }
