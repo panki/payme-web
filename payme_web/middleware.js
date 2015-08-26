@@ -5,6 +5,10 @@ var favicon = require('serve-favicon');
 var config = require('./config');
 var Client = require('../payme/client');
 
+function initConfig(req, res, next) {
+    res.locals.config = config;
+    next();
+}
 
 function initClient(req, res, next) {
     req.client = new Client(config, config.apiUrl, req.cookies.token || req.query.token);
@@ -43,5 +47,6 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.use(cookieParser());
 router.use(initClient);
 router.use(initDevice);
+router.use(initConfig);
 
 module.exports = router;
