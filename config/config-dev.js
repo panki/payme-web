@@ -16,7 +16,7 @@ var config = {
         }
     },
     mail: {
-        from: 'Dev payme robot <robot@dev.payme4.ru>',
+        from: 'Payme4 <robot@dev.payme4.ru>',
         transport: {
             smtp: {
                 host: 'localhost',
