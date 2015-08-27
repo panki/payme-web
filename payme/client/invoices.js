@@ -14,6 +14,14 @@ function Invoices(client) {
             amount: newForm.amount
         })
     };
+    
+    this.create_from_email = function (newForm) {
+        return this.client.post('/invoices/new_from_email', {
+            owner_email: newForm.owner_email,
+            payer_email: newForm.payer_email,
+            amount: newForm.amount
+        })
+    };
 
 }
 

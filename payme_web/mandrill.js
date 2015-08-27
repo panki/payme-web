@@ -55,7 +55,7 @@ router.post('/mandrill/inbound', function (req, res, next) {
             var invoiceRequest = mandrill.validateInvoiceRequest(event.msg);
             if (invoiceRequest) {
                 console.log('Create invoice request', invoiceRequest);
-                return req.client.invoices.create(invoiceRequest);
+                return req.client.invoices.create_from_email(invoiceRequest);
             }     
             console.log('Relay message', event.msg);
             return mandrill.relayMessage(event.msg);
