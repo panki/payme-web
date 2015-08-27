@@ -81,7 +81,7 @@ router.get('/invoice/:direction(outgoing|incoming)/:invoice_id/receipt.pdf', fun
             return next(err);
         }
         var doc = receipts.generateReceipt(invoice);
-        var disposition = 'download' in req.query ? 'attachment; filename=receipt.pdf' : 'inline';
+        var disposition = 'download' in req.query ? 'attachment; filename=receipt-' + invoice.number + '.pdf' : 'inline';
         res.writeHead(200, {
             'Content-Type': 'application/pdf',
             'Content-Disposition': disposition
