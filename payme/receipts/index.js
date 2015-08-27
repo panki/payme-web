@@ -89,6 +89,12 @@ function generateReceipt(invoice) {
         yOffset += textLineHeight;
     });
     
+    if (invoice.text) {
+        doc.text('Комментарий:', xOffset, yOffset);
+        yOffset += textLineHeight;
+        doc.text('«' + invoice.text + '»', xOffset, yOffset, {width: textWidth, height: 100});
+    }
+    
     // Document meta info
     doc.info.Title = 'Квитанция об оплате счета';
     doc.info.Subject = 'Счет № ' + invoice.number;
