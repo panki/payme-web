@@ -14,5 +14,7 @@ block content
       +p_expire(email.invoice.expire_at)
       +p_card('На карту', email.invoice.owner_card)
     +tr_space(25)
-    +tr_secondary_action(email.cancelUrl, "Отменить счет")
+    +tr_primary_action(email.cancelUrl, "Отменить счет")
+    +tr_space(15)
+    +tr_secondary_action(email.invoiceUrl, "Открыть квитанцию")
     +tr_space(25)
