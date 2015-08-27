@@ -33,13 +33,16 @@
   min-height: 130px;
 }
 
+.navbar-default .navbar-nav > li > a {
+  text-decoration: none;
+}
+
 // Navbar expanded
 .media-desktop({
   .navbar-default .navbar-nav > li > a {
     line-height: 80px;
     font-size: 130%;
     margin: 0 20px;
-    text-decoration: underline;
   }
 
   .navbar {
@@ -64,6 +67,47 @@
 .navbar-default .navbar-toggle .icon-bar {
   transition: background-color 1s ease-in-out;
 }
+
+// Navbar collapsed
+.media-mobile({
+  .navbar {
+    .navbar-header {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+
+    .navbar-collapse {
+      text-align: right;
+      border-top: 0;
+      margin: 0 -30px 30px;
+    }
+
+    .navbar-brand {
+      padding: 2px;
+      margin: 0 15px;
+      height: auto;
+      float: left;
+      .logo {
+        width: 107px;
+        height: 30px;
+      }
+    }
+    
+    .navbar-toggle {
+      margin-top: 0px;
+      margin-bottom: 0;
+    }
+
+    .nav {
+      margin: 0;
+      display: block;
+    }
+
+    li {
+      text-align: left;
+    }
+  }
+});
 
 /* Genereated by http://work.smarchal.com/twbscolor/ */
 @bgDefault      : #0066ca;
@@ -128,45 +172,4 @@
       > a, > a:hover, > a:focus {
         color: @colHighlight;
         background-color: @bgHighlight; }}}
-});
-
-// Navbar collapsed
-.media-mobile-mini({
-  .navbar {
-    .navbar-header {
-      padding-top: 15px;
-      padding-bottom: 15px;
-    }
-
-    .navbar-collapse {
-      text-align: right;
-      border-top: 0;
-      margin: 0 -30px 30px;
-    }
-
-    .navbar-brand {
-      padding: 2px;
-      margin: 0 15px;
-      height: auto;
-      float: left;
-      .logo {
-        width: 107px;
-        height: 30px;
-      }
-    }
-    
-    .navbar-toggle {
-      margin-top: 0px;
-      margin-bottom: 0;
-    }
-
-    .nav {
-      margin: 0;
-      display: block;
-    }
-
-    li {
-      text-align: left;
-    }
-  }
 });
