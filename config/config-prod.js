@@ -36,7 +36,7 @@ var config = {
     contacts: {
         support: {
             email: 'support@payme4.ru',
-            phone: '+371 67041100'
+            phone: '8-800-000-00-00'
         }
     }
 };
