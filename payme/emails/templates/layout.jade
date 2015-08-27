@@ -35,11 +35,11 @@ mixin tr_title(title)
     
 mixin tr_amount(amount, color)
   tr
-    td.amount(align="center", valign="middle")
+    td(align="center", valign="middle")
       table
         body
           tr
-            td(valign="middle")
+            td.amount(valign="middle")
               div.amount= amount
             td(valign="middle")
               img.rouble(src="#{config.baseUrl}/public/emails/images/rouble_#{color}.png", width="30" height="44")
