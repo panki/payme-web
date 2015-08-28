@@ -12,7 +12,7 @@
 
       form(name='form', ng-submit='submit(form.$valid)', novalidate)
         .row.invoice-refuse-reason
-          .col-xs-12.col-md-5.col-md-offset-1
+          .col-xs-12.col-sm-8.col-md-5.col-md-offset-1
             h3 УКАЖИТЕ ПРИЧИНУ ОТКАЗА
             .form-group
               .radio(ng-class='code == "paid" ? "active" : ""')
@@ -46,11 +46,11 @@
               ng-click="onTextareaFocus()")
 
         .row
-          .col-xs-12.col-md-5.col-md-offset-1
+          .col-xs-12.col-sm-6.col-md-5.col-md-offset-1
             .form-group
               button.btn.btn-primary.btn-lg.btn-block(type="submit" ng-disabled="form.$invalid")
                 | ОТКАЗАТЬСЯ ОТ ОПЛАТЫ
-          .col-xs-12.col-md-5
+          .col-xs-12.col-sm-6.col-md-5
             .form-group.secondary-action
               | или 
               a.ajax-link(ng-click="showInvoice()", href="") вернуться к оплате

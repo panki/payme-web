@@ -15,12 +15,12 @@
             | . Мы отправим ему письмо с оповещением об отмене счета.
           br
       .row
-        .col-xs-12.col-md-3.col-md-offset-1
+        .col-xs-12.col-sm-6.col-md-3.col-md-offset-1
           .form-group
             button.btn.btn-primary.btn-lg.btn-block(
               id="cancel-submit" type="submit" ng-disabled="form.$invalid")
               | ОТМЕНИТЬ СЧЕТ
-        .col-xs-12.col-md-3
+        .col-xs-12.col-sm-6.col-md-3
           .form-group.secondary-action
             | или 
             a.ajax-link(ng-click="showInvoice()", href="") вернуться к счету
