@@ -49,9 +49,8 @@
 
 .show-advanced {
   display: block;
-  margin: 15px 0;
+  margin: 10px 0;
   text-align: center;
-  color: @secondaryText;
 }
 
 .edit-card {
@@ -61,13 +60,13 @@
   color: @secondaryText;
 }
 
-#slide3.preoffcanvas {
-  margin-right:-100%;  
-}
+
 #slide3.offcanvas {
     height:0px;
     opacity:0;
+    width1: 0;
     overflow: hidden;
+    margin-right:-100%;
 }
 
 #slide1.offcanvas {
@@ -86,15 +85,17 @@
   #slide1.offcanvas .form-group:nth-child(2), #slide1.offcanvas .form-group:nth-child(3) {
     display: none;
   }
-  #slide1, #slide2, #slide3 {
-    padding-right: 0;
-  }
+
   #slide3 {
     margin-top: -20px;
   }
   
   .card-col {
     display: none;
+  }
+
+  #slide3.preoffcanvas {
+    margin-right: 0;
   }
 });
 
@@ -106,13 +107,6 @@
   -moz-transition: width 0.3s ease, height 0.3s ease, margin @marginDuration ease, padding 0.3s ease, opacity @opacityDuration ease;
   -o-transition: width 0.3s ease, height 0.3s ease, margin @marginDuration ease, padding 0.3s ease, opacity @opacityDuration ease;
   transition: width 0.3s ease, height 0.3s ease, margin @marginDuration ease, padding 0.3s ease, opacity @opacityDuration ease;
-}
-
-
-
-#slide1, #slide2, #slide3 {
-  padding-left: 0;
-  padding-right: 30px;
 }
 
 .invoice {
@@ -196,5 +190,12 @@
     .radio {
       margin-left: 0;
     }
+  } 
+  #slide3.preoffcanvas {
+    margin-right: 0;
+  }
+
+  .expire-month {
+    display: none;
   }
 });

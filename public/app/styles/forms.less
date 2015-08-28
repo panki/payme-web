@@ -76,6 +76,9 @@
   font-size: 0.8em;
   line-height: 1.4em;
   padding-left: 2px;
+  .media-mobile({
+    font-weight: 400;
+  });
 }
 
 .form-group .radio label {
@@ -130,6 +133,9 @@ label {
   font-family: @baseFontFamily;
   font-size: 0.8em;
   line-height: 1em;
+  .media-mobile({
+    font-weight: 400;
+  });
 }
 
 textarea:focus,
@@ -197,8 +203,11 @@ a.btn-lg {
   background-color: transparent !important;
   height: 50px;
   line-height: 35px;
-  font-size: 22px;
-  font-weight: 100;
+  font-size: 19px;
+  .media-mobile({
+    font-size: 19px;
+  });
+  font-weight: 300;
 }
 
 .btn-active {
@@ -215,6 +224,16 @@ a.btn-lg {
 
 ul.dropdown-menu {
   padding: 5px;
+  color: #333333;
+  :disabled {
+    color: #dedede;
+  }
+  .text-muted {
+    color: #dedede;
+  }
+  & .btn-default:hover .text-muted {
+    color: #333333;
+  }
 }
 
 ul.dropdown-menu .btn {

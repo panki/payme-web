@@ -16,7 +16,7 @@
       .row
         .col-xs-12.col-md-4.col-md-offset-1
           .row
-            .col-xs-12.col-sm-12.col-md-12
+            .col-xs-12.col-sm-6.col-md-12
               .form-group
                 h3 ОПЛАТА БАНКОВСКОЙ КАРТОЙ
                 label(for='card_number') Номер карты
@@ -34,7 +34,7 @@
                 .error-message(ng-show="form.card_number.$error.commission") Мы не смогли рассчитать комиссию, проверьте правильность ввода номера карты
                 .error-message(ng-show="form.card_number.$error.invalid && form.card_number.$touched && !form.card_number.$pristine") Неверный номер карты
           .row
-            .col-xs-12.col-md-8
+            .col-xs-12.col-sm-3.col-md-8
               .form-group
                 label(for="card_exp_date") Срок действия
                 input.input-lg.form-control(id="card_exp_date", name="card_exp_date", type="text",
@@ -43,7 +43,7 @@
                 x-autocompletetype="cc-exp",
                 jmask, data-mask="99/2099", ng-model="card.exp_date", ng-required="true")
                 div.alert.alert-warning(ng-show="form.card_exp_date.$invalid && form.card_exp_date.$touched && !form.card_exp_date.$pristine") Укажите корректный срок действия карты
-            .col-xs-12.col-md-4
+            .col-xs-12.col-sm-3.col-md-4
               .form-group
                 label(for="card_cvv") CVV Код
                 input.input-lg.form-control(id="card_cvv", name="card_cvv", type="text", jmask, mask="999", ng-model="card.cvv", maxlength="3", ng-required="true")
@@ -60,13 +60,14 @@
                     | Я соглашаюсь с 
                     a(href="/terms", target="_blank") Условиями предоставления сервиса
           .row
-            .col-xs-12.col-md-12
+            .col-xs-12.col-sm-6.col-md-12
               .form-group
                 button.btn.btn-primary.btn-lg.btn-block(
                   type="submit" ng-disabled="submitting")
                   | ОПЛАТИТЬ {{ invoice.amount + fee.value | currency:"₽":0 }}
                 .commission(ng-show='fee.calculated') Комиссия {{ fee.value | currency:"₽":0 }} включена
-            .col-xs-12.col-md-12
+          .row
+            .col-xs-12.col-sm-6.col-md-12
               .form-group.secondary-action.secondary-action-bottom
                 | или 
                 a.ajax-link(ng-click="openRefuseDialog()", href="") отказаться

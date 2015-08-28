@@ -1,95 +1,98 @@
 .container(ng-controller='InvoiceDraftCtrl')
-  form(id="send_invoice", name='form', ng-submit='submit(form.$valid)', novalidate).row
+  form(id="send_invoice", name='form', ng-submit='submit(form.$valid)', novalidate)
     fieldset(ng-disabled="submitting")
-      .col-xs-12.col-md-10.col-md-offset-1
-        h1 Осталось ввести номер карты
-        p 
-          | Затем мы отправим счет на 
-          span.font-light {{ invoice.amount | currency:"₽":0 }} 
-          | по адресу 
-          span.font-light {{ invoice.payer.email }}.
-        p Еще можно добавить к счету: имена, комментарий и указать срок оплаты.
-        
-        .error(ng-show='error')
-          span.error-icon
-          .error-text
-            p.error-header Ошибка!
-            p {{ error.message }}
-      .col-xs-12.col-md-10.col-md-offset-1
-        .col-xs-12.col-md-5(id="slide1")
-          .form-group
-            h3 ПОЛУЧИТЬ ДЕНЬГИ НА КАРТУ
-            label(for="owner_card_number") Номер карты
-            input.input-lg.form-control(type="text"
-            id="owner_card_number"
-            name="owner_card_number"
-            ng-model="formData.owner_card_number"
-            inputmode="numeric"
-            autocomplete="cc-number"
-            autocompletetype="cc-number"
-            x-autocompletetype="cc-number"
-            ui-mask='9999 9999 9999 9999'
-            luhn
-            required)
-            .error-message(ng-show="form.owner_card_number.$error.invalid && form.owner_card_number.$touched && !form.owner_card_number.$pristine") Неверный номер карты
-          .form-group
-            .checkbox
-              label
-                input(type='checkbox', ng-model="formData.owner_terms_accept", required)
-                i(ng-class="{'ng-invalid': !formData.owner_terms_accept}")
-                | Я соглашаюсь с  
-                a(href="/terms", target="_blank") Условиями предоставления сервиса
-          .form-group
-            button.btn.btn-primary.btn-lg.btn-block(type="submit") ОТПРАВИТЬ СЧЕТ СРАЗУ
-            .show-advanced(ng-show="form.$valid") или 
-              a.ajax-link(ng-click="toggleAdvancedForm()", href="") добавить подробности и напоминания
-              
-        .col-xs-12.col-md-5.card-col(id="slide2")
-          h3 &nbsp;
-          .card-container
-            card-widget.card-face-only(card-number-input='#owner_card_number')
-          .edit-card.hide(id="edit_card")
-            a.ajax-link(ng-click="toggleAdvancedForm()", href="") изменить данные карты
-              
-        .col-xs-12.col-md-5.offcanvas(id="slide3")
-          h3
-          .form-group
-            label(for="owner") {{ invoice.owner.email }}
-            input.input-lg.form-control(type="text", id="owner", name="owner", ng-model="formData.owner", placeholder="Ваше имя")
-          .form-group
-            label(for="payer") {{ invoice.payer.email }}
-            input.input-lg.form-control(type="text", id="payer", name="payer", ng-model="formData.payer", placeholder="Имя плательщика")
-          .form-group
-            label(for='text') Комментарий
-            input.input-lg.form-control(type="text", id="text", name="text", ng-model="formData.text", placeholder="Комментарий")
-          .form-group
-            label Оплатить счет в течение
-            .input-group
-             .input-group-btn
-               .btn.btn-transparent(datepicker-popup='yyyy-MM-dd'
-               ng-class="{'btn-active': datepicker.period=='week'}"
-               ng-click="setExpireInWeek()"
-               ng-model="formData.expire_at"
-               is-open="datepicker.opened"
-               custom-class="expire-datepicker"
-               datepicker-options="datepickerOptions") Недели
-               .btn.btn-transparent(ng-click="setExpireInMonth()"
-               ng-class="{'btn-active': datepicker.period=='month'}") Месяца
-               .btn.btn-transparent(ng-click="setCustomExpire()"
-               ng-class="{'btn-active': datepicker.period=='custom'}") До {{ formData.expire_at | date : 'd MMMM yyyy' }}
-          .form-group
-            .checkbox
-              label
-                input(type='checkbox'
-                ng-model="formData.remind_daily") 
-                = "Ежедневно напоминать об оплате."
-                i
-          .form-group
-            .checkbox
-              label
-                input(type='checkbox', ng-model="formData.owner_terms_accept", required)
-                i(ng-class="{'ng-invalid': !formData.owner_terms_accept}")
-                | Я соглашаюсь с 
-                a(href="/terms", target="_blank") Условиями предоставления сервиса
-          .form-group
-            button.btn.btn-primary.btn-lg.btn-block(type="submit") ОТПРАВИТЬ СЧЕТ
+      .row
+        .col-xs-12.col-md-10.col-md-offset-1
+          h1 Осталось ввести номер карты
+          p 
+            | Затем мы отправим счет на 
+            span.font-light {{ invoice.amount | currency:"₽":0 }} 
+            | по адресу 
+            span.font-light {{ invoice.payer.email }}.
+          p Еще можно добавить к счету: имена, комментарий и указать срок оплаты.
+          
+          .error(ng-show='error')
+            span.error-icon
+            .error-text
+              p.error-header Ошибка!
+              p {{ error.message }}
+      .row
+        .col-xs-12.col-md-10.col-md-offset-1
+          .row(style="overflow-x: hidden")
+            .col-xs-12.col-sm-8.col-md-5(id="slide1")
+              .form-group
+                h3 ПОЛУЧИТЬ ДЕНЬГИ НА КАРТУ
+                label(for="owner_card_number") Номер карты
+                input.input-lg.form-control(type="text"
+                id="owner_card_number"
+                name="owner_card_number"
+                ng-model="formData.owner_card_number"
+                inputmode="numeric"
+                autocomplete="cc-number"
+                autocompletetype="cc-number"
+                x-autocompletetype="cc-number"
+                ui-mask='9999 9999 9999 9999'
+                luhn
+                required)
+                .error-message(ng-show="form.owner_card_number.$error.invalid && form.owner_card_number.$touched && !form.owner_card_number.$pristine") Неверный номер карты
+              .form-group
+                .checkbox
+                  label
+                    input(type='checkbox', ng-model="formData.owner_terms_accept", required)
+                    i(ng-class="{'ng-invalid': !formData.owner_terms_accept}")
+                    | Я соглашаюсь с  
+                    a(href="/terms", target="_blank") Условиями предоставления сервиса
+              .form-group
+                button.btn.btn-primary.btn-lg.btn-block(type="submit") ОТПРАВИТЬ СЧЕТ СРАЗУ
+                .show-advanced.secondary-action.secondary-action-bottom(ng-show2="form.$valid") или 
+                  a.ajax-link(ng-click="toggleAdvancedForm()", href="") добавить подробности и напоминания
+                
+            .col-xs-12.col-md-5.card-col(id="slide2")
+              h3 &nbsp;
+              .card-container
+                card-widget.card-face-only(card-number-input='#owner_card_number')
+              .edit-card.hide(id="edit_card")
+                a.ajax-link(ng-click="toggleAdvancedForm()", href="") изменить данные карты
+                  
+            .col-xs-12.col-sm-8.col-md-5.preoffcanvas.offcanvas(id="slide3")
+              h3
+              .form-group
+                label(for="owner") {{ invoice.owner.email }}
+                input.input-lg.form-control(type="text", id="owner", name="owner", ng-model="formData.owner", placeholder="Ваше имя")
+              .form-group
+                label(for="payer") {{ invoice.payer.email }}
+                input.input-lg.form-control(type="text", id="payer", name="payer", ng-model="formData.payer", placeholder="Имя плательщика")
+              .form-group
+                label(for='text') Комментарий
+                input.input-lg.form-control(type="text", id="text", name="text", ng-model="formData.text", placeholder="Комментарий")
+              .form-group
+                label Оплатить счет в течение
+                .input-group
+                  .input-group-btn
+                    .btn.btn-transparent.expire-week(datepicker-popup='yyyy-MM-dd'
+                    ng-class="{'btn-active': datepicker.period=='week'}"
+                    ng-click="setExpireInWeek()"
+                    ng-model="formData.expire_at"
+                    is-open="datepicker.opened"
+                    custom-class="expire-datepicker"
+                    datepicker-options="datepickerOptions") Недели
+                    .btn.btn-transparent.expire-month(ng-click="setExpireInMonth()"
+                    ng-class="{'btn-active': datepicker.period=='month'}") Месяца
+                    .btn.btn-transparent.expire-custom(ng-click="setCustomExpire()"
+                    ng-class="{'btn-active': datepicker.period=='custom'}") До {{ formData.expire_at | date : 'd MMMM yyyy' }}
+              .form-group
+                .checkbox
+                  label
+                    input(type='checkbox'
+                    ng-model="formData.remind_daily") 
+                    = "Ежедневно напоминать об оплате."
+                    i
+              .form-group
+                .checkbox
+                  label
+                    input(type='checkbox', ng-model="formData.owner_terms_accept", required)
+                    i(ng-class="{'ng-invalid': !formData.owner_terms_accept}")
+                    | Я соглашаюсь с 
+                    a(href="/terms", target="_blank") Условиями предоставления сервиса
+              .form-group
+                button.btn.btn-primary.btn-lg.btn-block(type="submit") ОТПРАВИТЬ СЧЕТ
