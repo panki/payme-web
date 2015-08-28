@@ -19,6 +19,16 @@
             .col-xs-12.col-sm-6.col-md-12
               .form-group
                 h3 ОПЛАТА БАНКОВСКОЙ КАРТОЙ
+                  .card-3d-secure.hidden-md.hidden-lg.hidden-sm
+                    p
+                      | Карта должна поддерживать технологию
+                      br
+                      a(href="/faq?to=q6", target="_blank") безопасных платежей 3D-Secure
+                      |.
+                    .icon
+                      .icon-visa
+                    .icon
+                      .icon-mastercard
                 label(for='card_number') Номер карты
                 input.input-lg.form-control(type="text"
                 id="card_number"
@@ -33,6 +43,18 @@
                 luhn)
                 .error-message(ng-show="form.card_number.$error.commission") Мы не смогли рассчитать комиссию, проверьте правильность ввода номера карты
                 .error-message(ng-show="form.card_number.$error.invalid && form.card_number.$touched && !form.card_number.$pristine") Неверный номер карты
+            .col-xs-12.col-sm-6.col-md-12.hidden-md.hidden-lg.hidden-xs
+              h3 &nbsp;
+              .card-3d-secure
+                p
+                  | Карта должна поддерживать технологию
+                  br
+                  a(href="/faq?to=q6", target="_blank") безопасных платежей 3D-Secure
+                  |.
+                .icon
+                  .icon-visa
+                .icon
+                  .icon-mastercard
           .row
             .col-xs-12.col-sm-3.col-md-8
               .form-group
@@ -77,7 +99,8 @@
             card-widget.card-animate(card-number-input='#card_number', card-exp-date-input='#card_exp_date', card-cvv-input='#card_cvv')
           .card-3d-secure
             p
-              | Карта должна поддерживать технологию 
+              | Карта должна поддерживать технологию
+              br
               a(href="/faq?to=q6", target="_blank") безопасных платежей 3D-Secure
               |.
             .icon
