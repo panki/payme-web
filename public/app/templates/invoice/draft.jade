@@ -43,7 +43,7 @@
                     | Я соглашаюсь с  
                     a(href="/terms", target="_blank") Условиями предоставления сервиса
               .form-group
-                button.btn.btn-primary.btn-lg.btn-block(type="submit") ОТПРАВИТЬ СЧЕТ СРАЗУ
+                button.btn.btn-primary.btn-lg.btn-block(type="submit", text="ОТПРАВИТЬ СЧЕТ СРАЗУ")
                 .show-advanced.secondary-action.secondary-action-bottom(ng-show="form.$valid") или 
                   a.ajax-link(ng-click="toggleAdvancedForm()", href="") добавить подробности и напоминания
                 
@@ -95,4 +95,4 @@
                     | Я соглашаюсь с 
                     a(href="/terms", target="_blank") Условиями предоставления сервиса
               .form-group
-                button.btn.btn-primary.btn-lg.btn-block(type="submit") ОТПРАВИТЬ СЧЕТ
+                button.btn.btn-primary.btn-lg.btn-block(type="submit", text="ОТПРАВИТЬ СЧЕТ")

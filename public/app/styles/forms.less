@@ -316,5 +316,17 @@ input.disabled, input[disabled], fieldset[disabled] input {
     content: attr(text);
 }
 
+.btn {
+  &,
+  &:active,
+  &.active {
+    &:focus,
+    &.focus {
+      background-color: white;
+      border-color: white;
+      color: @bgDefault;
+    }
+  }
+}
 
 

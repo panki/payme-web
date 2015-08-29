@@ -55,6 +55,10 @@
             window.scrollTo(0, 0);
         };
         
+        $scope.clearError = function() {
+            $parent.clearError();    
+        };
+        
         $scope.submit = function() {
             if ($scope.form.$valid) {
                 
@@ -63,6 +67,7 @@
                 }
                 
                 $scope.submitting = true;
+                $parent.clearError();
                 
                 $parent.payInvoice({
                     sender_card_number: $scope.card.number.replace(/ /g, ''),
