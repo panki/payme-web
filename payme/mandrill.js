@@ -86,5 +86,5 @@ module.exports.handleMessageEvent = function(event) {
     
     emails.events.pushMessageEvent(msg);
 
-}
+};
 

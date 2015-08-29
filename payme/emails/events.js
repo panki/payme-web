@@ -55,7 +55,9 @@ module.exports.startEventHandler = function() {
             msg.ack();
         }).catch(function(e) {
             console.log('Failed to handle message %s error=%s', msg.payload(), e);
-            msg.retry();
+            if (msg.retry_count() < 10) {
+                msg.retry();
+            }
         }); 
         
     });
