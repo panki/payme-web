@@ -287,7 +287,7 @@
                 }
             };
         })
-        .directive('email', function () {
+        .directive('emailValidator', function () {
             var isValidEmail = function(value) {
                 return value && !value.match(/[\@\.\-\_]{2,}/) &&
                     (
@@ -298,14 +298,14 @@
             return {
                 require: 'ngModel',
                 link: function(scope, elem, attr, ngModel) {
-                    ngModel.$parsers.unshift(function(value) {
+                    ngModel.$parsers.push(function(value) {
                         var valid = value ? isValidEmail(value.replace(/^\s+/, '').replace(/\s+$/, '')) : false;
-                        ngModel.$setValidity('email', valid);
+                        ngModel.$setValidity('emails', valid);
                         return value;
                     });
 
-                    ngModel.$formatters.unshift(function(value) {
-                        ngModel.$setValidity('email', isValidEmail(value));
+                    ngModel.$formatters.push(function(value) {
+                        ngModel.$setValidity('emails', isValidEmail(value));
                         return value;
                     });
                 }

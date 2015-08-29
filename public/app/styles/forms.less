@@ -112,7 +112,10 @@
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
   background-color: @bgDefault;
-  opacity: 0.9;
+  border-color: @inputBorder;
+  color: @inputDisabledText;
+  opacity: 1;
+  filter: alpha(opacity=100);
 }
 
 .input-lg {
@@ -128,7 +131,7 @@ label {
 }
 
 .checkbox label {
-  color: white;
+  color: @inputText;
   font-weight: 200;
   font-family: @baseFontFamily;
   font-size: 0.8em;
@@ -284,4 +287,34 @@ input.ng-invalid.ng-touched,
   margin-top: -10px;
   text-align: center;
 }
+
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  content: attr(text);
+  background-image: url('/public/app/images/submit-button-loader.gif');
+  background-position: center;
+  background-size: 80px 10px;
+  background-repeat: no-repeat;
+}
+ 
+input.disabled, input[disabled], fieldset[disabled] input {
+  color: white;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+.btn.disabled:after, .btn[disabled]:after, fieldset[disabled] .btn:after {
+    content: '';
+}
+
+.btn.disabled:before, .btn[disabled]:before, fieldset[disabled] .btn:before {
+    content: '';
+}
+
+.btn:before {
+    content: attr(text);
+}
+
+
 

@@ -27,20 +27,23 @@
     module.controller('IndexCtrl', [function() {
     }]);
     
-    module.controller('InvoiceNewCtrl', ['$rootScope', '$scope', '$location', 'Client',
-        function($rootScope, $scope, $location, client) {
+    module.controller('InvoiceNewCtrl', ['$rootScope', '$scope', '$location', '$timeout', 'Client',
+        function($rootScope, $scope, $location, $timeout, client) {
             $scope.invoice = {
                 amount: 100
             };
             $scope.submitting = false;
             
-            $scope.submit = function(valid) {
-                console.log(valid);
-                if (!valid) {
+            $scope.submit = function() {
+                if ($scope.submitting) {
                     return;
                 }
                 
-                if ($scope.submitting) {
+                if ($scope.invoice.payer_email == $scope.invoice.owner_email) {
+                    $scope.form.owner_email.$setValidity('emails', false);
+                }
+                
+                if (!$scope.form.$valid) {
                     return;
                 }
                 
