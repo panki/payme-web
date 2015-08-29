@@ -12,7 +12,7 @@ app.locals.config = config;
 app.locals.numeral = require('../payme/numeral');
 app.locals.moment = require('../payme/moment');
 app.locals.cards = require('../payme/cards');
-app.use(logger('dev'));
+app.use(logger('combined'));
 
 
 // Middleware
