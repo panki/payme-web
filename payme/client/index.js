@@ -20,6 +20,7 @@ var Invoices = require('./invoices');
 function Client(config, url, token) {
     this.apiUrl = url;
     this.token = token;
+    this.config = config;
     this.deviceId = null;
 
     this.auth = new Auth(this);
@@ -40,8 +41,8 @@ Client.prototype.setUserAgent = function(ua) {
     }
 
     this.headers['User-Agent'] = ua;
-    if (ua in config.client.devices) {
-        this.setDeviceId(config.client.devices[ua]);    
+    if (ua in this.config.client.devices) {
+        this.setDeviceId(this.config.client.devices[ua]);    
     }
 };
 
