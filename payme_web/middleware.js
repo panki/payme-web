@@ -21,6 +21,7 @@ function initClient(req, res, next) {
 function initDevice(req, res, next) {
     // Check if already defined by user agent
     if (req.client.deviceId) {
+        next();
         return;
     }
     
