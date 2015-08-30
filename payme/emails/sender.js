@@ -11,6 +11,7 @@ var render = require('./templates')(__dirname + '/templates');
 var mqx = require('../x/mqx');
 var mandrill = require('../mandrill');
 var transport = require('./transport');
+var events = require('./events');
 var redis = new Redis(config.redis);
 var mq = new mqx.RedisMQ('mq', redis);
 
@@ -35,7 +36,7 @@ module.exports.startSender = function() {
             send_email(email).then(function(mail_info) {
                 var timestamp = Math.round(Date.now()/1000);
                 console.log('Message %s sent %s', email.id, mail_info.response);
-                client.emails.sent(email.id, timestamp).then(function() { msg.ack(); });
+                events.pushMessageEvent(new events.messageEvent(email.id, 'sent', null, timestamp));
             }).catch(function(e) {
                 console.log('Failed to send message %s error=%s', email.id, e);
                 msg.retry();

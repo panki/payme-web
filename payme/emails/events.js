@@ -32,6 +32,7 @@ function handleMessageEvent(client, messageEvent) {
         case 'delivered': method = client.emails.delivered(event.emailId, event.timestamp); break;
         case 'opened': method = client.emails.opened(event.emailId, event.timestamp); break;
         case 'failed': method = client.emails.fail(event.emailId, event.eventReason, event.timestamp); break;
+        case 'sent': method = client.emails.sent(event.emailId, event.eventReason, event.timestamp); break;
         default:
             throw new Error('Unexpected email event (unknown event type)')
     }
