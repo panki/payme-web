@@ -8,6 +8,7 @@ var config = require('./config');
 // Configuration
 app.set('views', [path.join(__dirname, 'templates'), path.join(__dirname, '../payme/emails/templates')]);
 app.set('view engine', 'jade');
+app.set('trust proxy', config.proxies);
 app.locals.config = config;
 app.locals.numeral = require('../payme/numeral');
 app.locals.moment = require('../payme/moment');

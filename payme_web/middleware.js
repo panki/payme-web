@@ -13,18 +13,26 @@ function initConfig(req, res, next) {
 function initClient(req, res, next) {
     req.client = new Client(config, config.apiUrl, req.cookies.token || req.query.token);
     req.client.setUserAgent(req.get('User-Agent'));
+    req.client.setClientIp(req.ip);
     next();
 }
 
 
 function initDevice(req, res, next) {
+    // Check if already defined by user agent
+    if (req.client.deviceId) {
+        return;
+    }
+    
+    // Look at cookies
     var deviceId = req.cookies.device;
     if (deviceId) {
         req.client.setDeviceId(deviceId);
         next();
         return;
     }
-    
+
+    // Create new device and store in cookies
     req.client.devices.current().then(function(device) {
         var expires = new Date(Date.now() + config.auth.deviceTtlMs);
         req.client.setDeviceId(device.id);

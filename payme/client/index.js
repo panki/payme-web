@@ -20,6 +20,7 @@ var Invoices = require('./invoices');
 function Client(config, url, token) {
     this.apiUrl = url;
     this.token = token;
+    this.deviceId = null;
 
     this.auth = new Auth(this);
     this.devices = new Devices(this);
@@ -29,8 +30,7 @@ function Client(config, url, token) {
     
     this.headers = {'Content-Type': 'application/x-www-form-urlencoded'};
     
-    this.setUserAgent(config.client.device.userAgent);
-    this.setDeviceId(config.client.device.id);
+    this.setUserAgent(config.client.defaultUserAgent);
     this.setToken(token);
 }
 
@@ -40,6 +40,9 @@ Client.prototype.setUserAgent = function(ua) {
     }
 
     this.headers['User-Agent'] = ua;
+    if (ua in config.client.devices) {
+        this.setDeviceId(config.client.devices[ua]);    
+    }
 };
 
 Client.prototype.setDeviceId = function(deviceId) {
@@ -48,6 +51,7 @@ Client.prototype.setDeviceId = function(deviceId) {
     }
 
     this.headers['Cookie'] = 'device=' + deviceId;
+    this.deviceId = deviceId;
 };
 
 Client.prototype.setSessionId = function(sessionId) {
@@ -64,6 +68,14 @@ Client.prototype.setToken = function(token) {
     }
 
     this.headers['Authorization'] = 'token ' + token;
+};
+
+Client.prototype.setClientIp = function(ip) {
+    if (!ip) {
+        return;
+    }
+
+    this.headers['Payme-Web-Client-Ip'] = ip;
 };
 
 Client.prototype.get = function(path, params) {

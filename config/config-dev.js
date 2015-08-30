@@ -6,13 +6,15 @@ var config = {
         port: 6379,
         db: 0
     },
+    proxies: ['127.0.0.1'],
     auth: {
         deviceTtlMs: 10 * 365 * 24 * 3600 * 1000    // 10 years.
     },
     client: {
-        device: {
-            id: '63ef2d03-5251-409b-b037-0c22532c60c5',
-            userAgent: 'Payme web client'
+        defaultUserAgent: 'Payme web client',
+        devices: {
+            'Payme web client': '00000000-0000-4000-A000-000000000001',
+            'Mandrill-Webhook/1.0': '00000000-0000-4000-A000-000000000002'
         }
     },
     mail: {
