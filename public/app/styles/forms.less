@@ -49,11 +49,11 @@
 .form-group .radio input + i:after {
   content: '\f111';
   top: 2px;
-  left: 4px;
+  left: 3px;
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  font: 100 12px/15px FontAwesome;
+  font: 100 14px/15px FontAwesome;
 }
 .form-group .checkbox input + i:after {
   content: '\f00c';
@@ -73,7 +73,7 @@
   color: white;
   font-weight: 200;
   font-family: @baseFontFamily;
-  font-size: 0.8em;
+  font-size: 13px;
   line-height: 1.4em;
   padding-left: 2px;
   .media-mobile({
@@ -83,7 +83,7 @@
 
 .form-group .radio label {
   color: white;
-  font-weight: 200;
+  font-weight: 300;
   font-family: @baseFontFamily;
   font-size: 0.8em;
   line-height: 1.4em;
@@ -127,7 +127,13 @@ label {
   .media-mobile({
     font-weight: 400;
   });
-  color: @secondaryText;
+  color: @inputBorder;
+}
+
+.form-group.focused {
+  & label {
+    color: white;
+  }
 }
 
 .checkbox label {
@@ -176,7 +182,7 @@ a.btn-lg {
   border-color: white;
   background-color: white;
   border-radius: 0;
-  color: #0066ca;
+  color: @bgDefault;
 
   .media-mobile({
     font-size: 17px;
@@ -184,13 +190,13 @@ a.btn-lg {
 
   &[disabled], &[disabled]:active {
     cursor: inherit;
-    color: #0066ca;
+    color: @bgDefault;
   }
 
   &:hover {
     border-color: white;
     background-color: #eee;
-    color: #0066ca;
+    color: @bgDefault;
   }
 }
 
