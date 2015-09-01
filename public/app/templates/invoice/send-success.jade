@@ -5,8 +5,8 @@
         span.invoice-header-icon &nbsp; 
         | Счет на сумму {{ invoice.amount | currency:"₽":0 }} отправлен для оплаты
       p
-        | Мы отправили счет, {{ invoice.payer_name }}
-        span.font-light {{ invoice.payer.email }}
+        | Мы отправили счет, {{ invoice.payer_name }} 
+        span.font-light {{ invoice.payer.email }} 
         | для оплаты. Как только счет будет оплачен, вам придет письмо.
       br
       
