@@ -40,6 +40,7 @@
                 x-autocompletetype="cc-number"
                 ui-mask='9999 9999 9999 9999'
                 ng-focus="clearError()"
+                focus-control
                 required
                 luhn)
                 .error-message(ng-show="form.card_number.$error.commission") Мы не смогли рассчитать комиссию, проверьте правильность ввода номера карты
@@ -65,11 +66,12 @@
                 autocompletetype="cc-exp"
                 x-autocompletetype="cc-exp"
                 ng-focus="clearError()",
+                focus-control
                 jmask, data-mask="99/2099", ng-model="card.exp_date", ng-required="true")
             .col-xs-12.col-sm-3.col-md-4
               .form-group
                 label(for="card_cvv") CVV Код
-                input.input-lg.form-control(id="card_cvv", name="card_cvv", type="text", jmask, ng-focus="clearError()", mask="999", ng-model="card.cvv", maxlength="3", ng-required="true")
+                input.input-lg.form-control(id="card_cvv", name="card_cvv", type="text", focus-control, jmask, ng-focus="clearError()", mask="999", ng-model="card.cvv", maxlength="3", ng-required="true")
           .row
             .col-xs-12.col-sm-12.col-md-12
               .form-group

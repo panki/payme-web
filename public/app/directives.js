@@ -140,7 +140,7 @@
                 },
                 link: function(scope, element, attrs) {
                     var defaultBank = {
-                        color: '#214b6e',
+                        color: '#003F7B',
                         name: '',
                         country: 'RU',
                         icon: ''
@@ -329,6 +329,20 @@
                         $('html, body').stop().animate({
                             'scrollTop': target.offset().top
                         }, 300, 'swing');
+                    });
+                }
+            };
+        }])
+    
+        .directive('focusControl', [ function() {
+            return {
+                restrict: 'A',
+                link: function(scope, elem, attr, ngModel) {
+                    $(elem).on('focus', function() {
+                        $(this).closest('div').addClass('focused');
+                    });
+                    $(elem).on('blur', function() {
+                        $(this).closest('div').removeClass('focused');
                     });
                 }
             };

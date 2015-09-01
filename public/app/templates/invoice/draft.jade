@@ -33,6 +33,7 @@
                 x-autocompletetype="cc-number"
                 ui-mask='9999 9999 9999 9999'
                 luhn
+                focus-control
                 required)
                 .error-message(ng-show="form.owner_card_number.$error.invalid && form.owner_card_number.$touched && !form.owner_card_number.$pristine") Неверный номер карты
               .form-group
@@ -58,13 +59,13 @@
               h3
               .form-group
                 label(for="owner") {{ invoice.owner.email }}
-                input.input-lg.form-control(type="text", id="owner", name="owner", ng-model="formData.owner", placeholder="Ваше имя")
+                input.input-lg.form-control(type="text", id="owner", name="owner", ng-model="formData.owner", placeholder="Ваше имя", focus-control, spellcheck='false', autocorrect="off")
               .form-group
                 label(for="payer") {{ invoice.payer.email }}
-                input.input-lg.form-control(type="text", id="payer", name="payer", ng-model="formData.payer", placeholder="Имя плательщика")
+                input.input-lg.form-control(type="text", id="payer", name="payer", ng-model="formData.payer", placeholder="Имя плательщика", focus-control, spellcheck='false', autocorrect="off")
               .form-group
                 label(for='text') Комментарий
-                input.input-lg.form-control(type="text", id="text", name="text", ng-model="formData.text", placeholder="Комментарий")
+                input.input-lg.form-control(type="text", id="text", name="text", ng-model="formData.text", placeholder="Комментарий", focus-control)
               .form-group
                 label Оплатить счет в течение
                 .input-group
