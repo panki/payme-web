@@ -7,7 +7,7 @@
           p
             | {{ invoice.owner_name }} 
             span.font-light {{ invoice.owner.email }} 
-            | выставил счет {{ invoice.created_at | date:'d MMMM' }} и просит оплатить до {{ invoice.expire_at | date:'d MMMM' }}.
+            | {{ invoice.created_at | date:'d MMMM' }} выставил счет №{{ invoice.number}} и просит оплатить до {{ invoice.expire_at | date:'d MMMM' }}.
           .error(ng-show='error')
             span.error-icon
             .error-text
@@ -23,7 +23,7 @@
                     p
                       | Карта должна поддерживать технологию
                       br
-                      a(href="/faq?to=q6", target="_blank") безопасных платежей 3D-Secure
+                      a(href="/faq?to=q6", target="_blank") безопасных платежей 3D Secure
                       |.
                     .icon
                       .icon-visa
@@ -51,7 +51,7 @@
                 p
                   | Карта должна поддерживать технологию
                   br
-                  a(href="/faq?to=q6", target="_blank") безопасных платежей 3D-Secure
+                  a(href="/faq?to=q6", target="_blank") безопасных платежей 3D Secure
                   |.
                 .icon
                   .icon-visa
@@ -103,7 +103,7 @@
             p
               | Карта должна поддерживать технологию
               br
-              a(href="/faq?to=q6", target="_blank") безопасных платежей 3D-Secure
+              a(href="/faq?to=q6", target="_blank") безопасных платежей 3D Secure
               |.
             .icon
               .icon-visa
