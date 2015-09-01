@@ -22,7 +22,6 @@
             .col-xs-12.col-sm-8.col-md-5(id="slide1")
               .form-group
                 h3 ПОЛУЧИТЬ ДЕНЬГИ НА КАРТУ
-                label(for="owner_card_number") Номер карты
                 input.input-lg.form-control(type="text"
                 id="owner_card_number"
                 name="owner_card_number"
@@ -44,7 +43,7 @@
                     | Я соглашаюсь с  
                     a(href="/terms", target="_blank") Условиями предоставления сервиса
               .form-group
-                button.btn.btn-primary.btn-lg.btn-block(type="submit", text="ОТПРАВИТЬ СЧЕТ СРАЗУ")
+                button.btn.btn-submit.btn-primary.btn-lg.btn-block(type="submit", text="ОТПРАВИТЬ СЧЕТ СРАЗУ")
                 .show-advanced.secondary-action.secondary-action-bottom(ng-show="form.$valid") или 
                   a.ajax-link(ng-click="toggleAdvancedForm()", href="") добавить подробности и напоминания
                 
@@ -96,4 +95,4 @@
                     | Я соглашаюсь с 
                     a(href="/terms", target="_blank") Условиями предоставления сервиса
               .form-group
-                button.btn.btn-primary.btn-lg.btn-block(type="submit", text="ОТПРАВИТЬ СЧЕТ")
+                button.btn.btn-submit.btn-primary.btn-lg.btn-block(type="submit", text="ОТПРАВИТЬ СЧЕТ")

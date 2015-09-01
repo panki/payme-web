@@ -86,7 +86,7 @@
           .row
             .col-xs-12.col-sm-6.col-md-12
               .form-group
-                button.btn.btn-primary.btn-lg.btn-block(
+                button.btn.btn-submit.btn-primary.btn-lg.btn-block(
                   type="submit"
                   text="ОПЛАТИТЬ {{ invoice.amount + fee.value | currency:'₽':0 }}")
                 .commission(ng-show='fee.calculated') Комиссия {{ fee.value | currency:"₽":0 }} включена

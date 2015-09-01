@@ -294,7 +294,7 @@ input.ng-invalid.ng-touched,
   text-align: center;
 }
 
-.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+.btn-submit.disabled, .btn-submit[disabled], fieldset[disabled] .btn-submit {
   opacity: 1;
   filter: alpha(opacity=100);
   content: attr(text);
@@ -303,26 +303,20 @@ input.ng-invalid.ng-touched,
   background-size: 80px 10px;
   background-repeat: no-repeat;
 }
- 
-input.disabled, input[disabled], fieldset[disabled] input {
-  color: white;
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-}
 
-.btn.disabled:after, .btn[disabled]:after, fieldset[disabled] .btn:after {
+.btn-submit.disabled:after, .btn-submit[disabled]:after, fieldset[disabled] .btn-submit:after {
     content: '';
 }
 
-.btn.disabled:before, .btn[disabled]:before, fieldset[disabled] .btn:before {
+.btn-submit.disabled:before, .btn-submit[disabled]:before, fieldset[disabled] .btn-submit:before {
     content: '';
 }
 
-.btn:before {
+.btn-submit:before {
     content: attr(text);
 }
 
-.btn {
+.btn-submit {
   &,
   &:active,
   &.active {
@@ -333,6 +327,12 @@ input.disabled, input[disabled], fieldset[disabled] input {
       color: @bgDefault;
     }
   }
+}
+ 
+input.disabled, input[disabled], fieldset[disabled] input {
+  color: white;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
 }
 
 
