@@ -11,11 +11,13 @@
       p
         | Вы, {{ invoice.owner_name }} 
         span.font-light {{ invoice.owner.email }}
-        | , выставили счет {{ invoice.created_at | date:'d MMMM' }}
+        | , {{ invoice.created_at | date:'d MMMM' }} выставили счет №{{ invoice.number }}
         | и просите оплатить его до {{ invoice.expire_at | date:'d MMMM' }}.
+      p
         | Плательщик — {{ invoice.payer_name }} 
         span.font-light {{ invoice.payer.email }}
-        | . Мы отправили ему письмо с предложением оплатить счет.
+        | .
+      p Мы отправили ему письмо с предложением оплатить счет.
         br
         
       div(ng-show="invoice.text")
