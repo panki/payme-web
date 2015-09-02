@@ -31,6 +31,7 @@
         }, true);
         
         $scope.calcFee = function () {
+            if ($scope.fee.loading) { return; }
             $scope.fee.calculated = false;
             $scope.fee.value = null;
             if ($scope.card.number && $scope.form.card_number.$valid) {
@@ -60,6 +61,9 @@
         };
         
         $scope.submit = function() {
+            
+            $scope.form.card_number.$setValidity('commission', true);
+            
             if ($scope.form.$valid) {
                 
                 if (!$scope.fee.calculated) {
