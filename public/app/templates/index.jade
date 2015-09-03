@@ -22,13 +22,13 @@
             .col-xs-12.col-md-10.col-md-offset-1
               .row
                 .form-group.col-xs-12.col-sm-6.col-md-4
-                  label(for="payer_email") От кого
-                  input.input-lg.form-control(type="email", id="payer_email", name="payer_email", ng-model="invoice.payer_email", placeholder="От e-mail", spellcheck='false', autocorrect="off", ng-required, email-validator)
-                .form-group.col-xs-12.col-sm-6.col-md-4
                   label(for="owner_email")
-                    | Кому
+                    | От кого 
                     span &mdash; это вы
                   input.input-lg.form-control(type="email", id="owner_email", name="owner_email", ng-model="invoice.owner_email", placeholder="Ваш e-mail", spellcheck='false', autocorrect="off", ng-required, email-validator)
+                .form-group.col-xs-12.col-sm-6.col-md-4
+                  label(for="payer_email") Кому
+                  input.input-lg.form-control(type="email", id="payer_email", name="payer_email", ng-model="invoice.payer_email", placeholder="E-mail", spellcheck='false', autocorrect="off", ng-required, email-validator)
                 .form-group.col-xs-12.col-sm-6.col-sm-offset-6.col-md-4.col-md-offset-0
                   label.hidden-xs &nbsp;
                   button.btn.btn-submit.btn-primary.btn-lg.btn-block(type="submit", text="Продолжить")
