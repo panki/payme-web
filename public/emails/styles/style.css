@@ -132,8 +132,12 @@ p.email, p.email:active, p.email:hover, p.email a, p.email a:active, p.email a:h
 
 /* expired */
 
-.invoice-expired, .invoice-refused, .invoice-failed, .invoice-cancelled {
+.invoice-cancelled {
   background-color: #666666;
+}
+
+.invoice-expired, .invoice-refused, .invoice-failed {
+  background-color: #660000;
 }
 
 .invoice-expired a.button, .invoice-refused a.button, .invoice-failed a.button, .invoice-cancelled a.button {
