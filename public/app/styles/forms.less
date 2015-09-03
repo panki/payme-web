@@ -200,6 +200,22 @@ a.btn-lg {
   }
 }
 
+.white {
+  & .btn-lg {
+    text-decoration: none;
+    border-color: @bgDefault;
+    background-color: @bgDefault;
+    border-radius: 0;
+    color: @secondaryText;
+    &:hover {
+      border-color: @bgDefault;
+      background-color: @bgDefault;
+      color: white;
+      opacity: 0.8;
+    }
+  }
+} 
+
 // datetime picker
 
 .input-group-btn .btn:nth-child(2), .input-group-btn .btn:nth-child(3) {

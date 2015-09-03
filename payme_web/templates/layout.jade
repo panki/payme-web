@@ -67,7 +67,7 @@ html(ng-app="app")
         };
         
         $(window).scroll(handleScroll).resize(handleScroll);
-        $('.back-to-top').click(function (event) {
+        $('.back-to-top, .back-to-top-link').click(function (event) {
           event.preventDefault();
           $('html, body').animate({scrollTop: 0}, duration);
           return false;
