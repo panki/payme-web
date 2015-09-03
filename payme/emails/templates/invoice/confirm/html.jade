@@ -12,5 +12,8 @@ block content
       +p_name('От', email.invoice.payer)
       +p_comment(email.invoice.text)
     +tr_space(25)
-    +tr_primary_action(email.confirmUrl, "Ввести данные карты")
+    +tr_desc
+      p Осталось указать номер вашей банковской карты, на которую вы хотите получить деньги:
+    +tr_space(25)
+    +tr_primary_action(email.confirmUrl, "Указать номер карты")
     +tr_space(25)
