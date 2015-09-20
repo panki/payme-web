@@ -36,8 +36,9 @@ module.exports.startSender = function() {
             send_email(email).then(function(mail_info) {
                 var timestamp = Math.round(Date.now()/1000);
                 console.log('Message %s sent %s', email.id, mail_info.response);
-                events.pushMessageEvent(new events.messageEvent(email.id, 'sent', null, timestamp));
-                msg.ack();
+                events.emailSent(email.id, timestamp).then(function() {
+                    msg.ack();    
+                });
             }).catch(function(e) {
                 console.log('Failed to send message %s error=%s', email.id, e);
                 msg.retry();
