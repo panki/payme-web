@@ -23,7 +23,7 @@ var messageEvent = function(emailId, event, eventReason, timestamp) {
 };
 
 function pushMessageEvent(messageEvent) {
-    mq.queue(EVENTS_QUEUE).put(JSON.stringify(messageEvent));
+    return mq.queue(EVENTS_QUEUE).put(JSON.stringify(messageEvent));
 }
 
 function handleMessageEvent(client, messageEvent) {
@@ -33,6 +33,7 @@ function handleMessageEvent(client, messageEvent) {
     */
     var method;
     var event = messageEvent;
+    
     switch (event.event) {
         case EVENTS.DELIVERED: method = client.emails.delivered(event.emailId, event.timestamp); break;
         case EVENTS.OPENED: method = client.emails.opened(event.emailId, event.timestamp); break;
@@ -46,22 +47,22 @@ function handleMessageEvent(client, messageEvent) {
 
 module.exports.emailDelivered = function(emailId, ts) {
     var msg = new messageEvent(emailId, EVENTS.DELIVERED, null, ts);
-    pushMessageEvent(msg);
+    return pushMessageEvent(msg);
 };
 
 module.exports.emailOpened = function(emailId, ts) {
     var msg = new messageEvent(emailId, EVENTS.OPENED, null, ts);
-    pushMessageEvent(msg);
+    return pushMessageEvent(msg);
 };
 
 module.exports.emailFailed = function(emailId, ts, reason) {
     var msg = new messageEvent(emailId, EVENTS.FAILED, reason, ts);
-    pushMessageEvent(msg);
+    return pushMessageEvent(msg);
 };
 
 module.exports.emailSent = function(emailId, ts) {
     var msg = new messageEvent(emailId, EVENTS.SENT, null, ts);
-    pushMessageEvent(msg);
+    return pushMessageEvent(msg);
 };
 
 module.exports.startEventHandler = function() {

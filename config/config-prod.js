@@ -18,6 +18,11 @@ var config = {
         }
     },
     mail: {
+        invoiceCreateAddresses: [
+            'pay@payme4.ru'
+        ],
+        inboundDomain: 'payme4.ru',
+        mailDomain: 'mail.payme4.ru',
         from: 'PayMe4 <invoice@payme4.ru>',
         transport: {
             smtp: {

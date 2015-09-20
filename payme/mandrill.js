@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var Promise = require('bluebird');
 var config = require('./config');
 var emails = require('./emails');
@@ -13,44 +14,58 @@ module.exports.makeHeaders = function(email) {
     }
 };
 
+function getMessageRecipients(msg) {
+    var recipients = msg.to;
+    if (msg.cc) recipients = recipients.concat(msg.cc);
+    if (msg.bcc) recipients = recipients.concat(msg.bcc);
+    
+    return recipients.map(function (t) {
+        // Get lowercase email address
+        return t[0].toLowerCase(); 
+    });
+    
+}
 
 module.exports.validateInvoiceRequest = function (msg) {
-    var payme_domain = /^.+@(dev\.)?payme4\.ru$/;
-    var amount = parseInt(msg.subject.replace(/^\D+/, ''));
-    if ( isNaN(amount) || amount < config.invoices.minAmount || amount > config.invoices.maxAmount) return false;
+    var recipients = getMessageRecipients(msg);
+    var intersection = _.intersection(recipients, config.mail.invoiceCreateAddresses);
+    var difference = _.difference(recipients, config.mail.invoiceCreateAddresses).filter(
+        // Skip inbound domain emails
+        function(email) {
+            return email.indexOf(config.mail.inboundDomain) == -1;
+        }
+    );
     
-    if (msg.to.length != 1) return false;
-    if (!msg.cc || msg.cc.length != 1) return false;
-    
-    var from_email = msg.from_email.toLowerCase();
-    var cc_email = msg.cc[0][0].toLowerCase();
-    var to_email = msg.to[0][0].toLowerCase();
-    
-    if (from_email.match(payme_domain)) return false;
-    if (to_email.match(payme_domain) && cc_email.match(payme_domain)) return false;
-    
-    return {
-        amount: amount,
-        owner_email: from_email,
-        payer_email: to_email.match(payme_domain) ? cc_email : to_email
+    if (intersection && difference) {
+        return {
+            from: msg.from_email.toLowerCase(),
+            to: difference,
+            subject: msg.subject
+        }
     }
+    
+    return null;
 };
 
 module.exports.relayMessage = function(msg) {
-    return Promise.map(msg.to, function (to) {
-        var to_email = to[0].toLowerCase();
-        var forward = config.mandrill.hooks.inbound.relays[to_email];
-        if (forward) {
-            return emails.transport.send({
-                from: msg.from_email,
-                to: forward,
-                subject: msg.subject,
-                text: msg.text,
-                html: msg.html
-            })
-        } else {
-            console.log('Unhandled email', msg);
-        }
+    var recipients = getMessageRecipients(msg)
+    .filter(function(t) {
+        // Filter only inbound domain recipients
+        return t.indexOf(config.mail.inboundDomain) > 0;
+    })
+    .map(function(t) {
+        // Get recipient forward message or change inbound domain to mail domain
+        return config.mandrill.hooks.inbound.relays[t] || t.replace(config.mail.inboundDomain, config.mail.mailDomain);
+    });
+    
+    return Promise.map(recipients, function (recipient) {
+        return emails.transport.send({
+            from: msg.from_email,
+            to: recipient,
+            subject: msg.subject,
+            text: msg.text,
+            html: msg.html
+        })
     });
 };
     

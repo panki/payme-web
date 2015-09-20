@@ -18,6 +18,11 @@ var config = {
         }
     },
     mail: {
+        invoiceCreateAddresses: [
+            'pay@dev.payme4.ru'
+        ],
+        inboundDomain: 'dev.payme4.ru',
+        mailDomain: 'mail.payme4.ru',
         from: 'PayMe4 <invoice@dev.payme4.ru>',
         transport: {
             smtp: {
@@ -65,8 +70,8 @@ config.mandrill = {
             url: config.baseUrl + '/mandrill/inbound',
             key: 'F9XKW_CnFPSaJAVWqaDuZQ',
             relays: {
-                'admin@payme4.ru': 'admin@norvik.eu',
-                'support@payme4.ru': 'payme-support@norvik.eu'
+                'admin@dev.payme4.ru': 'admin@norvik.eu',
+                'support@dev.payme4.ru': 'payme-support@norvik.eu'
             }
         }
     }

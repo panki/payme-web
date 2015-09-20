@@ -52,22 +52,20 @@ router.post('/mandrill/events', function (req, res, next) {
 router.post('/mandrill/inbound', function (req, res, next) {
     Promise.map(req.events, function (event) {
         if (event.event == 'inbound') {
-            var invoiceRequest = mandrill.validateInvoiceRequest(event.msg);
-            if (invoiceRequest) {
-                console.log('Create invoice request', invoiceRequest);
-                return req.client.invoices.create_from_email(invoiceRequest);
-            }     
-            console.log('Relay message', event.msg);
-            return mandrill.relayMessage(event.msg);
+            var iReq = mandrill.validateInvoiceRequest(event.msg);
+            if (iReq) {
+                console.log('Push create invoice message', iReq);
+                return emails.inbound.emailArrived(iReq.from, iReq.to, iReq.subject, event.ts);
+            } else {
+                console.log('Relay message', event.msg);
+                return mandrill.relayMessage(event.msg);
+            }
         } else {
             console.log('Unexpected email event (unknown event type)', event);
         }
     }).then(function() {
         res.end('Ok');
     });
-    //}).catch(function(err) {
-    //    res.status(500).send({error: err.message});
-    //});
 });
 
 module.exports = router;
