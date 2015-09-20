@@ -41,7 +41,7 @@ function handleMessageEvent(client, messageEvent) {
         return falsePromise;
     }
     
-    if ( messageEvent.subject.toLowerCase().indexOf('RE:') == 0) {
+    if ( messageEvent.subject.toLowerCase().indexOf('re:') == 0) {
         console.log('Invoice create skipped', messageEvent);
         return falsePromise;
     }
