@@ -77,11 +77,11 @@ module.exports.handleMessageEvent = function(event) {
     }
     
     switch (event.event) {
-        case 'send': events.emailSent(emailId, event.ts); break;
-        case 'open': events.emailOpened(emailId, event.ts); break;
-        case 'hard_bounce': events.emailFailed(emailId, event.ts, event.msg.bounce_description + ' : ' + event.msg.diag); break;
-        case 'soft_bounce':events.emailFailed(emailId, event.ts, event.msg.bounce_description + ' : ' + event.msg.diag); break;
-        case 'reject': events.emailFailed(emailId, event.ts, 'rejected'); break;
+        case 'send': emails.events.emailSent(emailId, event.ts); break;
+        case 'open': emails.events.emailOpened(emailId, event.ts); break;
+        case 'hard_bounce': emails.events.emailFailed(emailId, event.ts, event.msg.bounce_description + ' : ' + event.msg.diag); break;
+        case 'soft_bounce':emails.events.emailFailed(emailId, event.ts, event.msg.bounce_description + ' : ' + event.msg.diag); break;
+        case 'reject': emails.events.emailFailed(emailId, event.ts, 'rejected'); break;
         default:
             console.log('Unexpected email event (unknown event type)', event);
             return;
