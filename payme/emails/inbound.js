@@ -46,12 +46,17 @@ function handleMessageEvent(client, messageEvent) {
         return falsePromise;
     }
     
+    var current = Promise.resolve();
+    
     return Promise.map(messageEvent.to, function(recipient) {
-        return client.invoices.createFromEmail({
-            owner_email: messageEvent.from,
-            payer_email: recipient,
-            amount: amount
+        current = current.then(function () {
+            return client.invoices.createFromEmail({
+                owner_email: messageEvent.from,
+                payer_email: recipient,
+                amount: amount
+            });
         });
+        return current;
     });
 }
 
