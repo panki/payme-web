@@ -59,15 +59,16 @@ function RedisQueue(mq, name) {
     this.put = function(value) {
         var msg = RedisMessage.create(this, value);
         var queue = key_queue(this.mq.name, this.name);
-        this.redis.lpush(queue, msg.string).then(function(result) {
+        return this.redis.lpush(queue, msg.string).then(function(result) {
             debug('Push: queue=%s, msg=%s, result=%s', queue, msg.string, result)
+            return result;
         });
     };
     
     this.schedule = function(value, millis) {
         var msg = RedisMessage.create(this, value);
         var queue_scheduled = key_queue_scheduled(this.mq.name, this.name);
-        this.redis.zadd(queue_scheduled, now_millis() + millis, msg.string);
+        return this.redis.zadd(queue_scheduled, now_millis() + millis, msg.string);
     };
     
     this.clear = function() {
@@ -75,11 +76,12 @@ function RedisQueue(mq, name) {
         var queue_scheduled = key_queue_scheduled(this.mq.name, this.name);
         var queue_consumers = key_queue_consumers(this.mq.name, this.name);
 
-        this.redis.del(queue, queue_scheduled, queue_consumers)
+        return this.redis.del(queue, queue_scheduled, queue_consumers)
         .then(function (result) {
             if (result != 3) {
                 console.log('Clear warning: queue=%s, deleted=%s of 3', self.name, result);
             }
+            return result;
         });
     };
     
@@ -107,9 +109,10 @@ function RedisQueue(mq, name) {
     
     this.ack = function(string) {
         var queue_consumer = key_queue_consumer(this.mq.name, this.name, this.consumer_id);
-        this.redis.lrem(queue_consumer, 1, string)
+        return this.redis.lrem(queue_consumer, 1, string)
         .then(function(result) {
-            if (result != 1) console.log('Ack failed: consumer=%s, msg=%s, result=%s', queue_consumer, string, err, result);    
+            if (result != 1) console.log('Ack failed: consumer=%s, msg=%s, result=%s', queue_consumer, string, err, result);
+            return result;
         });
     };
     
@@ -118,7 +121,7 @@ function RedisQueue(mq, name) {
         var queue_consumer = key_queue_consumer(this.mq.name, this.name, this.consumer_id);
         var queue_scheduled = key_queue_scheduled(this.mq.name, this.name);
 
-        self.redis.pipeline()
+        return self.redis.pipeline()
         .lrem(queue_consumer, 1, old_string)
         .zadd(queue_scheduled, retry_at, new_string)
         .exec().then(function (results) {
@@ -128,6 +131,7 @@ function RedisQueue(mq, name) {
             } else {
                 debug('Retry message: queue=%s, old=%s, mew=%s', self.name, old_string, new_string);
             }
+            return result;
         });
     };
     
