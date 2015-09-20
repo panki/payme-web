@@ -8,18 +8,23 @@ var Client = require('../client');
 
 var EVENTS_QUEUE = 'emails-events';
 
+var EVENTS = {
+    DELIVERED: 'delivered',
+    OPENED: 'opened',
+    FAILED: 'failed',
+    SENT: 'sent'
+};
 
-module.exports.messageEvent = function(emailId, event, eventReason, timestamp) {
+var messageEvent = function(emailId, event, eventReason, timestamp) {
         this.emailId = emailId;
         this.event = event;
         this.eventReason = eventReason;
         this.timestamp = timestamp;
 };
 
-module.exports.pushMessageEvent = function(messageEvent) {
+function pushMessageEvent(messageEvent) {
     mq.queue(EVENTS_QUEUE).put(JSON.stringify(messageEvent));
-};
-
+}
 
 function handleMessageEvent(client, messageEvent) {
     /*
@@ -29,16 +34,35 @@ function handleMessageEvent(client, messageEvent) {
     var method;
     var event = messageEvent;
     switch (event.event) {
-        case 'delivered': method = client.emails.delivered(event.emailId, event.timestamp); break;
-        case 'opened': method = client.emails.opened(event.emailId, event.timestamp); break;
-        case 'failed': method = client.emails.fail(event.emailId, event.eventReason, event.timestamp); break;
-        case 'sent': method = client.emails.sent(event.emailId, event.timestamp); break;
+        case EVENTS.DELIVERED: method = client.emails.delivered(event.emailId, event.timestamp); break;
+        case EVENTS.OPENED: method = client.emails.opened(event.emailId, event.timestamp); break;
+        case EVENTS.FAILED: method = client.emails.fail(event.emailId, event.eventReason, event.timestamp); break;
+        case EVENTS.SENT: method = client.emails.sent(event.emailId, event.timestamp); break;
         default:
             throw new Error('Unexpected email event (unknown event type)')
     }
     return method;
 }
 
+module.exports.emailDelivered = function(emailId, ts) {
+    var msg = new messageEvent(emailId, EVENTS.DELIVERED, null, ts);
+    pushMessageEvent(msg);
+};
+
+module.exports.emailOpened = function(emailId, ts) {
+    var msg = new messageEvent(emailId, EVENTS.OPENED, null, ts);
+    pushMessageEvent(msg);
+};
+
+module.exports.emailFailed = function(emailId, ts, reason) {
+    var msg = new messageEvent(emailId, EVENTS.FAILED, reason, ts);
+    pushMessageEvent(msg);
+};
+
+module.exports.emailSent = function(emailId, ts) {
+    var msg = new messageEvent(emailId, EVENTS.SENT, null, ts);
+    pushMessageEvent(msg);
+};
 
 module.exports.startEventHandler = function() {
     /* 

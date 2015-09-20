@@ -60,31 +60,16 @@ module.exports.handleMessageEvent = function(event) {
         console.log('Unexpected email event (empty email_id)', event);
         return;
     }
-
-    var msg = new emails.events.messageEvent(emailId);
-    msg.timestamp = event.ts;
     
     switch (event.event) {
-        case 'send': msg.event = 'delivered'; break;
-        case 'open': msg.event = 'opened'; break;
-        case 'hard_bounce':
-            msg.event = 'failed';
-            msg.eventReason = event.msg.bounce_description + ' : ' + event.msg.diag;
-            break;
-        case 'soft_bounce':
-            msg.event = 'failed';
-            msg.eventReason = event.msg.bounce_description + ' : ' + event.msg.diag;
-            break;
-        case 'reject':
-            msg.event = 'failed';
-            msg.eventReason = 'rejected';
-            break;
+        case 'send': events.emailSent(emailId, event.ts); break;
+        case 'open': events.emailOpened(emailId, event.ts); break;
+        case 'hard_bounce': events.emailFailed(emailId, event.ts, event.msg.bounce_description + ' : ' + event.msg.diag); break;
+        case 'soft_bounce':events.emailFailed(emailId, event.ts, event.msg.bounce_description + ' : ' + event.msg.diag); break;
+        case 'reject': events.emailFailed(emailId, event.ts, 'rejected'); break;
         default:
             console.log('Unexpected email event (unknown event type)', event);
             return;
     }
-    
-    emails.events.pushMessageEvent(msg);
-
 };
 
