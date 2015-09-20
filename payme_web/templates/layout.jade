@@ -42,13 +42,14 @@ html(ng-app="app")
     footer.footer
       .container
         .row
-          .col-xs-6.col-sm-3.footer-left-links
+          .col-xs-2.col-sm-3.footer-left-links
             a(href='/terms') Условия
             a(href='/tariffs') Тарифы
-          .col-sm-6.hidden-xs.footer-center-links
-            img(src="/public/app/images/secure.jpg")
-          .col-xs-6.col-sm-3.footer-right-links
-            a(href='mailto:'+config.contacts.support.email)= config.contacts.support.email
+          .col-sm-5.hidden-xs.footer-center-links
+            img(src="/public/app/images/secure-mobile.jpg")
+          .col-xs-10.col-sm-4.footer-right-links
+            include zingaya
+            a.support-email(href='mailto:'+config.contacts.support.email)= config.contacts.support.email
           .col-xs-12.visible-xs-block.footer-center-links
             img(src="/public/app/images/secure-mobile.jpg")
     

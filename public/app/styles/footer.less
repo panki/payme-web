@@ -7,14 +7,26 @@
   bottom: 0;
   width: 100%;
   background-color: #ffffff;
+  line-height: 60px;
 
   /* Set the fixed height of the footer here */
   height: 100px;
-  line-height: 60px;
+  
+  .zingayaButton.zingaya64b82b1520814088a3e79bef5135b06f {
+    line-height: 14px;
+    font-size: 14px;
+    font-family: @baseFontFamily;
+    padding: 8px 16px 8px 48px;
+  }
+  
+  .support-email {
+    line-height: 14px;
+    display: block;
+  }
 
   .media-mobile({
-    height: 120px;    // Should equal body margin-bottom.
-    line-height: 40px;
+    height: 140px;    // Should equal body margin-bottom.
+    line-height: 35px;
   });
 
   .container {
@@ -34,16 +46,23 @@
 
   &-left-links {
     text-align: left;
+    .media-mobile({
+      a {display: block; line-height: 30px}
+    });
     a {
       margin-right: 15px;
     }
   }
 
   &-center-links {
+    .media-mobile({
+      padding-top: 5px;
+    });
     text-align: center;
   }
 
   &-right-links {
+    line-height: 40px;
     text-align: right;
   }
 }
