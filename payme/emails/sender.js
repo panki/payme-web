@@ -41,8 +41,14 @@ module.exports.startSender = function() {
                 });
             }).catch(function(e) {
                 console.log('Failed to send message %s error=%s', email.id, e);
-                msg.retry();
-            });        
+                if (msg.retry_count() < 15) { 
+                    msg.retry(); 
+                } else {
+                    events.emailFailed(email.id, timestamp, e).then(function() {
+                        msg.ack();
+                    });    
+                }
+            });
         });
     });
 };
