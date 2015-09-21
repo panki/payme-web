@@ -33,8 +33,8 @@ module.exports.startSender = function() {
         var emailId = msg.payload();
         console.log('Message arrived: %s', emailId);
         client.emails.get(emailId).then(function(email) {
+            var timestamp = Math.round(Date.now()/1000);
             send_email(email).then(function(mail_info) {
-                var timestamp = Math.round(Date.now()/1000);
                 console.log('Message %s sent %s', email.id, mail_info.response);
                 events.emailSent(email.id, timestamp).then(function() {
                     msg.ack();    
