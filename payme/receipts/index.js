@@ -52,7 +52,7 @@ function generateReceipt(invoice) {
     // Sub header
     doc.fillColor(subHeaderColor).fontSize(subHeaderFontSize);
     doc.text('\nПри возникновении проблем, сообщите номер квитанции\nсотруднику службы поддержки:', {width: docWidth, align: 'center'});
-    doc.text('\nпо телефону ' + config.contacts.support.phone + ' или по электронной почте ' + config.contacts.support.email, {width: docWidth, align: 'center'});
+    doc.text('\nпозвонив нам онлайн через сайт или написав по электронной почте ' + config.contacts.support.email, {width: docWidth, align: 'center'});
     
     // Separator
     doc.strokeColor(separatorColor).moveTo(5, doc.y + blankHeight).lineTo(604, doc.y + blankHeight).dash(3, {space: 2}).stroke();
