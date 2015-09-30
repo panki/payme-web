@@ -70,8 +70,8 @@ config.mandrill = {
             url: config.baseUrl + '/mandrill/inbound',
             key: 'qDUZwx3qlIcbxj3SNeSCEw',
             relays: {
-                'admin@payme4.ru': 'admin@norvik.eu',
-                'support@payme4.ru': 'payme-support@norvik.eu'
+                'admin@payme4.ru': 'admin@mail.payme4.ru',
+                'support@payme4.ru': 'admin@mail.payme4.ru'
             }
         }
     }
