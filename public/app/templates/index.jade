@@ -9,7 +9,8 @@
 
           .row
             .col-xs-12.col-sm-12.col-md-8.col-md-offset-1
-              .form-group
+              .form-group(style="text-align: center; padding-top: 15px;")
+                label(for="amount") Укажите сумму:
                 .input-group.amount-group
                   input.input-lg.form-control(id="amount", type="tel", name="amount", ng-model="invoice.amount", maxlength="5", ng-required, autosizeinput, zero-input, invoice-amount, size-delta="16")
                   span.input-group-addon &#8381;
