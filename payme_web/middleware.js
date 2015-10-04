@@ -51,8 +51,8 @@ var router = express.Router();
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.json({limit: '1mb'}));
+router.use(bodyParser.urlencoded({ extended: false, limit: '1mb' }));
 router.use(cookieParser());
 router.use(initClient);
 router.use(initDevice);
