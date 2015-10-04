@@ -60,8 +60,8 @@
                 link: function(scope, element, attrs) {
                     $(element).blur(function() {
                         var value = parseInt($(this).val(), 10);
-                        if (value < config.invoices.minAmount) { value = config.invoices.minAmount }
-                        if (value > config.invoices.maxAmount) { value = config.invoices.maxAmount }
+                        if (value < config.invoices.minAmount) { value = config.invoices.minAmount; }
+                        if (value > config.invoices.maxAmount) { value = config.invoices.maxAmount; }
                         $parse(attrs.ngModel).assign(scope, value);
                         scope.$apply();
                     });
@@ -321,7 +321,7 @@
                         e.preventDefault();
 
                         var target = $(attr.href);
-                        if (target.length==0) {
+                        if (target.length === 0) {
                             var baseUrl = attr.slideToAnchor;
                             $window.location.href = baseUrl + '?to=' + attr.href.replace('#', '');
                             return;

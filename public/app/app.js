@@ -31,7 +31,7 @@
                     smoothScroll(e);
                 } else {
                     max_tries--;
-                    if (max_tries > 0) $timeout(tryScrollTo, 100);
+                    if (max_tries > 0) { $timeout(tryScrollTo, 100); }
                 }
             }
             

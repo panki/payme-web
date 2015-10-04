@@ -39,7 +39,7 @@
                     return;
                 }
                 
-                if ($scope.invoice.payer_email == $scope.invoice.owner_email) {
+                if ($scope.invoice.payer_email === $scope.invoice.owner_email) {
                     $scope.form.owner_email.$setValidity('emails', false);
                 }
                 
