@@ -77,7 +77,7 @@ module.exports.handleMessageEvent = function(event) {
     }
     
     switch (event.event) {
-        case 'send': emails.events.emailSent(emailId, event.ts); break;
+        case 'send': emails.events.emailDelivered(emailId, event.ts); break;
         case 'open': emails.events.emailOpened(emailId, event.ts); break;
         case 'hard_bounce': emails.events.emailFailed(emailId, event.ts, event.msg.bounce_description + ' : ' + event.msg.diag); break;
         case 'soft_bounce':emails.events.emailFailed(emailId, event.ts, event.msg.bounce_description + ' : ' + event.msg.diag); break;
