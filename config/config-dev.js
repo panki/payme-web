@@ -49,6 +49,9 @@ var config = {
     analytics: {
         ga: {
             id: 'UA-68482734-2'
+        },
+        gtm: {
+            id: 'GTM-KN5TXQ'
         }
     }
 };
