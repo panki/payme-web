@@ -45,6 +45,11 @@ var config = {
             email: 'support@payme4.ru',
             phone: '8-800-000-00-00'
         }
+    },
+    analytics: {
+        ga: {
+            id: 'UA-68482734-2'
+        }
     }
 };
 
