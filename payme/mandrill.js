@@ -36,7 +36,7 @@ module.exports.validateInvoiceRequest = function (msg) {
         }
     );
     
-    if (intersection && difference) {
+    if (intersection && difference.length > 0) {
         return {
             from: msg.from_email.toLowerCase(),
             to: difference,
