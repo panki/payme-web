@@ -79,7 +79,7 @@ config.mandrill = {
             key: 'qDUZwx3qlIcbxj3SNeSCEw',
             relays: {
                 'admin@payme4.ru': 'admin@mail.payme4.ru',
-                'support@payme4.ru': 'admin@mail.payme4.ru'
+                'support@payme4.ru': 'support@mail.payme4.ru'
             }
         }
     }
