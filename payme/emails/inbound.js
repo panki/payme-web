@@ -1,5 +1,6 @@
 var Promise = require('bluebird');
 var Redis = require('ioredis');
+var mimelib = require("mimelib");
 var config = require('../config');
 var mqx = require('../x/mqx');
 var redis = new Redis(config.redis);
@@ -34,7 +35,9 @@ function handleMessageEvent(client, messageEvent) {
        resolve(false); 
     });
 
-    var amount = parseInt(messageEvent.subject.replace(/^\D+/, ''));
+    var subject = mimelib.parseMimeWords(messageEvent.subject);
+    var amount = parseInt(subject.replace(/^\D+/, ''));
+    
     if ( isNaN(amount) || amount < config.invoices.minAmount || amount > config.invoices.maxAmount) {
         // TODO: Send email with error to sender
         console.log('Invoice create failed: invalid invoice amount in subject', messageEvent);
@@ -54,7 +57,7 @@ function handleMessageEvent(client, messageEvent) {
                 owner_email: messageEvent.from,
                 payer_email: recipient,
                 amount: amount,
-                text: messageEvent.subject ? messageEvent.subject.substring(0,250) : ''
+                text: subject
             });
         });
         return current;
