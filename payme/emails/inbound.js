@@ -53,7 +53,8 @@ function handleMessageEvent(client, messageEvent) {
             return client.invoices.createFromEmail({
                 owner_email: messageEvent.from,
                 payer_email: recipient,
-                amount: amount
+                amount: amount,
+                text: messageEvent.subject ? messageEvent.subject.substring(0,250) : ''
             });
         });
         return current;

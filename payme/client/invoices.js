@@ -19,7 +19,8 @@ function Invoices(client) {
         return this.client.post('/invoices/new_from_email', {
             owner_email: newForm.owner_email,
             payer_email: newForm.payer_email,
-            amount: newForm.amount
+            amount: newForm.amount,
+            text: newForm.text
         })
     };
 
