@@ -1,5 +1,6 @@
 'use strict';
 var Promise = require('bluebird');
+var cookie = require('cookie');
 var extend = require('util')._extend;
 var querystring = require('querystring');
 var request = Promise.promisifyAll(require('request'));
@@ -51,8 +52,8 @@ Client.prototype.setDeviceId = function(deviceId) {
         return;
     }
 
-    this.headers['Cookie'] = 'device=' + deviceId;
     this.deviceId = deviceId;
+    this.addCookie('device', deviceId);
 };
 
 Client.prototype.setSessionId = function(sessionId) {
@@ -79,11 +80,36 @@ Client.prototype.setClientIp = function(ip) {
     this.headers['Payme-Web-Client-Ip'] = ip;
 };
 
+Client.prototype.addCookie = function(key, val) {
+    var c = this.headers['Cookie'];
+    if (!c) {
+        c = '';
+    } else {
+        c = c + '; ';
+    }
+    
+    this.headers['Cookie'] = c + cookie.serialize(key, val);
+};
+
+Client.prototype.addCookies = function(cookies) {
+    if (!cookies){
+        return;
+    }
+
+    var keys = Object.keys(cookies);
+    for (var i = 0; i < cookies.length; i++) {
+        var key = keys[i];
+        var val = cookies[key];
+        this.addCookie(key, val);
+    }
+};
+
 Client.prototype.get = function(path, params) {
     var self = this;
     var t0 = new Date().getTime();
     var url = self.apiUrl + path;
     var headers = self.headers;
+    console.log(headers);
     
     return request.getAsync({
         url: url,
@@ -110,6 +136,7 @@ Client.prototype.post = function(path, params) {
     var t0 = new Date().getTime();
     var url = self.apiUrl + path;
     var headers = self.headers;
+    console.log(headers);
     
     return request.postAsync({
         url: url,

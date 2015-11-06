@@ -14,6 +14,7 @@ function initClient(req, res, next) {
     req.client = new Client(config, config.apiUrl, req.cookies.token || req.query.token);
     req.client.setUserAgent(req.get('User-Agent'));
     req.client.setClientIp(req.ip);
+    req.client.addCookies(req.cookies);
     next();
 }
 
@@ -50,7 +51,7 @@ function saveUtmParams(req, res, next) {
     var utm0 = req.signedCookies.utm;
     var utm1 = utmCookie(req.query);
     
-    if (utm1 && !_.isEqual(utm0, utm1)) {
+    if (utm1 && !_.isEqual(utm1, {}) && !_.isEqual(utm0, utm1)) {
         var expires = new Date(Date.now() + config.cookies.utmTtlMs);
         var cookie = utmCookie(req.query);
         res.cookie('utm', cookie, {expires: expires, signed: true});
@@ -97,9 +98,9 @@ var router = express.Router();
 router.use(bodyParser.json({limit: '100mb'}));
 router.use(bodyParser.urlencoded({ extended: false, limit: '100mb' }));
 router.use(cookieParser(config.cookies.secret));
+router.use(saveUtmParams);
+router.use(saveReferrer);
 router.use(initClient);
 router.use(initDevice);
 router.use(initConfig);
-router.use(saveUtmParams);
-router.use(saveReferrer);
 module.exports = router;
