@@ -67,7 +67,7 @@ function saveReferrer(req, res, next) {
     
     if (r1 && r1.indexOf(h) == -1 && r1 != r0) {
         var expires = new Date(Date.now() + config.cookies.utmTtlMs);
-        res.cookie('utm-referrer', r, {expires: expires, signed:true});
+        res.cookie('utm-referrer', r1, {expires: expires, signed:true});
     }
     next();
 }
