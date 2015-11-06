@@ -1,7 +1,7 @@
+var _ = require('lodash');
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var favicon = require('serve-favicon');
 var config = require('./config');
 var Client = require('../payme/client');
 
@@ -46,16 +46,60 @@ function initDevice(req, res, next) {
 }
 
 
+function saveUtmParams(req, res, next) {
+    var utm0 = req.signedCookies.utm;
+    var utm1 = utmCookie(req.query);
+    
+    if (utm1 && !_.isEqual(utm0, utm1)) {
+        var expires = new Date(Date.now() + config.cookies.utmTtlMs);
+        var cookie = utmCookie(req.query);
+        res.cookie('utm', cookie, {expires: expires, signed: true});
+    }
+    next();
+}
+
+
+function saveReferrer(req, res, next) {
+    var h = req.get('Host');
+    var r0 = req.signedCookies['utm-referrer'];
+    var r1 = req.get('Referer');
+    
+    if (r1 && r1.indexOf(h) == -1 && r1 != r0) {
+        var expires = new Date(Date.now() + config.cookies.utmTtlMs);
+        res.cookie('utm-referrer', r, {expires: expires, signed:true});
+    }
+    next();
+}
+
+
+function utmCookie(query) {
+    var r = {};
+    if (query.utm_source) {
+        r.utm_source = query.utm_source;
+    }
+    if (query.utm_medium) {
+        r.utm_medium = query.utm_medium;
+    }
+    if (query.utm_campaign) {
+        r.utm_campaign = query.utm_campaign;
+    }
+    if (query.utm_term) {
+        r.utm_term = query.utm_term;
+    }
+    if (query.utm_content) {
+        r.utm_content = query.utm_content;
+    }
+    return query;
+}
+
+
 var router = express.Router();
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
-
 router.use(bodyParser.json({limit: '100mb'}));
 router.use(bodyParser.urlencoded({ extended: false, limit: '100mb' }));
-router.use(cookieParser());
+router.use(cookieParser(config.cookies.secret));
 router.use(initClient);
 router.use(initDevice);
 router.use(initConfig);
-
+router.use(saveUtmParams);
+router.use(saveReferrer);
 module.exports = router;

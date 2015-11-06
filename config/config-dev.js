@@ -10,6 +10,10 @@ var config = {
     auth: {
         deviceTtlMs: 10 * 365 * 24 * 3600 * 1000    // 10 years.
     },
+    cookies: {
+        secret: '206b59a6a06db76eae8f32183de99d15',
+        utmTtlMs: 365 * 24 * 3600 * 1000            // 1 year.
+    },
     client: {
         defaultUserAgent: 'Payme web client',
         devices: {
