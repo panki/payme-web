@@ -1,38 +1,46 @@
 .section.invoice-new
   .container(ng-controller="InvoiceNewCtrl")
     form.fullsize(id="new_invoice", name="form", novalidate, ng-submit='submit()')
-        fieldset(ng-disabled='submitting')
-          .row
-            .col-xs-12.col-sm-12.col-md-10.col-md-offset-1
-              h1 Получить деньги безопасно и просто
-              p(style="font-size: 18px; max-width: 750px") Теперь вам не нужно обмениваться номерами банковских карт, достаточно ввести сумму и e-mail адрес &mdash; свой и того, кто отправит деньги.
+      fieldset(ng-disabled='submitting')
+        .row
+          .col-xs-12.col-sm-12.col-md-10.col-md-offset-1
+            h1 Получить деньги безопасно и просто
+          .col-sm-12.col-md-10.col-md-offset-1.hidden-xs
+            p(id="new_invoice_description").
+              Теперь вам не нужно обмениваться номерами банковских карт, достаточно ввести 
+              сумму и e-mail адрес &mdash; свой и того, кто отправит деньги.
 
-          .row
-            .col-xs-12.col-sm-12.col-md-8.col-md-offset-1
-              .form-group(style="text-align: center; padding-top: 15px;")
-                label(for="amount") Укажите сумму:
-                .input-group.amount-group
-                  input.input-lg.form-control(id="amount", type="tel", name="amount", ng-model="invoice.amount", maxlength="5", ng-required, autosizeinput, zero-input, invoice-amount, size-delta="16")
-                  span.input-group-addon &#8381;
+        .row
+          .col-xs-12.col-sm-12.col-md-8.col-md-offset-1
+            .form-group(id="amount_wrapper")
+              label(for="amount") Укажите сумму:
+              .input-group.amount-group
+                input.input-lg.form-control(id="amount", type="tel", name="amount", ng-model="invoice.amount", maxlength="5", ng-required, autosizeinput, zero-input, invoice-amount, size-delta="16")
+                span.input-group-addon &#8381;
 
-          .row.from-to.hidden-xs
-            .col-sm-10.col-sm-offset-2.col-md-10.col-md-offset-2
-              img(src="/public/app/images/from-to.png", alt="", style="height: 110px;")
+        .row.from-to.hidden-xs
+          .col-sm-10.col-sm-offset-2.col-md-10.col-md-offset-2
+            img(src="/public/app/images/from-to.png", alt="", style="height: 110px;")
 
-          .row
-            .col-xs-12.col-md-10.col-md-offset-1
-              .row
-                .form-group.col-xs-12.col-sm-6.col-md-4
-                  label(for="owner_email")
-                    | От кого 
-                    span &mdash; это вы
-                  input.input-lg.form-control(type="email", id="owner_email", name="owner_email", ng-model="invoice.owner_email", placeholder="ваш e-mail", spellcheck='false', autocorrect="off", ng-required, email-validator)
-                .form-group.col-xs-12.col-sm-6.col-md-4
-                  label(for="payer_email") Кому
-                  input.input-lg.form-control(type="email", id="payer_email", name="payer_email", ng-model="invoice.payer_email", placeholder="E-mail", spellcheck='false', autocorrect="off", ng-required, email-validator)
-                .form-group.col-xs-12.col-sm-6.col-sm-offset-6.col-md-4.col-md-offset-0
-                  label.hidden-xs &nbsp;
-                  button.btn.btn-submit.btn-primary.btn-lg.btn-block(type="submit", text="Продолжить")
+        .row
+          .col-xs-12.col-md-10.col-md-offset-1
+            .row
+              .form-group.col-xs-12.col-sm-6.col-md-4
+                label(for="owner_email")
+                  | От кого 
+                  span &mdash; это вы
+                input.input-lg.form-control(type="email", id="owner_email", name="owner_email", ng-model="invoice.owner_email", placeholder="ваш e-mail", spellcheck='false', autocorrect="off", ng-required, email-validator)
+              .form-group.col-xs-12.col-sm-6.col-md-4
+                label(for="payer_email") Кому
+                input.input-lg.form-control(type="email", id="payer_email", name="payer_email", ng-model="invoice.payer_email", placeholder="E-mail", spellcheck='false', autocorrect="off", ng-required, email-validator)
+              .form-group.col-xs-12.col-sm-6.col-sm-offset-6.col-md-4.col-md-offset-0
+                label.hidden-xs &nbsp;
+                button.btn.btn-submit.btn-primary.btn-lg.btn-block(type="submit", text="Продолжить")
+        .row
+          .col-xs-12.visible-xs-block
+            p(id="new_invoice_description").
+              Теперь вам не нужно обмениваться номерами банковских карт, достаточно ввести 
+              сумму и e-mail адрес &mdash; свой и того, кто отправит деньги.
 
 .section.what-is-it-for.white(id="what-is-it-for")
   .container

@@ -17,6 +17,27 @@
       opacity: 1;
     }
   }
+
+  h1 {
+    .media-mobile({
+      font-size: 24px;
+      margin-bottom: 20px;
+    });
+  }
+  
+  & #new_invoice_description {
+    font-size: 18px;
+    max-width: 750px;
+  }
+  
+  & #amount_wrapper {
+    text-align: center;
+    padding-top: 15px;
+
+    .media-mobile({
+      padding-top: 0;
+    });
+  }
   
   & #amount {
     font-size: 10em;
@@ -37,7 +58,7 @@
       font-size: 8em;  
     });
     .media-mobile({
-      font-size: 6em;  
+      font-size: 4em;  
     });
     &:focus {
       outline: 0;
@@ -57,7 +78,7 @@
       font-size: 8em;  
     });
     .media-mobile({
-      font-size: 6em;  
+      font-size: 4em;  
     });
   }
   
