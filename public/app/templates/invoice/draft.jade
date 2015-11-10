@@ -4,13 +4,13 @@
       .row
         .col-xs-12.col-md-10.col-md-offset-1
           h1 Осталось ввести номер карты
-          p 
+          p
             | Затем мы отправим счет на 
             span.font-light {{ invoice.amount | currency:"₽":0 }} 
             | по адресу 
             span.font-light {{ invoice.payer.email }}.
           p Еще можно добавить к счету: имена, комментарий и указать срок оплаты.
-          
+
           .error(ng-show='error')
             span.error-icon
             .error-text
@@ -46,25 +46,42 @@
                 button.btn.btn-submit.btn-primary.btn-lg.btn-block(type="submit", text="ОТПРАВИТЬ СЧЕТ СРАЗУ")
                 .show-advanced.secondary-action.secondary-action-bottom или 
                   a.ajax-link(ng-click="toggleAdvancedForm()", href="") добавить подробности и напоминания
-                
+
             .col-xs-12.col-md-5.card-col(id="slide2")
               h3 &nbsp;
               .card-container
                 card-widget.card-face-only(card-number-input='#owner_card_number')
               .edit-card.hide(id="edit_card")
                 a.ajax-link(ng-click="toggleAdvancedForm()", href="") изменить данные карты
-                  
+
             .col-xs-12.col-sm-8.col-md-5.preoffcanvas.offcanvas(id="slide3")
               h3
               .form-group
                 label(for="owner") {{ invoice.owner.email }}
-                input.input-lg.form-control(type="text", id="owner", name="owner", ng-model="formData.owner", placeholder="Ваше имя", focus-control, spellcheck='false', autocorrect="off")
+                input.input-lg.form-control(
+                type="text", id="owner", name="owner",
+                ng-model="formData.owner",
+                ng-maxlength="50",
+                placeholder="Ваше имя",
+                focus-control, spellcheck='false', autocorrect="off")
+                
               .form-group
                 label(for="payer") {{ invoice.payer.email }}
-                input.input-lg.form-control(type="text", id="payer", name="payer", ng-model="formData.payer", placeholder="Имя плательщика", focus-control, spellcheck='false', autocorrect="off")
+                input.input-lg.form-control(
+                type="text", id="payer", name="payer", 
+                ng-model="formData.payer",
+                ng-maxlength="50",
+                placeholder="Имя плательщика",
+                focus-control, spellcheck='false', autocorrect="off")
+                
               .form-group
                 label(for='text') Комментарий
-                input.input-lg.form-control(type="text", id="text", name="text", ng-model="formData.text", placeholder="Комментарий", focus-control)
+                input.input-lg.form-control(
+                type="text", id="text", name="text", 
+                ng-model="formData.text",
+                ng-maxlength="200",
+                placeholder="Комментарий", focus-control)
+                
               .form-group
                 label Оплатить счет в течение
                 .input-group
@@ -84,7 +101,7 @@
                 .checkbox
                   label
                     input(type='checkbox'
-                    ng-model="formData.remind_daily") 
+                    ng-model="formData.remind_daily")
                     = "Ежедневно напоминать об оплате."
                     i
               .form-group
