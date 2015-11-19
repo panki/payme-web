@@ -93,8 +93,20 @@ function utmCookie(query) {
     return query;
 }
 
+function robots(req, res, next) {
+    if (req.url != '/robots.txt') return next();
+    res.type('text/plain');
+    if (app.settings.env == 'production') {
+        res.send("User-agent: *\nAllow: /");
+    } else {
+        res.send("User-agent: *\nDisallow: /");    
+    }
+}
 
+var app = express();
 var router = express.Router();
+
+router.use(robots);
 router.use(bodyParser.json({limit: '100mb'}));
 router.use(bodyParser.urlencoded({ extended: false, limit: '100mb' }));
 router.use(cookieParser(config.cookies.secret));
