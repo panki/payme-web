@@ -35,6 +35,9 @@
                 focus-control
                 required)
                 .error-message(ng-show="form.owner_card_number.$error.invalid && form.owner_card_number.$touched && !form.owner_card_number.$pristine") Неверный номер карты
+                .ru-warning
+                  img(src="/public/app/images/ru.png", alt="", width="24", height="16")
+                  span Деньги можно получить только на карты российских банков!
               .form-group
                 .checkbox
                   label
