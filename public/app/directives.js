@@ -254,11 +254,13 @@
         }])
 
         .directive('luhn', function (){
+            var validFirstDigits = ['4', '5', '6'];
             var luhn = (function (array) {
                 return function luhn (number) {
                     if (!number) { return false; }
                     var length = number.length;
                     if (length !== 16) { return false; }
+                    if (validFirstDigits.indexOf(number.charAt(0)) == -1 ) { return false };
                     var bit = 1;
                     var sum = 0;
                     var value;
