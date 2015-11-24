@@ -97,10 +97,12 @@
                   text="ОПЛАТИТЬ {{ invoice.amount + fee.value | currency:'₽':0 }}")
                 .commission(ng-show='fee.loading') Идет рассчет комиссии...
                 .commission(ng-show='submitting') Начинаем транзакцию, это может занять до 15 секунд
-                .commission(ng-show='fee.calculated')
+                .commission(ng-show='fee.calculated && fee.value > 0')
                   | Комиссия {{ fee.value | currency:"₽":0 }} включена,
                   br
                   | согласно тарифу {{ fee.tariff }}
+                .commission(ng-show='fee.calculated && fee.value == 0')
+                  | Комиссия не взимается
           .row
             .col-xs-12.col-sm-6.col-md-12
               .form-group.secondary-action.secondary-action-bottom(ng-hide="submitting || fee.loading")
