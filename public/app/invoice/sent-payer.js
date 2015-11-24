@@ -39,6 +39,7 @@
                 $scope.fee.loading = true;
                 client.invoices.calcFee($scope.invoiceId, $scope.card.number.replace(/ /g, '')).then(function (result) {
                     $scope.fee.value = result.fee;
+                    $scope.fee.tariff = '' + result.interest + '% от суммы, но не менее ' + Math.round(result.min) + ' ₽';
                     $scope.fee.calculated = true;
                     $scope.form.card_number.$setValidity('commission', true);
                 }).catch(function (error) {
