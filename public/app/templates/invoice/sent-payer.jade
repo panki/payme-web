@@ -74,6 +74,11 @@
                 input.input-lg.form-control(id="card_cvv", name="card_cvv", type="text", focus-control, jmask, ng-focus="clearError()", mask="999", ng-model="card.cvv", maxlength="3", ng-required="true")
           .row
             .col-xs-12.col-sm-12.col-md-12
+              .ru-warning(style="padding-top: 0px")
+                img(src="/public/app/images/ru.png", alt="", width="24", height="16")
+                span К оплате принимаются только карты российских банков!
+          .row
+            .col-xs-12.col-sm-12.col-md-12
               .form-group
                 .checkbox
                   label
