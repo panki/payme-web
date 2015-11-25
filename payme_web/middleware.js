@@ -91,7 +91,7 @@ function utmCookie(query) {
         r.utm_content = query.utm_content;
     }
     if (query.tid) {
-        r.cpahub_tid = query.tid;
+        r.utm_tid = query.tid;
     }
     return query;
 }
