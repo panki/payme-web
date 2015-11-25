@@ -93,7 +93,7 @@ function utmCookie(query) {
     if (query.tid) {
         r.utm_tid = query.tid;
     }
-    return query;
+    return r;
 }
 
 function robots(req, res, next) {
