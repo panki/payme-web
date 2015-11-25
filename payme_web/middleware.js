@@ -76,19 +76,22 @@ function saveReferrer(req, res, next) {
 function utmCookie(query) {
     var r = {};
     if (query.utm_source) {
-        r.utm_source = query.utm_source;
+        r.utm_source = query.utm_source.toLowerCase();
     }
     if (query.utm_medium) {
-        r.utm_medium = query.utm_medium;
+        r.utm_medium = query.utm_medium.toLowerCase();
     }
     if (query.utm_campaign) {
-        r.utm_campaign = query.utm_campaign;
+        r.utm_campaign = query.utm_campaign.toLowerCase();
     }
     if (query.utm_term) {
         r.utm_term = query.utm_term;
     }
     if (query.utm_content) {
         r.utm_content = query.utm_content;
+    }
+    if (query.tid) {
+        r.cpahub_tid = query.tid;
     }
     return query;
 }
