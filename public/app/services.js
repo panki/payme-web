@@ -22,5 +22,58 @@
                 return '';
             }
         };
-    });
+    })
+    .factory('gaTracker', [ '$rootScope', '$window', '$location', function ($rootScope, $window, $location) {
+
+        var tracker = {};
+
+        tracker.trackPageView = function(path) {
+            if ($window.ga) {
+                $window.ga('set', 'page', path || $location.path());
+                $window.ga('send', 'pageview');
+            }
+        };
+
+        tracker.trackInvoiceState = function(invoice) {
+            this.trackPageView('/invoice/' + invoice.state)
+        };
+
+        $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+            tracker.trackPageView(newRoute);
+        });
+
+        return tracker;
+    }])
+    .factory('fbTracker', [ '$rootScope', '$window', function ($rootScope, $window) {
+
+        var tracker = {};
+
+        tracker.trackPageView = function(event) {
+            if ($window.fbq) {
+                $window.fbq('track', event || 'ViewContent');
+            }
+        };
+
+        tracker.trackInvoiceState = function(invoice) {
+            switch (invoice.state) {
+                case 'draft':
+                    this.trackPageView('CompleteRegistration');
+                    break;
+
+                case 'sent':
+                    this.trackPageView('AddPaymentInfo');
+                    break;
+
+                case 'paid':
+                    this.trackPageView('Purchase', {value: invoice.amount, currency: 'RUR'});
+                    break;
+            }
+        };
+
+        $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+            tracker.trackPageView();
+        });
+
+        return tracker;
+    }]);
 }());

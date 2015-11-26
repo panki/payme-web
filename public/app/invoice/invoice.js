@@ -11,7 +11,8 @@
         'app.invoice.sent-payer']);
 
     module.controller('InvoiceCtrl', ['$scope', '$compile', '$templateRequest', '$window', '$location', 'Client',
-        function($scope, $compile, $templateRequest, $window, $location, client) {
+        'gaTracker', 'fbTracker',
+        function($scope, $compile, $templateRequest, $window, $location, client, gaTracker, fbTracker) {
             $scope.client = client;
             $scope.state = 'loading';
             $scope.error = null;
@@ -107,6 +108,9 @@
                 var invoice = $scope.invoice;
                 var accountId = $scope.accountId;
                 var isOwner = invoice.owner_id === accountId;
+
+                gaTracker.trackInvoiceState($scope.invoice);
+                fbTracker.trackInvoiceState($scope.invoice);
                 
                 switch ($scope.invoice.state) {
                     case 'draft':
