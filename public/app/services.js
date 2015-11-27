@@ -65,7 +65,7 @@
                     break;
 
                 case 'paid':
-                    this.trackPageView('Purchase', {value: invoice.amount, currency: 'RUR'});
+                    this.trackPageView('Purchase', {value: invoice.amount, currency: 'RUB'});
                     break;
             }
         };
