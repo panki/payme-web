@@ -34,7 +34,7 @@
             }
         };
 
-        tracker.trackInvoiceState = function(invoice) {
+        tracker.trackInvoiceState = function(invoice, isOwner) {
             this.trackPageView('/invoice/' + invoice.state)
         };
 
@@ -48,13 +48,13 @@
 
         var tracker = {};
 
-        tracker.trackPageView = function(event) {
+        tracker.trackPageView = function(event, options) {
             if ($window.fbq) {
-                $window.fbq('track', event || 'ViewContent');
+                $window.fbq('track', event || 'ViewContent', options || {});
             }
         };
 
-        tracker.trackInvoiceState = function(invoice) {
+        tracker.trackInvoiceState = function(invoice, isOwner) {
             switch (invoice.state) {
                 case 'draft':
                     this.trackPageView('CompleteRegistration');

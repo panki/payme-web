@@ -93,6 +93,9 @@
             };
             
             $scope.sendSuccess = function () {
+                $scope.invoice.state =  'sent';
+                gaTracker.trackInvoiceState($scope.invoice, true);
+                fbTracker.trackInvoiceState($scope.invoice, true);
                 $scope.showChild('/public/build/templates/invoice/send-success.html');    
             };
             
@@ -109,8 +112,8 @@
                 var accountId = $scope.accountId;
                 var isOwner = invoice.owner_id === accountId;
 
-                gaTracker.trackInvoiceState($scope.invoice);
-                fbTracker.trackInvoiceState($scope.invoice);
+                gaTracker.trackInvoiceState($scope.invoice, isOwner);
+                fbTracker.trackInvoiceState($scope.invoice, isOwner);
                 
                 switch ($scope.invoice.state) {
                     case 'draft':
