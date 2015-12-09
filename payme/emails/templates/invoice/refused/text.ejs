@@ -1,1 +1,11 @@
-Здравствуйте!
+<% if (email.address == email.invoice.owner.email) { %>
+<%= email.invoice.payer.email %> отказался от оплаты счета на сумму <%= email.invoice.amount %> руб.
+Причина: <%= email.invoice.refuse_reason %>
+<% } else { %>
+Вы отказались от оплаты счета от <%= email.invoice.owner.email %> на сумму <%= email.invoice.amount %> руб.
+Причина: <%= email.invoice.refuse_reason %>
+<% } %>
+
+Для просмотра квитанции перейдите по ссылке - <%= email.invoiceUrl %>
+
+<% include ./../../text-footer.ejs %>
