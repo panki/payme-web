@@ -1,1 +1,9 @@
-Здравствуйте!
+<% if (email.address == email.invoice.owner.email) { %>
+Вы отменили счет для <%= email.invoice.payer.email %> на сумму <%= email.invoice.amount %> руб.
+<% } else { %>
+Счет от <%= email.invoice.owner.email %> на сумму <%= email.invoice.amount %> руб отменен!
+<% } %>
+
+Для просмотра квитанции перейдите по ссылке - <%= email.invoiceUrl %>
+
+<% include ./../../text-footer.ejs %>
