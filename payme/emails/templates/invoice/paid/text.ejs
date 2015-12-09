@@ -1,1 +1,11 @@
-Здравствуйте!
+<% if (email.address == email.invoice.owner.email) { %>
+<%= email.invoice.payer.email %> оплатил ваш счет на сумму <%= email.invoice.amount %> руб.
+Деньги зачислены на карту <%= email.invoice.owner_card.masked_number %>.
+<% } else { %>
+Вы оплатили счет от <%= email.invoice.owner.email %> на сумму <%= email.invoice.amount %> руб.
+Деньги списаны с карты <%= email.invoice.transaction.card.masked_number %>.
+<% } %>
+
+Для просмотра квитанции перейдите по ссылке - <%= email.invoiceUrl %>
+
+<% include ./../../text-footer.ejs %>
