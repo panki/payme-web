@@ -1,4 +1,6 @@
-Счет на сумму <%= email.invoice.amount %> успешно отправлен <%= email.invoice.payer.email %>.
+Счет на сумму <%= email.invoice.amount %> руб успешно отправлен <%= email.invoice.payer.email %>.
 Карта для зачисления денег - <%= email.invoice.owner_card.masked_number %>.
+
+Для просмотра квитанции перейдите по ссылке - <%= email.invoiceUrl %>
 
 <% include ./../../text-footer.ejs %>
