@@ -1,1 +1,9 @@
-Здравствуйте!
+<% if (email.address == email.invoice.owner.email) { %>
+Истек срок ожидания оплаты от <%= email.invoice.payer.email %> на сумму <%= email.invoice.amount %> руб.
+<% } else { %>
+Истек срок оплаты счета от <%= email.invoice.owner.email %> на сумму <%= email.invoice.amount %> руб.
+<% } %>
+
+Для просмотра квитанции перейдите по ссылке - <%= email.invoiceUrl %>
+
+<% include ./../../text-footer.ejs %>
