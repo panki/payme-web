@@ -1,1 +1,5 @@
-Здравствуйте!
+Не забудьте до <%= moment(email.invoice.expire_at).format('LL') %> оплатить счет от <%= email.invoice.owner.email %> на сумму <%= email.invoice.amount %> руб.
+
+Для просмотра, оплаты или отказа от оплаты счета перейдите по ссылке  - <%= email.invoiceUrl %>
+
+<% include ./../../text-footer.ejs %>
