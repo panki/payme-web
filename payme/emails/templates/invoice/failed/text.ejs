@@ -1,1 +1,11 @@
-Здравствуйте!
+<% if (email.address == email.invoice.owner.email) { %>
+<%= email.invoice.payer.email %> не смог оплатить ваш счет на сумму <%= email.invoice.amount %> руб.
+Причина: <%= email.invoice.failure_reason %>
+<% } else { %>
+Ошибка при оплате счета от <%= email.invoice.owner.email %> на сумму <%= email.invoice.amount %> руб.
+Причина: <%= email.invoice.failure_reason %>
+<% } %>
+
+Для просмотра квитанции перейдите по ссылке - <%= email.invoiceUrl %>
+
+<% include ./../../text-footer.ejs %>
