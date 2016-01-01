@@ -15,7 +15,7 @@ module.exports.makeHeaders = function(email) {
 };
 
 function getMessageRecipients(msg) {
-    var recipients = msg.to;
+    var recipients = msg.to || [];
     if (msg.cc) recipients = recipients.concat(msg.cc);
     if (msg.bcc) recipients = recipients.concat(msg.bcc);
     
